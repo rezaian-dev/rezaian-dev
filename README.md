@@ -10,7 +10,7 @@
   </blockquote>
 </div>
 
-## 🚀 About Me
+## <h2>🚀 About Me</h2>
 <img align="right" width="400" src="https://raw.githubusercontent.com/abhisheknaiidu/abhisheknaiidu/master/code.gif" alt="Coding Animation"/>
 Frontend Developer with expertise in React.js and modern web technologies. Electrical-Electronics Engineering graduate born on July 4, 2000, with 3+ years of web development experience. I build intuitive, responsive UIs with clean code and strong component architecture.
 
@@ -21,7 +21,7 @@ Frontend Developer with expertise in React.js and modern web technologies. Elect
 <br/>
 <br/>
 
-## 💻 Tech Stack
+ ## 💻 Tech Stack
 
 ```javascript
 const MohammadReza = {
@@ -62,6 +62,7 @@ const MohammadReza = {
             <img src="https://media.giphy.com/media/fsEaZldNC8A1PJ3mwp/giphy.gif" alt="CSS3" height="60" />
             <img src="https://media4.giphy.com/media/XAxylRMCdpbEWUAvr8/giphy.gif" alt="HTML5" height="60" />
             <img src="https://res.cloudinary.com/arcjet-media/image/upload/v1608734952/z8hzeszc9eb3sp3vp3qc.jpg" alt="Tailwind CSS" height="60" />
+            <img src="https://cdn.worldvectorlogo.com/logos/bootstrap-5-1.svg" alt="Bootstrap" height="50" />
           </div>
         </td>
         <td valign="middle" width="33%" style="border: none;">
