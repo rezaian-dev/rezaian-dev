@@ -20,6 +20,7 @@ Frontend Developer with expertise in React.js and modern web technologies. Elect
 - 🧠 Interested in tackling challenges in frontend development
 <br/>
 <br/>
+<br/>
 
  ## 💻 Tech Stack
 
