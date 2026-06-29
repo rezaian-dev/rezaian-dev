@@ -98,7 +98,7 @@ A medical appointment platform with **atomic slot reservation**, **JWT + SMS-OTP
 `Next.js 16` · `React 19` · `TypeScript` · `MongoDB`
 
 [![Code](https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rezaian-dev/doctor-booking)
-[![Live](https://img.shields.io/badge/Live_Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://doctor-booking-bice.vercel.app)
+[![Live](https://img.shields.io/badge/Live_Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://doctor-booking-dusky-nine.vercel.app)
 
 </td>
 <td width="50%" valign="top">
