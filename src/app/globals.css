@@ -1,0 +1,246 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 🎨 Design tokens — light theme */
+:root {
+  --radius: 0.875rem;
+
+  --background: oklch(0.985 0.004 260);
+  --foreground: oklch(0.18 0.02 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 265);
+  --primary: oklch(0.55 0.22 275);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.955 0.008 260);
+  --secondary-foreground: oklch(0.25 0.02 265);
+  --muted: oklch(0.955 0.008 260);
+  --muted-foreground: oklch(0.5 0.02 262);
+  --accent: oklch(0.94 0.02 275);
+  --accent-foreground: oklch(0.3 0.08 275);
+  --destructive: oklch(0.6 0.22 25);
+  --border: oklch(0.9 0.008 260);
+  --input: oklch(0.9 0.008 260);
+  --ring: oklch(0.6 0.2 275);
+
+  --brand: oklch(0.6 0.2 275);
+  --brand-2: oklch(0.78 0.14 210);
+  --glow: oklch(0.6 0.2 275 / 0.35);
+}
+
+/* 🌙 Dark theme overrides */
+.dark {
+  --background: oklch(0.13 0.02 265);
+  --foreground: oklch(0.94 0.01 260);
+  --card: oklch(0.17 0.02 265);
+  --card-foreground: oklch(0.94 0.01 260);
+  --popover: oklch(0.17 0.02 265);
+  --popover-foreground: oklch(0.94 0.01 260);
+  --primary: oklch(0.94 0.01 260);
+  --primary-foreground: oklch(0.15 0.02 265);
+  --secondary: oklch(0.22 0.02 265);
+  --secondary-foreground: oklch(0.94 0.01 260);
+  --muted: oklch(0.22 0.02 265);
+  --muted-foreground: oklch(0.68 0.02 262);
+  --accent: oklch(0.25 0.04 275);
+  --accent-foreground: oklch(0.94 0.01 260);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.65 0.18 275);
+
+  --brand: oklch(0.72 0.17 275);
+  --brand-2: oklch(0.82 0.13 205);
+  --glow: oklch(0.7 0.18 275 / 0.45);
+}
+
+@theme inline {
+  --font-sans: var(--font-vazirmatn), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-latin: var(--font-inter), var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-delayed: float 8s ease-in-out 1.5s infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-blob: blob 18s ease-in-out infinite;
+  --animate-blob-slow: blob 26s ease-in-out -8s infinite reverse;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-gradient: gradient 8s ease infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0) }
+    to { transform: translateX(-50%) }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) }
+    50% { transform: translateY(-12px) }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0 }
+    to { background-position: -200% 0 }
+  }
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1) }
+    33% { transform: translate(40px, -30px) scale(1.08) }
+    66% { transform: translate(-30px, 20px) scale(0.95) }
+  }
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+  }
+}
+
+/* 🧱 Base layer */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  html[lang="en"] {
+    font-family: var(--font-latin);
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+    /* 🚫 Stable scrollbar gutter prevents horizontal shift when overlays lock scroll */
+    scrollbar-gutter: stable;
+  }
+  /* 🖼️ Images never cause layout shift */
+  img, video {
+    @apply block max-w-full;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--brand) 35%, transparent);
+  }
+}
+
+/* 🧰 Custom utilities */
+@utility ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(120deg, var(--brand) 0%, var(--brand-2) 100%);
+}
+
+@utility text-gradient-animated {
+  @apply bg-clip-text text-transparent animate-gradient;
+  background-size: 200% 200%;
+  background-image: linear-gradient(120deg, var(--brand), var(--brand-2), var(--brand));
+}
+
+@utility glass {
+  @apply border border-border/80 bg-card/60 backdrop-blur-xl;
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+}
+
+@utility dots-bg {
+  background-image: radial-gradient(color-mix(in oklch, var(--foreground) 10%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility shine {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, color-mix(in oklch, var(--foreground) 10%, transparent) 50%, transparent 70%);
+    background-size: 200% 100%;
+    transform: translateX(-100%);
+    transition: transform 0.9s ease;
+    pointer-events: none;
+  }
+  &:hover::after {
+    transform: translateX(100%);
+  }
+}
+
+/* ✨ Mouse-tracking glow border (used by GlowCard) */
+@utility glow-card {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(380px circle at var(--x, 50%) var(--y, 50%), var(--glow), transparent 40%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+    z-index: 1;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@utility hover-lift {
+  @apply transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand/15;
+}
+
+@utility btn-glow {
+  @apply transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_var(--glow)];
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
