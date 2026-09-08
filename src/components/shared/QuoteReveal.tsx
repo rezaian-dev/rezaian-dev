@@ -1,21 +1,23 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import type { CSSProperties } from "react";
 import { Quote } from "lucide-react";
+import { useInView } from "@/hooks/useInView";
+import { cn } from "@/lib/utils";
 
-// 💬 Signature quote — words rise in one by one; `*text*` becomes a gradient highlight
+// 💬 Signature quote — words rise in one by one (CSS stagger); `*text*` becomes a gradient highlight
 export default function QuoteReveal({ text }: { text: string }) {
-  const reduce = useReducedMotion();
+  const { ref, inView } = useInView<HTMLQuoteElement>();
   const words = text.split(" ");
   let highlight = false;
 
   return (
-    <motion.blockquote
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ staggerChildren: reduce ? 0 : 0.07, delayChildren: 0.15 }}
-      className="group relative mt-8 overflow-hidden rounded-2xl border border-brand/25 bg-gradient-to-br from-brand/10 via-transparent to-brand-2/10 p-6 md:p-7"
+    <blockquote
+      ref={ref}
+      className={cn(
+        "reveal-group group relative mt-8 overflow-hidden rounded-2xl border border-brand/25 bg-gradient-to-br from-brand/10 via-transparent to-brand-2/10 p-6 md:p-7",
+        inView && "in",
+      )}
     >
       {/* ✨ Sweeping light beam */}
       <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[1400ms] ease-out group-hover:translate-x-[400%]" />
@@ -32,18 +34,17 @@ export default function QuoteReveal({ text }: { text: string }) {
           if (closes) highlight = false;
           const word = raw.replaceAll("*", "");
           return (
-            <motion.span
+            <span
               key={i}
-              variants={reduce ? undefined : { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className={active ? "inline-block text-gradient" : "inline-block"}
+              className={cn("reveal-item inline-block", active && "text-gradient")}
+              style={{ "--d": `${0.15 + i * 0.07}s` } as CSSProperties}
             >
               {word}
               {i < words.length - 1 && "\u00A0"}
-            </motion.span>
+            </span>
           );
         })}
       </p>
-    </motion.blockquote>
+    </blockquote>
   );
 }

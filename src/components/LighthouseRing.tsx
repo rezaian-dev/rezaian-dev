@@ -1,32 +1,34 @@
 "use client";
 
-import { animate, useInView } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useInView } from "@/hooks/useInView";
 
 type Props = { label: string; value: number; delay?: number };
 
 const R = 34;
 const C = 2 * Math.PI * R;
+const DURATION = 1600;
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
-// 💡 Lighthouse score ring — one `animate()` drives both the arc and the number, writing to the DOM directly (no re-renders)
+// 💡 Lighthouse score ring — one rAF loop drives both the arc and the number, writing to the DOM directly (no re-renders)
 export default function LighthouseRing({ label, value, delay = 0 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const { ref, inView } = useInView<HTMLDivElement>("-60px 0px", 0);
   const arc = useRef<SVGCircleElement>(null);
   const num = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   useEffect(() => {
     if (!inView) return;
-    const controls = animate(0, value, {
-      delay,
-      duration: 1.6,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => {
-        if (arc.current) arc.current.style.strokeDashoffset = String(C - (C * v) / 100);
-        if (num.current) num.current.textContent = String(Math.round(v));
-      },
-    });
-    return () => controls.stop();
+    let raf = 0;
+    const start = performance.now() + delay * 1000;
+    const tick = (now: number) => {
+      const t = Math.min(Math.max((now - start) / DURATION, 0), 1);
+      const v = value * easeOut(t);
+      if (arc.current) arc.current.style.strokeDashoffset = String(C - (C * v) / 100);
+      if (num.current) num.current.textContent = String(Math.round(v));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [inView, value, delay]);
 
   const color = value >= 90 ? "#22c55e" : value >= 50 ? "#f59e0b" : "#ef4444";

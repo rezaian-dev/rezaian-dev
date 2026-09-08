@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/shared/ThemeToggle";
@@ -11,7 +10,8 @@ import MobileMenu from "@/components/shared/MobileMenu";
 import { links, type Content, type Locale } from "@/data/content";
 import { cn } from "@/lib/utils";
 
-type Props = { locale: Locale; c: Content };
+// 🧩 Only the slices the navbar needs — keeps the RSC payload small
+type Props = { locale: Locale; c: Pick<Content, "nav" | "ui" | "hero" | "footer"> };
 
 // 🧭 Floating glass navbar with theme / language toggles
 export default function Navbar({ locale, c }: Props) {
@@ -36,12 +36,9 @@ export default function Navbar({ locale, c }: Props) {
       {/* 📏 Scroll progress — CSS scroll-driven animation, runs off the main thread */}
       <div aria-hidden className="scroll-progress fixed inset-x-0 top-0 z-50 h-0.5 origin-left bg-gradient-to-r from-brand to-brand-2 rtl:origin-right" />
 
-      <motion.nav
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+      <nav
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 transition-[background-color,border-color,box-shadow] duration-500 md:px-5",
+          "drop-in mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 transition-[background-color,border-color,box-shadow] duration-500 md:px-5",
           scrolled ? "glass-nav shadow-xl shadow-black/5 dark:shadow-black/40" : "border-transparent",
         )}
       >
@@ -75,7 +72,7 @@ export default function Navbar({ locale, c }: Props) {
           {/* 📱 Mobile menu */}
           <MobileMenu locale={locale} c={c} />
         </div>
-      </motion.nav>
+      </nav>
     </header>
   );
 }

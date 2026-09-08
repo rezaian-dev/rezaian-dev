@@ -150,7 +150,7 @@ const fa = {
         description:
           "یه SPA املاک که از روز اول برای بزرگ‌شدن طراحی شد: جست‌وجوی پیشرفته با فیلتر منطقه، نوع، قیمت و متراژ؛ ثبت آگهی چندمرحله‌ای؛ و نقشهٔ تعاملی Leaflet که می‌شه محله‌به‌محله توش گشت. منطق تکراری رو توی ۱۷ هوک سفارشی جمع کردم و با memoization توی بیشتر از ۱۰۰ نقطه، رندرها رو سبک نگه داشتم.",
         image: "/images/projects/saghfinoo.jpg",
-        size: { w: 1536, h: 1024 },
+        size: { w: 1400, h: 933 },
         stack: ["React 18", "Vite", "React Router 7", "MUI", "Tailwind", "React Hook Form", "React-Leaflet"],
         metrics: [
           { value: "۱۰۷", label: "کامپوننت" },
@@ -186,7 +186,7 @@ const fa = {
         description:
           "یه سبد خرید سبک و تمیز که برای تمرین TypeScript strict شروع شد و به یه معماری ماژولار مرتب رسید: اضافه و حذف محصول، تغییر تعداد و محاسبهٔ لحظه‌ای جمع کل — با Webpack و Bootstrap 5.",
         image: "/images/projects/shopping-cart.jpg",
-        size: { w: 1536, h: 1024 },
+        size: { w: 1400, h: 933 },
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",
@@ -398,7 +398,7 @@ const en: Content = {
         description:
           "A real-estate SPA designed to grow from day one: advanced search by district, type, price and area; multi-step listing creation; and an interactive Leaflet map you can browse neighbourhood by neighbourhood. Repeated logic lives in 17 custom hooks, and memoization across 100+ call sites keeps renders light.",
         image: "/images/projects/saghfinoo.jpg",
-        size: { w: 1536, h: 1024 },
+        size: { w: 1400, h: 933 },
         stack: ["React 18", "Vite", "React Router 7", "MUI", "Tailwind", "React Hook Form", "React-Leaflet"],
         metrics: [
           { value: "107", label: "Components" },
@@ -434,7 +434,7 @@ const en: Content = {
         description:
           "A light, tidy shopping cart that started as strict-TypeScript practice and ended up with a neat modular architecture: add and remove products, change quantities and watch totals update instantly — built with Webpack and Bootstrap 5.",
         image: "/images/projects/shopping-cart.jpg",
-        size: { w: 1536, h: 1024 },
+        size: { w: 1400, h: 933 },
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",

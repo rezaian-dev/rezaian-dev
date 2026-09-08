@@ -2,7 +2,6 @@ import { Download, Mail, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
 import Reveal from "@/components/shared/Reveal";
-import Magnetic from "@/components/shared/Magnetic";
 import { links, type Content } from "@/data/content";
 
 // 📬 CTA card with all contact channels
@@ -35,22 +34,18 @@ export default function Contact({ c }: { c: Content }) {
                 </h2>
                 <p className="mt-5 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">{t.text}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Magnetic>
                     <Button asChild size="lg" className="h-11 rounded-full px-6 btn-glow shine">
                       <a href={`mailto:${links.email}`}>
                         <Mail data-icon="inline-start" />
                         {c.ui.sendEmail}
                       </a>
                     </Button>
-                  </Magnetic>
-                  <Magnetic>
                     <Button asChild size="lg" variant="outline" className="h-11 rounded-full bg-background/50 px-6 btn-glow">
                       <a href={links.resume} download>
                         <Download data-icon="inline-start" />
                         {c.ui.downloadResume}
                       </a>
                     </Button>
-                  </Magnetic>
                 </div>
               </div>
 

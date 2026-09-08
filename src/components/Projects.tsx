@@ -47,7 +47,7 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
               alt={p.title}
               width={p.size.w}
               height={p.size.h}
-              quality={90}
+              quality={85}
               placeholder="blur"
               blurDataURL={blurData[p.slug as keyof typeof blurData]}
               sizes="(max-width: 1024px) 100vw, 50vw"

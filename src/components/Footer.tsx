@@ -1,6 +1,5 @@
 import { ArrowUp, Mail, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
 import TehranClock from "@/components/shared/TehranClock";
 import { links, type Content, type Locale } from "@/data/content";
@@ -98,7 +97,7 @@ export default function Footer({ c, locale }: { c: Content; locale: Locale }) {
           </div>
         </div>
 
-        <Separator className="my-8" />
+        <hr className="my-8 border-border" />
 
         {/* ⚖️ Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-4 text-xs text-muted-foreground sm:flex-row">

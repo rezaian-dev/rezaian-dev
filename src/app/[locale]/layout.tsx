@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Direction } from "radix-ui";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import JsonLd from "@/components/shared/JsonLd";
 import { isLocale, locales } from "@/data/content";
@@ -70,11 +68,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} dir={dir} className={cn(vazirmatn.variable, inter.variable)} suppressHydrationWarning>
       <body>
         <JsonLd locale={locale} />
-        <ThemeProvider>
-          <Direction.Provider dir={dir}>
-            <TooltipProvider>{children}</TooltipProvider>
-          </Direction.Provider>
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

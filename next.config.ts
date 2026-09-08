@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ["*.e2b.app"],
   images: {
-    // کیفیت‌های مجاز برای next/image — پرتره با ۹۵ و کاور پروژه‌ها با ۹۰ سرو می‌شوند
-    qualities: [75, 90, 95],
+    // 🖼️ Allowed next/image qualities — portrait 90, project covers 85
+    qualities: [75, 85, 90],
     formats: ["image/avif", "image/webp"],
   },
 };

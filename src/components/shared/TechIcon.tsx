@@ -30,6 +30,20 @@ const glyphs: Record<string, LucideIcon> = {
 
 const mono = new Set(["000000", "FFFFFF"]);
 
+// 🗂️ One hidden sprite holds each brand path exactly once; icons reference it via <use> (shrinks HTML ~20 KB gz)
+export function TechSprite() {
+  const unique = [...new Set(Object.values(brands))];
+  return (
+    <svg aria-hidden className="hidden">
+      {unique.map((b) => (
+        <symbol key={b.slug} id={`si-${b.slug}`} viewBox="0 0 24 24">
+          <path d={b.path} fill="currentColor" />
+        </symbol>
+      ))}
+    </svg>
+  );
+}
+
 type Props = { name: string; className?: string };
 
 // 🏷️ Icon for a tech label; renders nothing for unknown names
@@ -38,8 +52,8 @@ export default function TechIcon({ name, className }: Props) {
   if (brand) {
     const color = mono.has(brand.hex.toUpperCase()) ? "currentColor" : `#${brand.hex}`;
     return (
-      <svg viewBox="0 0 24 24" aria-hidden className={cn("size-4 shrink-0", className)} style={{ color }}>
-        <path d={brand.path} fill="currentColor" />
+      <svg aria-hidden className={cn("size-4 shrink-0", className)} style={{ color }}>
+        <use href={`#si-${brand.slug}`} />
       </svg>
     );
   }

@@ -26,7 +26,7 @@ export default function Books({ c }: { c: Content }) {
                     src={book.image}
                     alt={book.title}
                     fill
-                    quality={90}
+                    quality={85}
                     placeholder="blur"
                     blurDataURL={blurData[book.blur]}
                     sizes="(max-width: 768px) 100vw, 33vw"

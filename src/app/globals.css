@@ -143,6 +143,113 @@
   contain-intrinsic-size: auto 900px;
 }
 
+/* 🎞️ CSS entrance animations for above-the-fold content (no JS) — `--d` sets the delay */
+@utility rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@utility drop-in {
+  animation: drop-in 0.6s ease-out both;
+}
+@keyframes drop-in {
+  from { opacity: 0; transform: translateY(-40px) }
+  to { opacity: 1; transform: none }
+}
+@utility rise-scale {
+  animation: rise-scale 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@utility fade-in {
+  animation: fade-in 0.6s ease-out both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes rise-scale {
+  from { opacity: 0; transform: scale(0.94) }
+  to { opacity: 1; transform: scale(1) }
+}
+@keyframes fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+/* 🎬 Scroll reveal — `.reveal` starts hidden, `.in` (set by IntersectionObserver) transitions it up */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--d, 0s);
+  &.in { opacity: 1; transform: none }
+}
+/* 💬 Staggered children: every `.reveal-item` inside a `.reveal-group.in` rises with its own `--d` */
+@utility reveal-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--d, 0s);
+  .reveal-group.in & { opacity: 1; transform: none }
+}
+
+/* 📱 Mobile menu choreography — one utility, keyframes picked per element via `--in` / `--out` (opacity + transform only) */
+@utility menu-anim {
+  animation: var(--in, menu-rise) var(--dur, 0.55s) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+  &[data-state="closing"], [data-state="closing"] & {
+    animation: var(--out, menu-out) var(--dur-out, 0.18s) ease-in both;
+    animation-delay: var(--dx, 0s);
+  }
+}
+@keyframes menu-rise {
+  from { opacity: 0; transform: translateY(26px) }
+  to { opacity: 1; transform: none }
+}
+@keyframes menu-slide {
+  from { opacity: 0; transform: translateX(var(--sx, -12px)) }
+  to { opacity: 1; transform: none }
+}
+@keyframes menu-line {
+  from { transform: scaleX(0) }
+  to { transform: scaleX(1) }
+}
+@keyframes menu-pop {
+  from { opacity: 0; transform: scale(0.6) }
+  60% { opacity: 1; transform: scale(1.06) }
+  to { opacity: 1; transform: scale(1) }
+}
+@keyframes menu-card {
+  from { opacity: 0; transform: translateY(40px) scale(0.97) }
+  70% { opacity: 1; transform: translateY(-3px) scale(1) }
+  to { opacity: 1; transform: none }
+}
+@keyframes menu-spin-in {
+  from { opacity: 0; transform: rotate(-90deg) scale(0.6) }
+  70% { opacity: 1; transform: rotate(8deg) scale(1.05) }
+  to { opacity: 1; transform: none }
+}
+@keyframes menu-spin-out {
+  to { opacity: 0; transform: rotate(90deg) scale(0.6) }
+}
+@keyframes menu-ink-in {
+  from { transform: scale(0) }
+  to { transform: scale(1) }
+}
+@keyframes menu-ink-out {
+  to { transform: scale(0) }
+}
+@keyframes menu-fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+@keyframes menu-out {
+  to { opacity: 0; transform: translateY(10px) }
+}
+@keyframes menu-fade-out {
+  to { opacity: 0 }
+}
+
 /* 🧱 Base layer */
 @layer base {
   * {

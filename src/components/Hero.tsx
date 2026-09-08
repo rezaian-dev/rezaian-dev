@@ -1,23 +1,13 @@
-"use client";
-
+import type { CSSProperties } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
 import { ArrowDown, Download, MapPin, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
-import Magnetic from "@/components/shared/Magnetic";
 import { links, type Content } from "@/data/content";
 import { blurData } from "@/data/blur";
 
-// 🎞️ Staggered entrance — opacity + transform only, so nothing reflows
-const fade = (delay: number) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
-
+// 🎞️ Staggered entrance via CSS (`.rise` + delay) — zero client JS above the fold
 export default function Hero({ c }: { c: Content }) {
   const h = c.hero;
   const socials = [
@@ -33,7 +23,7 @@ export default function Hero({ c }: { c: Content }) {
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 md:px-6 lg:grid-cols-[1.15fr_0.85fr]">
         {/* 📝 Copy */}
         <div>
-          <motion.div {...fade(0)}>
+          <div className="rise" style={{ "--d": "0s" } as CSSProperties}>
             <Badge variant="outline" className="h-auto gap-2 rounded-full bg-card/80 px-3.5 py-1.5 text-xs">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -41,9 +31,9 @@ export default function Hero({ c }: { c: Content }) {
               </span>
               {h.available}
             </Badge>
-          </motion.div>
+          </div>
 
-          <motion.h1 {...fade(0.1)} className="mt-6 text-4xl font-black leading-[1.15] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="rise mt-6 text-4xl font-black leading-[1.15] tracking-tight text-foreground sm:text-5xl lg:text-6xl" style={{ "--d": "0.1s" } as CSSProperties}>
             {h.greeting} <span className="text-gradient-animated">{h.name}</span>
             {h.suffix && (
               <>
@@ -51,66 +41,52 @@ export default function Hero({ c }: { c: Content }) {
                 {h.suffix}
               </>
             )}
-          </motion.h1>
+          </h1>
 
-          <motion.p {...fade(0.2)} className="mt-5 text-xl font-semibold text-foreground/90 md:text-2xl">
+          <p className="rise mt-5 text-xl font-semibold text-foreground/90 md:text-2xl" style={{ "--d": "0.2s" } as CSSProperties}>
             <span className="ltr inline-block">{h.role}</span>
             <span className="mx-3 text-muted-foreground/50">·</span>
             <span className="ltr inline-block">{h.roleSub}</span>
-          </motion.p>
+          </p>
 
-          <motion.p {...fade(0.3)} className="mt-6 max-w-xl text-base leading-8 text-muted-foreground md:text-lg">
+          <p className="rise mt-6 max-w-xl text-base leading-8 text-muted-foreground md:text-lg" style={{ "--d": "0.3s" } as CSSProperties}>
             {h.tagline}
-          </motion.p>
+          </p>
 
-          <motion.div {...fade(0.4)} className="mt-8 flex flex-wrap items-center gap-3">
-            <Magnetic>
+          <div className="rise mt-8 flex flex-wrap items-center gap-3" style={{ "--d": "0.4s" } as CSSProperties}>
               <Button asChild size="lg" className="btn-glow shine h-11 rounded-full px-6 text-sm">
                 <a href="#projects">
                   <Sparkles data-icon="inline-start" />
                   {c.ui.viewProjects}
                 </a>
               </Button>
-            </Magnetic>
-            <Magnetic>
               <Button asChild size="lg" variant="outline" className="btn-glow h-11 rounded-full bg-card/80 px-6 text-sm">
                 <a href={links.resume} download>
                   <Download data-icon="inline-start" />
                   {c.ui.downloadResume}
                 </a>
               </Button>
-            </Magnetic>
-          </motion.div>
+          </div>
 
-          <motion.div {...fade(0.5)} className="mt-8 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
+          <div className="rise mt-8 flex flex-wrap items-center gap-5 text-sm text-muted-foreground" style={{ "--d": "0.5s" } as CSSProperties}>
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="size-4" />
               {h.location}
             </span>
             <div className="flex items-center gap-2">
               {socials.map(({ href, icon: Icon, label }) => (
-                <Tooltip key={label}>
-                  <TooltipTrigger asChild>
-                    <Button asChild variant="outline" size="icon-lg" className="btn-glow rounded-full bg-card/60">
-                      <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
-                        <Icon className="size-4" />
-                      </a>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>{label}</TooltipContent>
-                </Tooltip>
+                <Button key={label} asChild variant="outline" size="icon-lg" className="btn-glow rounded-full bg-card/60">
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
+                    <Icon className="size-4" />
+                  </a>
+                </Button>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* 🖼️ Portrait — fixed aspect ratio box, so the image never shifts layout */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-sm lg:max-w-md"
-        >
+        <div className="rise-scale relative mx-auto w-full max-w-sm lg:max-w-md" style={{ "--d": "0.2s" } as CSSProperties}>
           <div className="absolute -inset-1 animate-spin-slow rounded-[2.2rem] bg-[conic-gradient(from_0deg,var(--brand),var(--brand-2),transparent_40%,transparent_60%,var(--brand))] opacity-70 will-change-transform" />
           <div className="absolute -inset-16 rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--brand)_22%,transparent),transparent_70%)]" />
 
@@ -120,7 +96,7 @@ export default function Hero({ c }: { c: Content }) {
               alt={h.name}
               fill
               priority
-              quality={95}
+              quality={90}
               placeholder="blur"
               blurDataURL={blurData.profile}
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 24rem, 28rem"
@@ -138,11 +114,11 @@ export default function Hero({ c }: { c: Content }) {
             <p className="text-2xl font-black text-foreground">{h.floatB.value}</p>
             <p className="text-xs text-muted-foreground">{h.floatB.label}</p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* 📊 Quick stats */}
-      <motion.div {...fade(0.6)} className="relative mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-4 px-4 md:mt-24 md:grid-cols-4 md:px-6">
+      <div className="rise relative mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-4 px-4 md:mt-24 md:grid-cols-4 md:px-6" style={{ "--d": "0.6s" } as CSSProperties}>
         {h.stats.map((s) => (
           <div key={s.label} className="glass group relative overflow-hidden rounded-2xl p-5 text-center transition-transform duration-300 hover:-translate-y-1">
             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -150,18 +126,16 @@ export default function Hero({ c }: { c: Content }) {
             <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
           </div>
         ))}
-      </motion.div>
+      </div>
 
-      <motion.a
+      <a
         href="#about"
         aria-label={c.ui.scroll}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 text-muted-foreground md:block"
+        className="fade-in absolute bottom-4 left-1/2 hidden -translate-x-1/2 text-muted-foreground md:block"
+        style={{ "--d": "1.2s" } as CSSProperties}
       >
         <ArrowDown className="size-5 animate-bounce" />
-      </motion.a>
+      </a>
     </section>
   );
 }

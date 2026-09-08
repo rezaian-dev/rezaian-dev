@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 export const vazirmatn = localFont({
   src: "../fonts/Vazirmatn.woff2",
   variable: "--font-vazirmatn",
-  weight: "100 900",
+  weight: "400 900",
   display: "swap",
   adjustFontFallback: "Arial",
 });
@@ -12,7 +12,7 @@ export const vazirmatn = localFont({
 export const inter = localFont({
   src: "../fonts/Inter.woff2",
   variable: "--font-inter",
-  weight: "100 900",
+  weight: "400 900",
   display: "swap",
   adjustFontFallback: "Arial",
 });
