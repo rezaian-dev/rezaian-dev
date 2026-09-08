@@ -8,6 +8,7 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import GlowCard from "@/components/shared/GlowCard";
 import type { Content, Project } from "@/data/content";
 import { blurData } from "@/data/blur";
+import TechIcon from "@/components/shared/TechIcon";
 import { cn } from "@/lib/utils";
 
 // 🗂️ Alternating project cards — image on one side, details on the other
@@ -85,7 +86,8 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
 
             <div className="mt-6 flex flex-wrap gap-2">
               {p.stack.map((s) => (
-                <Badge key={s} variant="secondary" className="ltr h-auto rounded-full px-3 py-1 font-medium">
+                <Badge key={s} variant="secondary" className="ltr h-auto gap-1.5 rounded-full px-3 py-1 font-medium">
+                  <TechIcon name={s} className="size-3.5" />
                   {s}
                 </Badge>
               ))}

@@ -1,4 +1,5 @@
-import { Crosshair, Languages, Quote } from "lucide-react";
+import { Crosshair, Languages } from "lucide-react";
+import QuoteReveal from "@/components/shared/QuoteReveal";
 import { Badge } from "@/components/ui/badge";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -30,10 +31,7 @@ export default function About({ c }: { c: Content }) {
                 ))}
               </div>
 
-              <blockquote className="mt-8 flex items-start gap-3 rounded-2xl border border-brand/20 bg-brand/10 p-5">
-                <Quote className="mt-1 size-5 shrink-0 text-brand" />
-                <p className="text-lg font-semibold leading-8 text-foreground">{a.quote}</p>
-              </blockquote>
+              <QuoteReveal text={a.quote} />
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <div className="flex items-start gap-3">

@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeading from "@/components/shared/SectionHeading";
 import GlowCard from "@/components/shared/GlowCard";
+import TechIcon from "@/components/shared/TechIcon";
 import type { Content } from "@/data/content";
 
 const marquee = [
@@ -9,7 +10,7 @@ const marquee = [
   "SWR", "React Hook Form", "MUI", "Vite", "Git", "RSC", "ISR", "SEO", "A11y", "RTL",
 ];
 
-// 🧰 Skill groups as shadcn badges
+// 🧰 Skill groups as shadcn badges with official brand marks
 export default function Skills({ c }: { c: Content }) {
   const s = c.skills;
   return (
@@ -27,8 +28,9 @@ export default function Skills({ c }: { c: Content }) {
                     <li key={item}>
                       <Badge
                         variant="outline"
-                        className="ltr h-auto rounded-xl bg-background/50 px-3.5 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/60 hover:bg-brand/10 hover:text-foreground"
+                        className="ltr h-auto gap-2 rounded-xl bg-background/50 px-3.5 py-2 text-sm font-medium [&>svg]:size-4! transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/60 hover:bg-brand/10 hover:text-foreground"
                       >
+                        <TechIcon name={item} />
                         {item}
                       </Badge>
                     </li>
@@ -40,11 +42,15 @@ export default function Skills({ c }: { c: Content }) {
         </div>
       </div>
 
-      {/* 🎠 Infinite marquee — pauses on hover */}
+      {/* 🎠 Infinite brand-mark marquee — pauses on hover */}
       <div dir="ltr" className="relative mt-16 overflow-hidden py-4 [mask-image:linear-gradient(90deg,transparent,#000_15%,#000_85%,transparent)]">
         <div className="flex w-max animate-marquee gap-3 hover:[animation-play-state:paused]">
           {[...marquee, ...marquee].map((item, i) => (
-            <span key={i} className="rounded-full border bg-card/60 px-5 py-2 text-sm font-semibold text-muted-foreground backdrop-blur">
+            <span
+              key={i}
+              className="inline-flex items-center gap-2.5 rounded-full border bg-card/60 px-5 py-2.5 text-sm font-semibold text-muted-foreground backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:text-foreground hover:shadow-[0_8px_30px_-8px_var(--brand)]"
+            >
+              <TechIcon name={item} className="size-[18px]" />
               {item}
             </span>
           ))}

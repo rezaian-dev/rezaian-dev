@@ -104,7 +104,7 @@ const fa = {
       "حدود سه ساله فرانت‌اند می‌نویسم و بیشترِ این مدت رو با React، Next.js و TypeScript گذروندم. چیزی که از همه بیشتر دوستش دارم، اون لحظه‌ایه که یه ایده تبدیل می‌شه به محصولی که آدم‌های واقعی هر روز باهاش کار می‌کنن — مثل پلتفرم نوبت‌دهی پزشکی که از احراز هویت تا کش و تست رو خودم بالا آوردم، یا سامانهٔ املاکی با نقشهٔ تعاملی که هرچی بزرگ‌تر شد، خم به ابرو نیاورد.",
       "روی جزئیات حساسم: تقویم شمسی‌ای که یه روز جابه‌جا نشه، رابط RTL‌ای که همه‌جاش درست بشینه، و صفحه‌ای که قبل از پلک‌زدن کاربر لود شده باشه. SEO، Performance و دسترس‌پذیری برام آپشن نیستن؛ بخشی از تعریف «تموم‌شده» هستن.",
     ],
-    quote: "وصلهٔ موقت نمی‌زنم؛ می‌رم سراغ ریشهٔ مشکل.",
+    quote: "کارِ خوب اتفاقی نیست؛ حاصلِ *وسواس روی جزئیاتیه که هیچ‌کس نمی‌بینه* — تا وقتی که نباشن.",
     focus: { title: "حوزه‌های تمرکز", items: ["React Server Components", "Performance", "معماری مقیاس‌پذیر", "SEO", "DX"] },
     languages: [
       { name: "فارسی", level: "زبان مادری" },
@@ -352,7 +352,7 @@ const en: Content = {
       "I've spent the last three-ish years writing front-end code, most of it in React, Next.js and TypeScript. My favourite moment is when an idea turns into something real people use every day — like the medical booking platform I took from auth to caching to tests, or the real-estate app with an interactive map that kept its cool as it grew.",
       "I care about the details: a Jalali calendar that never drifts by a day, an RTL layout that sits right everywhere, a page that's loaded before the user blinks. SEO, performance and accessibility aren't optional extras for me — they're part of what \"done\" means.",
     ],
-    quote: "No quick patches — I go after the root cause.",
+    quote: "Good work isn't luck. It's *obsessing over the details nobody notices* — until they're missing.",
     focus: { title: "Focus areas", items: ["React Server Components", "Performance", "Scalable Architecture", "SEO", "DX"] },
     languages: [
       { name: "Persian", level: "Native" },
