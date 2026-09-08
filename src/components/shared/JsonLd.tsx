@@ -1,9 +1,8 @@
-import { getContent, links, type Locale } from "@/data/content";
+import { links, type Locale } from "@/data/content";
 import { SITE_URL, seo } from "@/lib/seo";
 
 // 🧾 Schema.org Person + WebSite structured data for rich results
 export default function JsonLd({ locale }: { locale: Locale }) {
-  const c = getContent(locale);
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -21,7 +20,6 @@ export default function JsonLd({ locale }: { locale: Locale }) {
         address: { "@type": "PostalAddress", addressLocality: "Karaj", addressCountry: "IR" },
         sameAs: [links.github, links.linkedin, links.telegram],
         knowsAbout: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Web Performance", "SEO", "Accessibility"],
-        alumniOf: { "@type": "CollegeOrUniversity", name: c.about.education.school },
       },
       {
         "@type": "WebSite",

@@ -1,4 +1,5 @@
-import { GraduationCap, Languages, Quote } from "lucide-react";
+import { Crosshair, Languages, Quote } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeading from "@/components/shared/SectionHeading";
 import GlowCard from "@/components/shared/GlowCard";
@@ -12,7 +13,7 @@ const lighthouse = [
   { label: "SEO", value: 100 },
 ];
 
-// 👤 Bio, quote, education, Lighthouse scores and working principles
+// 👤 Bio, quote, focus areas, Lighthouse scores and working principles
 export default function About({ c }: { c: Content }) {
   const a = c.about;
   return (
@@ -37,11 +38,17 @@ export default function About({ c }: { c: Content }) {
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <div className="flex items-start gap-3">
                   <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-accent">
-                    <GraduationCap className="size-5 text-brand" />
+                    <Crosshair className="size-5 text-brand" />
                   </span>
                   <div>
-                    <p className="font-semibold text-foreground">{a.education.degree}</p>
-                    <p className="text-sm text-muted-foreground">{a.education.school}</p>
+                    <p className="font-semibold text-foreground">{a.focus.title}</p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {a.focus.items.map((item) => (
+                        <Badge key={item} variant="secondary" className="h-auto rounded-full px-2.5 py-0.5 text-xs font-medium">
+                          {item}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
