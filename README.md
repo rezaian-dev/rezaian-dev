@@ -7,41 +7,27 @@
 <br />
 <br />
 
-# Mohammadreza Rezaian — Portfolio
+# Hi, I'm Mohammadreza Rezaian 👋
 
-**A bilingual, themeable, zero-layout-shift personal portfolio.**  
-Built with the same production standards I bring to client work.
+### Front-End Engineer · React & Next.js
+
+**I build production-grade web products** — with a focus on clean architecture, performance,  
+and solving the real infrastructure challenges of the Persian web.
 
 <br />
 
 <p>
-  <img src="https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
-  <img src="https://img.shields.io/badge/React-19-087EA4?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
-  <img src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" />
-  <img src="https://img.shields.io/badge/shadcn%2Fui-radix-111111?style=for-the-badge&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
-  <img src="https://img.shields.io/badge/Motion-13-FF0080?style=for-the-badge&logo=framer&logoColor=white" alt="Motion" />
+  <img src="https://img.shields.io/badge/Open%20to%20Work-Remote%20%26%20On--site-22c55e?style=for-the-badge&logo=briefcase&logoColor=white" alt="Open to work" />
+  <img src="https://img.shields.io/badge/Experience-3%2B%20Years-6366f1?style=for-the-badge&logo=googlescholar&logoColor=white" alt="Experience" />
+  <img src="https://img.shields.io/badge/Karaj%2C%20Iran-0ea5e9?style=for-the-badge&logo=googlemaps&logoColor=white" alt="Location" />
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/CLS-0.00-22c55e?style=flat-square&labelColor=1e293b" alt="CLS 0.00" />
-  <img src="https://img.shields.io/badge/i18n-FA%20%2F%20EN-2c5be4?style=flat-square&labelColor=1e293b" alt="FA / EN" />
-  <img src="https://img.shields.io/badge/Theme-Light%20%C2%B7%20Dark%20%C2%B7%20System-a855f7?style=flat-square&labelColor=1e293b" alt="Theming" />
-  <img src="https://img.shields.io/badge/Rendering-SSG-f59e0b?style=flat-square&labelColor=1e293b" alt="SSG" />
-  <img src="https://img.shields.io/badge/tsc--noEmit-0%20errors-22c55e?style=flat-square&labelColor=1e293b" alt="Type safe" />
-  <img src="https://img.shields.io/badge/a11y-reduced--motion%20aware-0ea5e9?style=flat-square&labelColor=1e293b" alt="Accessibility" />
+  <a href="https://www.linkedin.com/in/mr-rezaian"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://t.me/rezaian_dev"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white" alt="Telegram" /></a>
+  <a href="mailto:mrezaian.dev@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="public/MohammadReza_Rezaian_Resume.pdf"><img src="https://img.shields.io/badge/Resume-PDF-DC2626?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="Resume" /></a>
 </p>
-
-<br />
-
-<a href="#-preview">Preview</a> ·
-<a href="#-features">Features</a> ·
-<a href="#-tech-stack">Tech Stack</a> ·
-<a href="#-getting-started">Getting Started</a> ·
-<a href="#-project-structure">Structure</a> ·
-<a href="#-editing-content">Content</a> ·
-<a href="#-quality--performance">Quality</a> ·
-<a href="#-deployment">Deploy</a>
 
 </div>
 
@@ -49,66 +35,88 @@ Built with the same production standards I bring to client work.
 
 ---
 
-## 📸 Preview
+## 🧭 About Me
 
-<table align="center" width="100%">
-  <tr>
-    <td align="center" width="50%"><b>🌙 Persian · Dark · RTL</b></td>
-    <td align="center" width="50%"><b>☀️ English · Light · LTR</b></td>
-  </tr>
-  <tr>
-    <td><img src=".github/assets/preview-dark.jpg" alt="Persian dark theme" width="100%" style="border-radius:12px" /></td>
-    <td><img src=".github/assets/preview-light.jpg" alt="English light theme" width="100%" style="border-radius:12px" /></td>
-  </tr>
-</table>
+I'm a Front-End engineer specialised in **Next.js, React and TypeScript**, with hands-on experience shipping real products — not demos, not templates.
 
-<details>
-<summary><b>📱 Mobile preview</b></summary>
-<br />
-<p align="center"><img src=".github/assets/preview-mobile.jpg" alt="Mobile preview" width="300" style="border-radius:20px" /></p>
-</details>
+- 🏗️ I've built a **full-stack medical booking platform** (secure auth, multi-layer caching, three-tier automated tests) and a **scalable real-estate SPA** with an interactive map and 17 custom hooks
+- 🇮🇷 Deep experience with **Persian-market UX**: Jalali calendar, Tehran timezone handling, RTL-first interfaces
+- ⚡ Obsessed with **performance, SEO and accessibility** — measured, not assumed
+- ✍️ Author of **three free Persian handbooks** on JavaScript, React 19 and Next.js 16
+- 🎓 B.Sc. Electrical Engineering — Electronics
+
+> **"I fix the root cause instead of applying a quick patch."**
 
 <br />
 
-## ✨ Features
+## 🚀 Featured Work
 
 <table>
   <tr>
     <td width="50%" valign="top">
+      <img src="public/images/projects/doctor-booking.jpg" alt="Doctor Booking" width="100%" style="border-radius:12px" />
+      <h3>🩺 Doctor Booking</h3>
+      <p><b>Full-Stack · Production</b></p>
+      <p>Online medical appointment platform on Next.js App Router — Jalali-calendar booking, reviews &amp; ratings, Tiptap-powered articles and a complete admin panel. JWT on httpOnly cookies, hashed OTP with brute-force protection, multi-layer caching with Upstash Redis.</p>
+      <p><b>167</b> components · <b>26</b> API routes · <b>9</b> data models · <b>17</b> test files<br />Lighthouse: <b>93</b> Perf · <b>93</b> A11y · <b>92</b> BP · <b>100</b> SEO</p>
+      <p><code>Next.js 16</code> <code>React 19</code> <code>TypeScript</code> <code>Tailwind v4</code> <code>MongoDB</code> <code>Redis</code> <code>Zod</code> <code>Playwright</code></p>
+      <a href="https://github.com/rezaian-dev/doctor-booking"><img src="https://img.shields.io/badge/View%20Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
+    <td width="50%" valign="top">
+      <img src="public/images/projects/saghfinoo.jpg" alt="Saghfinoo" width="100%" style="border-radius:12px" />
+      <h3>🏠 Saghfinoo</h3>
+      <p><b>Front-End · Scalable SPA</b></p>
+      <p>Real-estate platform for buying, selling and renting — domain-driven architecture, advanced multi-filter search, multi-step listing creation, interactive Leaflet map for neighbourhood-level discovery, and memoization tuned across 100+ call sites.</p>
+      <p><b>107</b> components · <b>17</b> custom hooks · <b>12</b> pages</p>
+      <p><code>React 18</code> <code>Vite</code> <code>React Router 7</code> <code>MUI</code> <code>Tailwind</code> <code>React Hook Form</code> <code>React-Leaflet</code></p>
+      <a href="https://github.com/rezaian-dev/saghfinoo"><img src="https://img.shields.io/badge/View%20Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="public/images/projects/malli-kids.jpg" alt="Malli Kids" width="100%" style="border-radius:12px" />
+      <h3>👗 Malli Kids</h3>
+      <p><b>Full-Stack · Client Work</b> &nbsp;<img src="https://img.shields.io/badge/Private-f59e0b?style=flat-square" alt="Private" /></p>
+      <p>E-commerce for a children's clothing atelier — storefront, customer account and admin console on Next.js 16. Server Components by default, ISR catalogue, Better Auth, stock locking at checkout, Jalali-expiring coupons and a virtual try-on flow.</p>
+      <p><code>Next.js 16</code> <code>React 19</code> <code>TypeScript</code> <code>Tailwind v4</code> <code>MongoDB</code> <code>Better Auth</code> <code>Zod</code></p>
+    </td>
+    <td width="50%" valign="top">
+      <img src="public/images/projects/shopping-cart.jpg" alt="ShoppingCart" width="100%" style="border-radius:12px" />
+      <h3>🛒 ShoppingCart</h3>
+      <p><b>Front-End · Open Source</b></p>
+      <p>Lightweight, responsive shopping cart in strict TypeScript with Webpack and Bootstrap 5 — add / remove products, update quantities and dynamic totals with a modular architecture.</p>
+      <p><code>TypeScript</code> <code>Webpack</code> <code>Bootstrap 5</code> <code>ESLint + Prettier</code></p>
+      <a href="https://github.com/rezaian-dev/shopping-cart-ts"><img src="https://img.shields.io/badge/View%20Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
+  </tr>
+</table>
 
-### 🌐 Bilingual by design
-- `/fa` — Persian, **RTL**, Vazirmatn
-- `/en` — English, **LTR**, Inter
-- Root `/` redirects via **cookie → Accept-Language → default**
-- One typed dictionary: a missing translation is a **compile error**
+<br />
 
-### 🌓 Theming without flash
-- Light / Dark / System via `next-themes`
-- Theme class is applied **before first paint**
-- shadcn semantic tokens (`--primary`, `--card`, …) in OKLCH
+## 📚 Persian Handbooks
 
-### 🧩 shadcn/ui on Radix
-- Button · Badge · Card · Sheet · Tooltip · DropdownMenu · Separator
-- Radix `Direction.Provider` for correct RTL behaviour
+Three free, open-source guides focused on **mental models and technical decision-making** — not API memorisation.
 
-</td>
-<td width="50%" valign="top">
-
-### 🎬 Motion that never reflows
-- Tailwind v4 `@theme` keyframes: blobs, marquee, shimmer, conic ring
-- Motion for scroll-reveal, magnetic buttons, scroll progress
-- **Transform / opacity only** — `prefers-reduced-motion` respected
-
-### 🖼️ Image pipeline
-- `next/image` · AVIF / WebP · quality **90–95**
-- Inline **blur placeholders** for every asset
-- Fixed aspect-ratio boxes — zero pop-in
-
-### 🔤 Self-hosted fonts
-- `next/font/local` with **preload** + metric-matched fallback
-- No external font requests, no FOUT
-
-</td>
+<table align="center">
+  <tr>
+    <td align="center" width="33%">
+      <img src="public/images/projects/js-guide.jpg" alt="JavaScript ES2025 Persian Guide" width="220" style="border-radius:12px" /><br /><br />
+      <b>JavaScript ES2025</b><br /><sub>38 chapters · from mental model to production architecture</sub><br /><br />
+      <a href="https://rezaian-dev.github.io/javascript-persian-guide/"><img src="https://img.shields.io/badge/Read%20Online-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
+      <a href="https://github.com/rezaian-dev/javascript-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/images/projects/react-guide.jpg" alt="React 19 Persian Guide" width="220" style="border-radius:12px" /><br /><br />
+      <b>React 19.2</b><br /><sub>37 chapters · Actions, Suspense, React Compiler, architecture</sub><br /><br />
+      <a href="https://rezaian-dev.github.io/react-19-persian-guide/"><img src="https://img.shields.io/badge/Read%20Online-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
+      <a href="https://github.com/rezaian-dev/react-19-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/images/projects/next-guide.jpg" alt="Next.js 16 Persian Guide" width="220" style="border-radius:12px" /><br /><br />
+      <b>Next.js 16</b><br /><sub>37 chapters · App Router, Cache Components, deployment</sub><br /><br />
+      <a href="https://rezaian-dev.github.io/nextjs-16-persian-guide/"><img src="https://img.shields.io/badge/Read%20Online-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
+      <a href="https://github.com/rezaian-dev/nextjs-16-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
   </tr>
 </table>
 
@@ -116,192 +124,121 @@ Built with the same production standards I bring to client work.
 
 ## 🛠️ Tech Stack
 
-| Layer | Choice | Why |
-|:--|:--|:--|
-| **Framework** | Next.js 16 · App Router · Turbopack | RSC by default, SSG for both locales, `proxy.ts` for locale routing |
-| **UI** | React 19 · shadcn/ui · Radix UI | Accessible primitives on semantic design tokens |
-| **Styling** | Tailwind CSS v4 | CSS-first config, `@theme` / `@utility`, logical properties for RTL |
-| **Animation** | Motion 13 + CSS keyframes | Spring physics where it matters, pure CSS where it doesn't |
-| **Theming** | next-themes | Class strategy, system-aware, flash-free |
-| **Typography** | Vazirmatn · Inter (variable) | Self-hosted via `next/font/local` |
-| **Language** | TypeScript (strict) | Content dictionary is fully typed |
-
-<br />
-
-## 🚀 Getting Started
-
-```bash
-# 1️⃣ Clone
-git clone https://github.com/rezaian-dev/rezaian-dev.git
-cd rezaian-dev
-
-# 2️⃣ Install
-npm install
-
-# 3️⃣ Develop
-npm run dev          # → http://localhost:3000  (redirects to /fa or /en)
-
-# 4️⃣ Production
-npm run build && npm start
-```
-
-> **Requirements:** Node.js ≥ 20 · npm ≥ 10
-
-<br />
-
-## 🗂️ Project Structure
-
-```
-src/
-├── 📁 app/
-│   ├── layout.tsx               🌱 Root pass-through
-│   ├── globals.css              🎨 Tokens · themes · utilities · keyframes
-│   ├── not-found.tsx            🚧 404
-│   └── [locale]/
-│       ├── layout.tsx           🌐 <html lang dir> · fonts · providers · metadata
-│       └── page.tsx             🏠 Section composition
-├── 📁 components/
-│   ├── Navbar · Hero · About · Projects · Books · Skills · Highlights · Contact · Footer
-│   ├── shared/                  ♻️ Reveal · GlowCard · Magnetic · ThemeToggle · LangToggle · Background
-│   ├── providers/               🌓 ThemeProvider
-│   └── ui/                      🧩 shadcn/ui primitives
-├── 📁 data/
-│   ├── content.ts               📝 Single source of truth — all copy, links, projects (FA + EN)
-│   └── blur.ts                  🌫️ Base64 blur placeholders
-├── 📁 fonts/                    🔤 Vazirmatn · Inter (variable woff2)
-├── 📁 lib/                      🛠️ fonts.ts · utils.ts
-└── proxy.ts                     🔀 Locale redirect
-public/                          🖼️ Photo · project covers · resume PDF
-```
-
-<br />
-
-## ✏️ Editing Content
-
-Everything you see on the page comes from **one file**: [`src/data/content.ts`](src/data/content.ts).
-
-```ts
-// The `fa` and `en` objects share a single type — forget a key and the build fails 💥
-const en: Content = {
-  hero: { name: "Mohammadreza Rezaian", role: "Front-End Engineer", /* … */ },
-  projects: {
-    items: [
-      {
-        slug: "doctor-booking",
-        title: "Doctor Booking",
-        github: "https://github.com/rezaian-dev/doctor-booking",
-        demo: "https://…",            // 👈 add this to show a "Live Demo" button
-        client: false,               // 👈 true hides source & shows a "Client Work" badge
-        // …
-      },
-    ],
-  },
-};
-```
-
-| I want to… | Edit |
-|:--|:--|
-| Change any text, link or metric | `src/data/content.ts` |
-| Swap the profile photo | `public/images/profile.jpg` (4:5 works best) |
-| Add / replace a project cover | `public/images/projects/*.jpg` + regenerate `src/data/blur.ts` |
-| Update the resume | `public/MohammadReza_Rezaian_Resume.pdf` |
-| Add a shadcn component | `npx shadcn@latest add <name>` |
-| Tweak colours | `:root` / `.dark` tokens in `src/app/globals.css` |
-
-<br />
-
-## 🧪 Quality & Performance
-
-Every scenario below was measured with Playwright against the **production build** using the `layout-shift` PerformanceObserver.
-
-| Scenario | CLS | Notes |
-|:--|:--:|:--|
-| FA · Dark · Desktop | **0.0000** | |
-| FA · Light · Desktop | **0.0000** | |
-| EN · Dark · Desktop | **0.0000** | |
-| EN · Light · Desktop | **0.0000** | |
-| FA · Mobile (390 px) | **0.0000** | |
-| EN · Mobile (390 px) | **0.0000** | |
-| FA · Desktop · **Slow 3G** | **0.0000** | fonts + images throttled |
-| EN · Mobile · **Slow 3G** | **0.0000** | fonts + images throttled |
-
-| Check | Result |
-|:--|:--:|
-| Theme class present at first paint (DOMContentLoaded) | ✅ |
-| `<h1>` position unchanged after theme switch | ✅ |
-| Page unchanged when mobile Sheet opens / closes | ✅ |
-| Hydration warnings / console errors | **0** |
-| External font requests | **0** |
-| `tsc --noEmit` · `next build` | clean · `/fa` + `/en` SSG |
-
-<details>
-<summary><b>How zero CLS is achieved</b></summary>
-<br />
-
-- **Fonts** — `next/font/local` preloads both variable fonts and generates a metric-matched fallback (`adjustFontFallback`), so text never re-flows on swap.
-- **Images** — every `next/image` sits in a fixed aspect-ratio box and ships an inline blur placeholder.
-- **Animations** — only `transform` and `opacity` are animated; nothing that affects layout.
-- **Overlays** — `scrollbar-gutter: stable` prevents the horizontal jump when Sheet / Dropdown lock scrolling.
-- **Theme** — `next-themes` injects its bootstrap script *before* `<main>`; `suppressHydrationWarning` keeps React quiet.
-
-</details>
-
-<br />
-
-## ☁️ Deployment
-
 <table>
   <tr>
-    <td align="center" width="33%">
-      <b>▲ Vercel</b><br /><sub>Import the repo — no configuration needed.<br />Root redirects to <code>/fa</code> or <code>/en</code>.</sub>
+    <td><b>Core</b></td>
+    <td>
+      <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React" />
+      <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js" />
+      <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
     </td>
-    <td align="center" width="33%">
-      <b>🐳 Docker / Node</b><br /><sub><code>npm run build && npm start</code><br />Set <code>-H 0.0.0.0</code> for containers.</sub>
+  </tr>
+  <tr>
+    <td><b>UI &amp; Styling</b></td>
+    <td>
+      <img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+      <img src="https://img.shields.io/badge/shadcn%2Fui-111111?style=flat-square&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
+      <img src="https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=mui&logoColor=white" alt="MUI" />
+      <img src="https://img.shields.io/badge/Motion-FF0080?style=flat-square&logo=framer&logoColor=white" alt="Motion" />
+      <img src="https://img.shields.io/badge/RTL--first-2c5be4?style=flat-square" alt="RTL" />
     </td>
-    <td align="center" width="33%">
-      <b>🌍 Custom domain</b><br /><sub>Update <code>metadataBase</code> in<br /><code>src/app/[locale]/layout.tsx</code>.</sub>
+  </tr>
+  <tr>
+    <td><b>State &amp; Data</b></td>
+    <td>
+      <img src="https://img.shields.io/badge/SWR-000000?style=flat-square&logo=vercel&logoColor=white" alt="SWR" />
+      <img src="https://img.shields.io/badge/React%20Hook%20Form-EC5990?style=flat-square&logo=reacthookform&logoColor=white" alt="RHF" />
+      <img src="https://img.shields.io/badge/Zod-3E67B1?style=flat-square&logo=zod&logoColor=white" alt="Zod" />
+      <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white" alt="Redis" />
+    </td>
+  </tr>
+  <tr>
+    <td><b>Backend-for-Frontend</b></td>
+    <td>
+      <img src="https://img.shields.io/badge/API%20Routes-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="API Routes" />
+      <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB" />
+      <img src="https://img.shields.io/badge/JWT%20%2F%20RBAC-000000?style=flat-square&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+      <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node" />
+    </td>
+  </tr>
+  <tr>
+    <td><b>Quality &amp; Tooling</b></td>
+    <td>
+      <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright" />
+      <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git" />
+      <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
+      <img src="https://img.shields.io/badge/Lighthouse-F44B21?style=flat-square&logo=lighthouse&logoColor=white" alt="Lighthouse" />
+      <img src="https://img.shields.io/badge/Accessibility-0ea5e9?style=flat-square" alt="a11y" />
     </td>
   </tr>
 </table>
 
 <br />
 
-## 🧭 Engineering Principles
-
-> **“I fix the root cause instead of applying a quick patch.”**
+## 📌 Engineering Highlights
 
 | | |
 |:--|:--|
-| 🔒 **Full type-safety** | TypeScript strict; the content dictionary is the schema |
-| 🧹 **Clean, lean code** | One responsibility per file; comments explain *why*, not *what* |
-| 🎯 **Minimal scope** | Only what the product needs — no unused abstractions |
-| 📏 **Measurable quality** | CLS, a11y and build health are checked, not assumed |
+| ⏰ **Jalali-calendar scheduling** | Reads Tehran wall-clock time independent of server timezone — slots never drift; one active appointment per user per day |
+| 🔐 **Security hardening** | JWT + httpOnly cookies, bcrypt hashing, hashed OTP with timing-safe comparison, Redis-backed brute-force protection |
+| ⚡ **Performance & SEO** | Multi-layer caching (`revalidateTag` + Upstash Redis), ISR, dynamic metadata, `next/image`, code-splitting |
+| 🧩 **Scalable architecture** | Logic extracted into 17+ custom hooks, memoization tuned across 100+ call sites, components organised by domain |
 
 <br />
 
-## 📫 Contact
+## 🌐 Portfolio Website
+
+This repository also hosts my personal portfolio — **bilingual (FA / EN), light & dark, measured CLS 0.00**.
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center"><b>🌙 Persian · Dark</b></td>
+    <td align="center"><b>☀️ English · Light</b></td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/preview-dark.jpg" alt="Portfolio — Persian dark" width="100%" style="border-radius:12px" /></td>
+    <td><img src=".github/assets/preview-light.jpg" alt="Portfolio — English light" width="100%" style="border-radius:12px" /></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/shadcn%2Fui-111111?style=flat-square&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
+  <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/Motion-FF0080?style=flat-square&logo=framer&logoColor=white" alt="Motion" />
+  <img src="https://img.shields.io/badge/CLS-0.00-22c55e?style=flat-square" alt="CLS" />
+</p>
+
+```bash
+npm install && npm run dev    # → http://localhost:3000
+```
+
+<br />
+
+## 📫 Let's Connect
 
 <div align="center">
 
 <a href="mailto:mrezaian.dev@gmail.com"><img src="https://img.shields.io/badge/Email-mrezaian.dev%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 <a href="https://www.linkedin.com/in/mr-rezaian"><img src="https://img.shields.io/badge/LinkedIn-mr--rezaian-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
 <a href="https://t.me/rezaian_dev"><img src="https://img.shields.io/badge/Telegram-%40rezaian__dev-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" /></a>
-<a href="https://github.com/rezaian-dev"><img src="https://img.shields.io/badge/GitHub-rezaian--dev-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
+<a href="tel:+989018106646"><img src="https://img.shields.io/badge/Call-%2B98%20901%20810%206646-4CAF50?style=for-the-badge&logo=googlevoice&logoColor=white" alt="Phone" /></a>
 
 <br />
 <br />
 
-**Karaj, Iran · Open to remote & on-site roles**
+<sub><b>Type-Safe</b> · <b>Clean Code</b> · <b>Minimal Scope</b> · <b>Measurable Quality</b></sub>
+
+<br />
+<br />
+
+<img src="https://komarev.com/ghpvc/?username=rezaian-dev&label=Profile%20Views&color=6366f1&style=flat-square" alt="Profile views" />
 
 </div>
-
-<br />
 
 ---
 
 <div align="center">
-  <sub>
-    Designed &amp; built by <b>Mohammadreza Rezaian</b> · © 2026 ·
-    <a href="#top">Back to top ↑</a>
-  </sub>
+  <sub>© 2026 Mohammadreza Rezaian · <a href="#top">Back to top ↑</a></sub>
 </div>
