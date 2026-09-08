@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useSpring } from "motion/react";
-import { Download, Menu } from "lucide-react";
+import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import LangToggle from "@/components/shared/LangToggle";
+import MobileMenu from "@/components/shared/MobileMenu";
 import { links, type Content, type Locale } from "@/data/content";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +16,6 @@ type Props = { locale: Locale; c: Content };
 // 🧭 Floating glass navbar with theme / language toggles
 export default function Navbar({ locale, c }: Props) {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
@@ -72,41 +70,8 @@ export default function Navbar({ locale, c }: Props) {
             </a>
           </Button>
 
-          {/* 📱 Mobile menu (shadcn Sheet) */}
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon-lg" aria-label={c.ui.menu} className="rounded-full bg-background/60 md:hidden">
-                <Menu className="size-4" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side={locale === "fa" ? "right" : "left"} className="w-72">
-              <SheetHeader>
-                <SheetTitle>{c.hero.name}</SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-1 px-4">
-                {c.nav.map((item, i) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    initial={{ opacity: 0, x: locale === "fa" ? 16 : -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * i }}
-                    className="rounded-xl px-4 py-3 text-base font-medium text-foreground transition hover:bg-accent"
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
-                <Separator className="my-3" />
-                <Button asChild size="lg" className="rounded-xl">
-                  <a href={links.resume} download>
-                    <Download data-icon="inline-start" />
-                    {c.ui.downloadResume}
-                  </a>
-                </Button>
-              </nav>
-            </SheetContent>
-          </Sheet>
+          {/* 📱 Mobile menu */}
+          <MobileMenu locale={locale} c={c} />
         </div>
       </motion.nav>
     </header>
