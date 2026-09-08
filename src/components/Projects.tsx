@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 export default function Projects({ c }: { c: Content }) {
   const p = c.projects;
   return (
-    <section id="projects" className="cv-auto relative py-24 md:py-32">
+    <section id="projects" className="relative py-24 md:py-32">
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-brand/50 to-transparent" />
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} description={p.description} />

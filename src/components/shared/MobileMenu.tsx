@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { ArrowUpRight, Download, Mail, MapPin, Send, X } from "lucide-react";
@@ -10,6 +10,7 @@ import TehranClock from "@/components/shared/TehranClock";
 import { links, type Content, type Locale } from "@/data/content";
 import { blurData } from "@/data/blur";
 import { cn } from "@/lib/utils";
+import { scrollToHash } from "@/lib/scroll";
 
 type Props = { locale: Locale; c: Pick<Content, "nav" | "ui" | "hero" | "footer"> };
 type State = "closed" | "open" | "closing";
@@ -25,12 +26,20 @@ export default function MobileMenu({ locale, c }: Props) {
   const [active, setActive] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const btn = useRef<HTMLButtonElement>(null);
+  const target = useRef<string | null>(null);
   const open = state !== "closed";
 
   // 🚪 Play the exit choreography, then unmount
   const close = () => {
     setState("closing");
     window.setTimeout(() => setState("closed"), CLOSE_MS);
+  };
+
+  // 🧭 Nav tap: remember the section, close, and scroll once the scroll-lock is released (see effect below)
+  const go = (href: string) => (e: MouseEvent) => {
+    e.preventDefault();
+    target.current = href;
+    close();
   };
 
   // 🎯 Remember where the burger sits (reveal origin) and which section is on screen
@@ -64,6 +73,14 @@ export default function MobileMenu({ locale, c }: Props) {
       document.documentElement.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
+  }, [state]);
+
+  // 🎯 Scroll-lock is gone as soon as we start closing → now the page can travel to the chosen section
+  useEffect(() => {
+    if (state !== "closing" || !target.current) return;
+    const href = target.current;
+    target.current = null;
+    requestAnimationFrame(() => scrollToHash(href));
   }, [state]);
 
   // 🫧 Ink-drop reveal: a circle scales up from the burger — transform only, GPU-friendly
@@ -102,7 +119,7 @@ export default function MobileMenu({ locale, c }: Props) {
               role="dialog"
               aria-modal
               data-state={state}
-              className="menu-anim fixed inset-0 z-[60] overflow-hidden [contain:strict] md:hidden"
+              className="menu-anim fixed inset-0 z-[60] overflow-hidden [contain:strict] data-[state=closing]:pointer-events-none md:hidden"
               style={anim({ "--in": "menu-fade-in", "--dur": "0.2s", "--out": "menu-fade-out", "--dur-out": "0.3s", "--dx": "0.15s" })}
             >
               {/* 🫧 Ink drop — a flat circle scales up from the burger (cheap to rasterise, transform-only) */}
@@ -154,7 +171,7 @@ export default function MobileMenu({ locale, c }: Props) {
                       <li key={n.href} className="menu-anim relative" style={anim({ "--d": `${d}s`, "--dx": `${dx}s` })}>
                         <a
                           href={n.href}
-                          onClick={close}
+                          onClick={go(n.href)}
                           className="group flex items-center gap-4 py-[1.05rem]"
                         >
                           <span className={cn("ltr w-7 text-xs font-bold tabular-nums transition-colors duration-300", isActive ? "text-brand" : "text-muted-foreground group-hover:text-brand")}>

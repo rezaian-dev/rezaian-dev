@@ -16,7 +16,7 @@ export default function Contact({ c }: { c: Content }) {
   ];
 
   return (
-    <section id="contact" className="cv-auto relative py-24 md:py-32">
+    <section id="contact" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] border bg-gradient-to-br from-brand/15 via-card to-brand-2/10 p-8 shadow-2xl shadow-brand/10 md:p-14">
