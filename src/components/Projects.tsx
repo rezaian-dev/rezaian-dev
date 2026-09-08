@@ -34,39 +34,40 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
     <Reveal as="article">
       <GlowCard className="group overflow-hidden">
         <div className={cn("grid lg:grid-cols-2", reverse && "lg:[&>*:first-child]:order-2")}>
-          {/* 🖼️ Cover — 3:2 box with object-contain, the artwork is never cropped */}
-          <div className="relative flex items-center overflow-hidden bg-muted/40 p-4 sm:p-6 lg:p-8">
+          {/* 🖼️ Cover — rendered at its own aspect ratio, never cropped */}
+          <div className="relative flex items-center justify-center overflow-hidden bg-muted/40 p-5 sm:p-8 lg:p-10">
             <div
               className="absolute inset-0 opacity-50 transition-opacity duration-700 group-hover:opacity-80"
               style={{ background: `radial-gradient(circle at 30% 30%, ${p.accent}, transparent 65%)` }}
             />
             <div className="dots-bg absolute inset-0 opacity-40" />
-            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-foreground/10 transition-transform duration-700 ease-out group-hover:scale-[1.02]">
-              <Image
-                src={p.image}
-                alt={p.title}
-                fill
-                quality={90}
-                placeholder="blur"
-                blurDataURL={blurData[p.slug as keyof typeof blurData]}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-
-            <Badge className="ltr absolute top-4 end-4 h-auto rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white backdrop-blur hover:bg-black/55">
-              {p.type}
-            </Badge>
-            {p.client && (
-              <Badge className="absolute top-4 start-4 h-auto gap-1.5 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-slate-950 hover:bg-amber-400">
-                <Briefcase className="size-3.5" />
-                {ui.clientProject}
-              </Badge>
-            )}
+            <Image
+              src={p.image}
+              alt={p.title}
+              width={p.size.w}
+              height={p.size.h}
+              quality={90}
+              placeholder="blur"
+              blurDataURL={blurData[p.slug as keyof typeof blurData]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="relative h-auto w-full rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-foreground/10 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
           </div>
 
           {/* 📝 Details */}
           <div className="flex flex-col p-6 md:p-9">
+            {/* 🏷️ Type + client tags — one wrapping row, nothing overlaps */}
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              <Badge variant="outline" className="ltr h-auto rounded-full px-3 py-1 text-xs font-semibold">
+                {p.type}
+              </Badge>
+              {p.client && (
+                <Badge className="h-auto gap-1.5 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-slate-950 hover:bg-amber-400">
+                  <Briefcase className="size-3.5" />
+                  {ui.clientProject}
+                </Badge>
+              )}
+            </div>
             <p className="text-sm text-muted-foreground">{p.subtitle}</p>
             <h3 className="mt-1 text-2xl font-black tracking-tight text-foreground md:text-3xl">{p.title}</h3>
             <p className="mt-4 text-sm leading-8 text-foreground/80 md:text-base">{p.description}</p>

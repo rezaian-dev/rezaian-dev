@@ -23,6 +23,8 @@ export type Project = {
   type: string;
   description: string;
   image: string;
+  /** 📐 Intrinsic size so the cover keeps its own aspect ratio */
+  size: { w: number; h: number };
   stack: string[];
   metrics: Metric[];
   github?: string;
@@ -60,7 +62,7 @@ const fa = {
     scroll: "ادامه",
   },
   footer: {
-    tagline: "کد تمیز، محصول واقعی، کیفیت قابل سنجش.",
+    tagline: "کد تمیز می‌نویسم، محصول واقعی می‌سازم و کیفیتش را اندازه می‌گیرم.",
     navTitle: "دسترسی سریع",
     connectTitle: "ارتباط",
     status: "آمادهٔ همکاری",
@@ -84,7 +86,7 @@ const fa = {
     role: "Front-End Engineer",
     roleSub: "React & Next.js",
     tagline:
-      "سازندهٔ محصولات Production-grade با React و Next.js؛ متمرکز بر معماری تمیز، Performance و حلِ چالش‌های واقعیِ وب فارسی.",
+      "با React و Next.js محصول واقعی می‌سازم؛ از آن‌هایی که کاربر واقعی دارد، سریع بالا می‌آید و نگهداری‌اش عذاب نیست. کد تمیز، Performance و چالش‌های خاصِ وب فارسی، دقیقاً همان‌جایی است که دوست دارم باشم.",
     location: "کرج · ریموت و حضوری",
     floatA: { value: "100", label: "امتیاز SEO · Lighthouse" },
     floatB: { value: "۳+", label: "سال تجربهٔ عملی" },
@@ -99,10 +101,10 @@ const fa = {
     eyebrow: "ABOUT",
     title: "مهندسی، درست انجام‌شده.",
     paragraphs: [
-      "مهندس Front-End متمرکز بر Next.js، React و TypeScript با تجربهٔ ساخت محصولات واقعیِ Production-grade. سازندهٔ یک پلتفرم فول‌استکِ نوبت‌دهی پزشکی (احراز هویت امن، کش چندلایه و تست خودکار سه‌لایه) و یک SPA مقیاس‌پذیر املاک با نقشهٔ تعاملی و ۱۷ هوک سفارشی.",
-      "مسلط بر معماری کامپوننت‌محور، SEO، Performance و دسترس‌پذیری؛ با تجربهٔ عملی در تقویم شمسی، منطقهٔ زمانی تهران و رابط‌های RTL.",
+      "حدود سه سال است فرانت‌اند می‌نویسم و بیشترِ این مدت را با React، Next.js و TypeScript گذرانده‌ام. چیزی که بیشتر از همه دوستش دارم، لحظه‌ای است که یک ایده تبدیل می‌شود به محصولی که آدم‌های واقعی هر روز از آن استفاده می‌کنند — مثل پلتفرم نوبت‌دهی پزشکی که از احراز هویت تا کش و تست را خودم بالا آوردم، یا سامانهٔ املاکی با نقشهٔ تعاملی که با بزرگ‌شدنش خم به ابرو نیاورد.",
+      "به جزئیات حساسم: تقویم شمسی که یک روز جابه‌جا نشود، رابط RTL که همه‌جایش درست بنشیند، و صفحه‌ای که قبل از پلک‌زدن کاربر لود شده باشد. SEO، Performance و دسترس‌پذیری برایم آپشن نیستند؛ بخشی از تعریفِ «تمام‌شده» هستند.",
     ],
-    quote: "به جای وصلهٔ موقت، علتِ ریشه‌ای را برطرف می‌کنم.",
+    quote: "وصلهٔ موقت نمی‌زنم؛ می‌روم سراغ ریشهٔ مشکل.",
     focus: { title: "حوزه‌های تمرکز", items: ["React Server Components", "Performance", "معماری مقیاس‌پذیر", "SEO", "DX"] },
     languages: [
       { name: "فارسی", level: "زبان مادری" },
@@ -110,16 +112,16 @@ const fa = {
     ],
     lighthouse: { eyebrow: "LIGHTHOUSE", title: "امتیاز دکتر رزرو در Google Lighthouse" },
     principles: [
-      { title: "Type-safety کامل", text: "TypeScript strict و Zod در مرز داده" },
-      { title: "کد تمیز و کم‌حجم", text: "خوانا، قابل نگهداری، بدون پیچیدگی اضافه" },
-      { title: "اسکوپ حداقلی", text: "فقط آنچه محصول واقعاً نیاز دارد" },
-      { title: "کیفیت قابل سنجش", text: "Lighthouse، تست خودکار و a11y" },
+      { title: "Type-safe از سر تا ته", text: "TypeScript strict و Zod در مرز داده؛ باگ‌ها قبل از اجرا گیر می‌افتند" },
+      { title: "کد تمیز و کم‌حرف", text: "خوانا و قابل نگهداری؛ بدون پیچیدگی‌ای که کسی نخواسته" },
+      { title: "اسکوپ حداقلی", text: "فقط چیزی که محصول واقعاً لازم دارد — نه یک قدم بیشتر" },
+      { title: "کیفیت قابل اندازه‌گیری", text: "Lighthouse، تست خودکار و a11y؛ حس خوب کافی نیست، عدد می‌خواهیم" },
     ],
   },
   projects: {
     eyebrow: "SELECTED WORK",
     title: "پروژه‌های منتخب",
-    description: "محصولات واقعی که end-to-end توسعه داده و دیپلوی شده‌اند — نه دمو، نه قالب.",
+    description: "چند کاری که از ایده تا دیپلوی خودم جلو بردم — نه دمو، نه قالب آماده.",
     items: [
       {
         slug: "doctor-booking",
@@ -127,8 +129,9 @@ const fa = {
         subtitle: "پلتفرم نوبت‌دهی آنلاین پزشک",
         type: "Full-Stack · Production",
         description:
-          "پلتفرم کامل نوبت‌دهی با Next.js App Router؛ جست‌وجو و رزرو پزشک با تقویم شمسی، نظرات و امتیازدهی، مقالات با ویرایشگر Tiptap و پنل مدیریت کامل. لایهٔ دادهٔ امن با ۹ مدل Mongoose و ۲۰ اسکیمای Zod، احراز هویت JWT روی httpOnly cookie و کش چندلایه با Upstash Redis.",
+          "یک پلتفرم کامل نوبت‌دهی که کاربر در آن پزشک پیدا می‌کند، با تقویم شمسی نوبت می‌گیرد، نظر می‌دهد و مقاله می‌خواند — و ادمین همه‌چیز را از یک پنل مدیریت می‌کند. پشت صحنه: ۹ مدل Mongoose، ۲۰ اسکیمای Zod، احراز هویت JWT روی httpOnly cookie و کش چندلایه با Upstash Redis. مسیرهای حساس هم با Playwright تست شده‌اند.",
         image: "/images/projects/doctor-booking.jpg",
+        size: { w: 1200, h: 800 },
         stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Redis", "Zod", "Playwright"],
         metrics: [
           { value: "۱۶۷", label: "کامپوننت" },
@@ -145,8 +148,9 @@ const fa = {
         subtitle: "پلتفرم جامع خرید، فروش و اجارهٔ ملک",
         type: "Front-End · Scalable SPA",
         description:
-          "SPA مقیاس‌پذیر املاک با معماری Domain-Driven؛ جست‌وجوی پیشرفته بر اساس منطقه، نوع، قیمت و متراژ، ثبت آگهی چندمرحله‌ای، نقشهٔ تعاملی Leaflet برای جست‌وجوی محله‌به‌محله و بهینه‌سازی Performance با memoization در بیش از ۱۰۰ نقطه.",
+          "یک SPA املاک که از روز اول برای بزرگ‌شدن طراحی شد: جست‌وجوی پیشرفته با فیلتر منطقه، نوع، قیمت و متراژ؛ ثبت آگهی چندمرحله‌ای؛ و نقشهٔ تعاملی Leaflet که می‌شود محله‌به‌محله در آن گشت. منطق تکراری را در ۱۷ هوک سفارشی جمع کردم و با memoization در بیش از ۱۰۰ نقطه، رندرها را سبک نگه داشتم.",
         image: "/images/projects/saghfinoo.jpg",
+        size: { w: 1536, h: 1024 },
         stack: ["React 18", "Vite", "React Router 7", "MUI", "Tailwind", "React Hook Form", "React-Leaflet"],
         metrics: [
           { value: "۱۰۷", label: "کامپوننت" },
@@ -162,8 +166,9 @@ const fa = {
         subtitle: "فروشگاه آنلاین آتلیهٔ پوشاک کودک",
         type: "Full-Stack · Client Work",
         description:
-          "فروشگاه کامل با سه سطح ویترین، حساب مشتری و کنسول مدیریت روی Next.js 16؛ Server Components به‌صورت پیش‌فرض، ISR برای کاتالوگ، احراز هویت با Better Auth، قفل موجودی هنگام تسویه، کوپن با انقضای جلالی و پرو مجازی لباس.",
+          "برای یک آتلیهٔ پوشاک کودک، فروشگاهی ساختم که هم ویترین شیکی دارد، هم حساب کاربری مشتری و هم کنسول مدیریت. Server Components پیش‌فرض است، کاتالوگ با ISR سرو می‌شود و Better Auth حساب‌ها را امن نگه می‌دارد. جزئیات خوش‌دست: قفل موجودی هنگام تسویه تا دو نفر آخرین سایز را هم‌زمان نخرند، کوپن با انقضای شمسی و پروِ مجازی لباس.",
         image: "/images/projects/malli-kids.jpg",
+        size: { w: 1200, h: 670 },
         stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Better Auth", "Zod", "Leaflet"],
         metrics: [
           { value: "۳", label: "سطح دسترسی" },
@@ -179,8 +184,9 @@ const fa = {
         subtitle: "سبد خرید مدرن با TypeScript",
         type: "Front-End · Open Source",
         description:
-          "اپلیکیشن سبک و رسپانسیو سبد خرید با TypeScript strict، Webpack و Bootstrap 5؛ افزودن و حذف محصول، به‌روزرسانی تعداد و محاسبهٔ پویای مجموع با معماری ماژولار.",
+          "یک سبد خرید سبک و تمیز که برای تمرین TypeScript strict شروع شد و به یک معماری ماژولار مرتب رسید: افزودن و حذف محصول، تغییر تعداد و محاسبهٔ لحظه‌ای مجموع — با Webpack و Bootstrap 5.",
         image: "/images/projects/shopping-cart.jpg",
+        size: { w: 1536, h: 1024 },
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",
@@ -190,8 +196,8 @@ const fa = {
   },
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
-    title: "سه مرجع فارسی برای توسعه‌دهندگان",
-    description: "مجموعهٔ راهنماهای پروژه‌محور با تمرکز بر مدل ذهنی، تحلیل رفتار و تصمیم‌گیری فنی — رایگان و متن‌باز.",
+    title: "کتاب‌هایی که دوست داشتم زودتر خوانده باشم",
+    description: "سه راهنمای فارسی که نوشتم چون خودم دلم می‌خواست چنین منابعی وجود داشته باشد: پروژه‌محور، با تمرکز بر مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. رایگان و متن‌باز.",
     items: [
       {
         title: "مرجع فارسی JavaScript ES2025",
@@ -228,7 +234,7 @@ const fa = {
   skills: {
     eyebrow: "SKILLS",
     title: "جعبه‌ابزار",
-    description: "ابزارهایی که هر روز با آن‌ها محصول می‌سازم — از رابط کاربری تا لایهٔ داده.",
+    description: "ابزارهایی که هر روز دستم است — از پیکسل‌های رابط کاربری تا لایهٔ داده.",
     groups: [
       { group: "Core", items: ["React", "Next.js", "TypeScript", "JavaScript"] },
       { group: "UI & Styling", items: ["Tailwind CSS", "shadcn/ui", "MUI", "RTL"] },
@@ -241,31 +247,31 @@ const fa = {
   highlights: {
     eyebrow: "TECHNICAL HIGHLIGHTS",
     title: "برجسته‌های فنی",
-    description: "چند نمونه از مسئله‌های واقعی که در محصولات حل کرده‌ام.",
+    description: "چند مسئلهٔ واقعی که سر راهم سبز شد و راه‌حلی که برایش پیدا کردم.",
     items: [
       {
         icon: "calendar",
         project: "دکتر رزرو",
         title: "رزرو نوبت با تقویم شمسی و زمان‌بندی دقیق",
-        text: "مدیریت تاریخ و زمان بر پایهٔ تقویم جلالی (jalaali-js) با خواندن ساعت تهران مستقل از timezone سرور تا اسلات‌ها جابه‌جا نشوند؛ قانون «یک نوبت فعال در روز» برای هر کاربر.",
+        text: "تاریخ و زمان روی تقویم جلالی (jalaali-js) می‌چرخد و ساعت تهران مستقل از timezone سرور خوانده می‌شود؛ نتیجه اینکه اسلات‌ها هیچ‌وقت یک روز این‌ور و آن‌ور نمی‌شوند. هر کاربر هم فقط یک نوبت فعال در روز دارد.",
       },
       {
         icon: "shield",
         project: "دکتر رزرو",
         title: "احراز هویت و سخت‌سازی امنیتی",
-        text: "JWT روی httpOnly cookie با نقش‌های admin/user و هش رمز با bcrypt؛ کد OTP هش‌شده با مقایسهٔ timing-safe، throttle و محافظت brute-force مبتنی بر Redis.",
+        text: "JWT روی httpOnly cookie با نقش‌های admin/user و هش bcrypt؛ کدهای OTP هش می‌شوند، با مقایسهٔ timing-safe بررسی می‌شوند و Redis جلوی brute-force را می‌گیرد.",
       },
       {
         icon: "zap",
         project: "دکتر رزرو",
         title: "مهندسی Performance و SEO",
-        text: "کش چندلایه با revalidateTag و Upstash Redis، بهینه‌سازی تصویر با next/image و code-splitting داینامیک؛ متادیتای داینامیک، sitemap و robots اختصاصی و ISR.",
+        text: "کش چندلایه با revalidateTag و Upstash Redis، تصاویر با next/image و code-splitting داینامیک؛ متادیتای داینامیک، sitemap و robots اختصاصی و ISR — حاصلش امتیاز ۱۰۰ SEO در Lighthouse.",
       },
       {
         icon: "layers",
         project: "سقفینو",
         title: "معماری فرانت‌اند مقیاس‌پذیر",
-        text: "استخراج منطق تکرارشونده در ۱۷ هوک سفارشی (فیلتر، فرم، اعتبارسنجی، OTP)، رندر بهینه با memoization در ۱۰۰+ نقطه و سازمان‌دهی ۱۰۷ کامپوننت در دسته‌های منطقی.",
+        text: "منطق تکراریِ فرم، فیلتر، اعتبارسنجی و OTP را در ۱۷ هوک سفارشی جمع کردم، ۱۰۷ کامپوننت را در دامنه‌های منطقی چیدم و با memoization در ۱۰۰+ نقطه، رندرها را زیر کنترل نگه داشتم.",
       },
     ],
   },
@@ -273,7 +279,7 @@ const fa = {
     eyebrow: "CONTACT",
     titleA: "بیایید چیزی بسازیم که",
     titleB: "واقعاً کار کند.",
-    text: "آمادهٔ همکاری ریموت و حضوری هستم. اگر به یک مهندس فرانت‌اند با تمرکز بر کیفیت، Performance و تجربهٔ کاربر فارسی نیاز دارید، خوشحال می‌شوم صحبت کنیم.",
+    text: "برای همکاری ریموت یا حضوری آماده‌ام. اگر دنبال کسی هستید که هم به پیکسل اهمیت بدهد، هم به Performance و هم به کاربر فارسی‌زبان، خوشحال می‌شوم گپ بزنیم.",
     channels: {
       email: "ایمیل",
       phone: "تلفن",
@@ -304,7 +310,7 @@ const en: Content = {
     scroll: "Scroll",
   },
   footer: {
-    tagline: "Clean code. Real products. Measurable quality.",
+    tagline: "I write clean code, ship real products, and measure the quality.",
     navTitle: "Quick links",
     connectTitle: "Connect",
     status: "Open to work",
@@ -328,7 +334,7 @@ const en: Content = {
     role: "Front-End Engineer",
     roleSub: "React & Next.js",
     tagline:
-      "I build production-grade products with React and Next.js — focused on clean architecture, performance, and solving real infrastructure challenges of the Persian web.",
+      "I build real products with React and Next.js — the kind with real users, fast loads and codebases that stay pleasant to maintain. Clean code, performance and the quirks of the Persian web are exactly where I like to be.",
     location: "Karaj, Iran · Remote & On-site",
     floatA: { value: "100", label: "SEO Score · Lighthouse" },
     floatB: { value: "3+", label: "Years of Experience" },
@@ -343,10 +349,10 @@ const en: Content = {
     eyebrow: "ABOUT",
     title: "Engineering, done right.",
     paragraphs: [
-      "Front-End engineer focused on Next.js, React and TypeScript with hands-on experience shipping real production-grade products: a full-stack medical appointment platform (secure auth, multi-layer caching, three-tier automated tests) and a scalable real-estate SPA with an interactive map and 17 custom hooks.",
-      "Strong in component-driven architecture, SEO, performance and accessibility — with practical experience in the Jalali calendar, Tehran timezone handling and RTL interfaces.",
+      "I've spent the last three-ish years writing front-end code, most of it in React, Next.js and TypeScript. My favourite moment is when an idea turns into something real people use every day — like the medical booking platform I took from auth to caching to tests, or the real-estate app with an interactive map that kept its cool as it grew.",
+      "I care about the details: a Jalali calendar that never drifts by a day, an RTL layout that sits right everywhere, a page that's loaded before the user blinks. SEO, performance and accessibility aren't optional extras for me — they're part of what \"done\" means.",
     ],
-    quote: "I fix the root cause instead of applying a quick patch.",
+    quote: "No quick patches — I go after the root cause.",
     focus: { title: "Focus areas", items: ["React Server Components", "Performance", "Scalable Architecture", "SEO", "DX"] },
     languages: [
       { name: "Persian", level: "Native" },
@@ -354,16 +360,16 @@ const en: Content = {
     ],
     lighthouse: { eyebrow: "LIGHTHOUSE", title: "Doctor Booking on Google Lighthouse" },
     principles: [
-      { title: "Full Type-safety", text: "TypeScript strict and Zod at the data boundary" },
-      { title: "Clean, lean code", text: "Readable, maintainable, no extra complexity" },
-      { title: "Minimal scope", text: "Only what the product truly needs" },
-      { title: "Measurable quality", text: "Lighthouse, automated tests and a11y" },
+      { title: "Type-safe end to end", text: "Strict TypeScript and Zod at the data boundary; bugs get caught before runtime" },
+      { title: "Clean, quiet code", text: "Readable and maintainable, without complexity nobody asked for" },
+      { title: "Minimal scope", text: "Only what the product truly needs — not one step more" },
+      { title: "Measurable quality", text: "Lighthouse, automated tests and a11y; a good feeling isn't enough, we want numbers" },
     ],
   },
   projects: {
     eyebrow: "SELECTED WORK",
     title: "Selected Projects",
-    description: "Real products developed end-to-end and deployed — not demos, not templates.",
+    description: "A few things I've taken from idea to deployment myself — no demos, no templates.",
     items: [
       {
         slug: "doctor-booking",
@@ -371,8 +377,9 @@ const en: Content = {
         subtitle: "Online medical appointment platform",
         type: "Full-Stack · Production",
         description:
-          "Complete booking platform on Next.js App Router: doctor search and reservation with the Jalali calendar, reviews and ratings, Tiptap-powered articles and a full admin panel. Secure data layer with 9 Mongoose models and 20 Zod schemas, JWT auth on httpOnly cookies and multi-layer caching with Upstash Redis.",
+          "A complete booking platform where users find a doctor, book with the Jalali calendar, leave reviews and read articles — while admins run everything from one panel. Under the hood: 9 Mongoose models, 20 Zod schemas, JWT auth on httpOnly cookies and multi-layer caching with Upstash Redis. Every sensitive flow is covered by Playwright.",
         image: "/images/projects/doctor-booking.jpg",
+        size: { w: 1200, h: 800 },
         stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Redis", "Zod", "Playwright"],
         metrics: [
           { value: "167", label: "Components" },
@@ -389,8 +396,9 @@ const en: Content = {
         subtitle: "Real-estate platform for buying, selling and renting",
         type: "Front-End · Scalable SPA",
         description:
-          "Scalable real-estate SPA with a domain-driven architecture: advanced search by district, type, price and area, multi-step listing creation, an interactive Leaflet map for neighbourhood-level search, and performance tuned with memoization across 100+ call sites.",
+          "A real-estate SPA designed to grow from day one: advanced search by district, type, price and area; multi-step listing creation; and an interactive Leaflet map you can browse neighbourhood by neighbourhood. Repeated logic lives in 17 custom hooks, and memoization across 100+ call sites keeps renders light.",
         image: "/images/projects/saghfinoo.jpg",
+        size: { w: 1536, h: 1024 },
         stack: ["React 18", "Vite", "React Router 7", "MUI", "Tailwind", "React Hook Form", "React-Leaflet"],
         metrics: [
           { value: "107", label: "Components" },
@@ -406,8 +414,9 @@ const en: Content = {
         subtitle: "Online store for a children's clothing atelier",
         type: "Full-Stack · Client Work",
         description:
-          "Full e-commerce with storefront, customer account and admin console on Next.js 16: Server Components by default, ISR for the catalogue, Better Auth, stock locking at checkout, Jalali-expiring coupons and a virtual try-on flow.",
+          "For a children's clothing atelier, I built a store with a polished storefront, customer accounts and an admin console. Server Components by default, an ISR-served catalogue and Better Auth keeping accounts safe. The thoughtful bits: stock locking at checkout so two people can't buy the last size at once, Jalali-expiring coupons and a virtual try-on.",
         image: "/images/projects/malli-kids.jpg",
+        size: { w: 1200, h: 670 },
         stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Better Auth", "Zod", "Leaflet"],
         metrics: [
           { value: "3", label: "Access Tiers" },
@@ -423,8 +432,9 @@ const en: Content = {
         subtitle: "Modern shopping cart in TypeScript",
         type: "Front-End · Open Source",
         description:
-          "Lightweight, responsive shopping cart built with strict TypeScript, Webpack and Bootstrap 5 — add/remove products, update quantities and dynamic totals with a modular architecture.",
+          "A light, tidy shopping cart that started as strict-TypeScript practice and ended up with a neat modular architecture: add and remove products, change quantities and watch totals update instantly — built with Webpack and Bootstrap 5.",
         image: "/images/projects/shopping-cart.jpg",
+        size: { w: 1536, h: 1024 },
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",
@@ -434,8 +444,8 @@ const en: Content = {
   },
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
-    title: "Three Persian handbooks for developers",
-    description: "Project-based guides focused on mental models, behaviour analysis and technical decision-making — free and open source.",
+    title: "The handbooks I wish I'd had earlier",
+    description: "Three Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Free and open source.",
     items: [
       {
         title: "JavaScript ES2025 — Persian Guide",
@@ -472,37 +482,37 @@ const en: Content = {
   skills: {
     eyebrow: "SKILLS",
     title: "Toolbox",
-    description: "The tools I ship products with every day — from the UI down to the data layer.",
+    description: "The tools I reach for every day — from UI pixels down to the data layer.",
     groups: fa.skills.groups,
   },
   highlights: {
     eyebrow: "TECHNICAL HIGHLIGHTS",
     title: "Technical Highlights",
-    description: "A few real problems I've solved in shipped products.",
+    description: "A few real problems that got in my way, and how I solved them.",
     items: [
       {
         icon: "calendar",
         project: "Doctor Booking",
         title: "Jalali-calendar scheduling with precise slots",
-        text: "Date/time handling on the Jalali calendar (jalaali-js), reading Tehran wall-clock time independent of the server timezone so slots never drift; a “one active appointment per day” rule per user.",
+        text: "Dates run on the Jalali calendar (jalaali-js) and Tehran wall-clock time is read independently of the server timezone — so slots never drift by a day. Each user also gets exactly one active appointment per day.",
       },
       {
         icon: "shield",
         project: "Doctor Booking",
         title: "Authentication & security hardening",
-        text: "JWT on httpOnly cookies with admin/user roles and bcrypt password hashing; hashed OTP codes with timing-safe comparison, throttling and Redis-backed brute-force protection.",
+        text: "JWT on httpOnly cookies with admin/user roles and bcrypt hashing; OTP codes are hashed, compared timing-safely, and Redis keeps brute-force attempts out.",
       },
       {
         icon: "zap",
         project: "Doctor Booking",
         title: "Performance & SEO engineering",
-        text: "Multi-layer caching with revalidateTag and Upstash Redis, next/image optimisation and dynamic code-splitting; dynamic metadata, dedicated sitemap/robots and ISR.",
+        text: "Multi-layer caching with revalidateTag and Upstash Redis, next/image and dynamic code-splitting; dynamic metadata, dedicated sitemap/robots and ISR — good for a perfect 100 SEO score in Lighthouse.",
       },
       {
         icon: "layers",
         project: "Saghfinoo",
         title: "Scalable front-end architecture",
-        text: "Repeated logic extracted into 17 custom hooks (filters, forms, validation, OTP), optimised rendering with memoization across 100+ call sites and 107 components organised into logical domains.",
+        text: "Form, filter, validation and OTP logic gathered into 17 custom hooks, 107 components organised into logical domains, and memoization across 100+ call sites keeping renders in check.",
       },
     ],
   },
@@ -510,7 +520,7 @@ const en: Content = {
     eyebrow: "CONTACT",
     titleA: "Let's build something that",
     titleB: "actually works.",
-    text: "Open to remote and on-site roles. If you need a front-end engineer focused on quality, performance and real user experience, I'd love to talk.",
+    text: "Open to remote and on-site roles. If you're looking for someone who cares about the pixels, the performance and the Persian-speaking user in equal measure, I'd love to chat.",
     channels: {
       email: "Email",
       phone: "Phone",
