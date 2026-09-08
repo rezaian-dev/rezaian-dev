@@ -23,8 +23,6 @@ export type Project = {
   type: string;
   description: string;
   image: string;
-  /** 🎯 CSS object-position used when the cover is cropped */
-  imagePosition?: string;
   stack: string[];
   metrics: Metric[];
   github?: string;
@@ -46,11 +44,6 @@ export type Book = {
 };
 
 const fa = {
-  meta: {
-    title: "محمدرضا رضائیان · مهندس فرانت‌اند",
-    description:
-      "سازندهٔ محصولات Production-grade با React و Next.js؛ متمرکز بر معماری تمیز، Performance و حلِ چالش‌های واقعیِ وب فارسی.",
-  },
   ui: {
     resume: "رزومه",
     downloadResume: "دانلود رزومه",
@@ -68,7 +61,16 @@ const fa = {
     language: "English",
     menu: "منو",
     scroll: "ادامه",
-    builtWith: "ساخته‌شده با Next.js · shadcn/ui · Tailwind · Motion",
+  },
+  footer: {
+    tagline: "کد تمیز، محصول واقعی، کیفیت قابل سنجش.",
+    navTitle: "دسترسی سریع",
+    connectTitle: "ارتباط",
+    status: "آمادهٔ همکاری",
+    localTime: "ساعت تهران",
+    backToTop: "بازگشت به بالا",
+    rights: "تمامی حقوق محفوظ است.",
+    crafted: "با دقت طراحی و مهندسی شده در کرج",
   },
   nav: [
     { href: "#about", label: "درباره" },
@@ -130,7 +132,6 @@ const fa = {
         description:
           "پلتفرم کامل نوبت‌دهی با Next.js App Router؛ جست‌وجو و رزرو پزشک با تقویم شمسی، نظرات و امتیازدهی، مقالات با ویرایشگر Tiptap و پنل مدیریت کامل. لایهٔ دادهٔ امن با ۹ مدل Mongoose و ۲۰ اسکیمای Zod، احراز هویت JWT روی httpOnly cookie و کش چندلایه با Upstash Redis.",
         image: "/images/projects/doctor-booking.jpg",
-        imagePosition: "center 40%",
         stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Redis", "Zod", "Playwright"],
         metrics: [
           { value: "۱۶۷", label: "کامپوننت" },
@@ -149,7 +150,6 @@ const fa = {
         description:
           "SPA مقیاس‌پذیر املاک با معماری Domain-Driven؛ جست‌وجوی پیشرفته بر اساس منطقه، نوع، قیمت و متراژ، ثبت آگهی چندمرحله‌ای، نقشهٔ تعاملی Leaflet برای جست‌وجوی محله‌به‌محله و بهینه‌سازی Performance با memoization در بیش از ۱۰۰ نقطه.",
         image: "/images/projects/saghfinoo.jpg",
-        imagePosition: "62% center",
         stack: ["React 18", "Vite", "React Router 7", "MUI", "Tailwind", "React Hook Form", "React-Leaflet"],
         metrics: [
           { value: "۱۰۷", label: "کامپوننت" },
@@ -184,7 +184,6 @@ const fa = {
         description:
           "اپلیکیشن سبک و رسپانسیو سبد خرید با TypeScript strict، Webpack و Bootstrap 5؛ افزودن و حذف محصول، به‌روزرسانی تعداد و محاسبهٔ پویای مجموع با معماری ماژولار.",
         image: "/images/projects/shopping-cart.jpg",
-        imagePosition: "60% center",
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",
@@ -292,11 +291,6 @@ const fa = {
 export type Content = typeof fa;
 
 const en: Content = {
-  meta: {
-    title: "Mohammadreza Rezaian · Front-End Engineer",
-    description:
-      "Building production-grade products with React and Next.js — focused on clean architecture, performance, and solving real-world challenges of the Persian web.",
-  },
   ui: {
     resume: "Resume",
     downloadResume: "Download Resume",
@@ -314,7 +308,16 @@ const en: Content = {
     language: "فارسی",
     menu: "Menu",
     scroll: "Scroll",
-    builtWith: "Built with Next.js · shadcn/ui · Tailwind · Motion",
+  },
+  footer: {
+    tagline: "Clean code. Real products. Measurable quality.",
+    navTitle: "Quick links",
+    connectTitle: "Connect",
+    status: "Open to work",
+    localTime: "Tehran time",
+    backToTop: "Back to top",
+    rights: "All rights reserved.",
+    crafted: "Designed & engineered with care in Karaj",
   },
   nav: [
     { href: "#about", label: "About" },
@@ -376,7 +379,6 @@ const en: Content = {
         description:
           "Complete booking platform on Next.js App Router: doctor search and reservation with the Jalali calendar, reviews and ratings, Tiptap-powered articles and a full admin panel. Secure data layer with 9 Mongoose models and 20 Zod schemas, JWT auth on httpOnly cookies and multi-layer caching with Upstash Redis.",
         image: "/images/projects/doctor-booking.jpg",
-        imagePosition: "center 40%",
         stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Redis", "Zod", "Playwright"],
         metrics: [
           { value: "167", label: "Components" },
@@ -395,7 +397,6 @@ const en: Content = {
         description:
           "Scalable real-estate SPA with a domain-driven architecture: advanced search by district, type, price and area, multi-step listing creation, an interactive Leaflet map for neighbourhood-level search, and performance tuned with memoization across 100+ call sites.",
         image: "/images/projects/saghfinoo.jpg",
-        imagePosition: "62% center",
         stack: ["React 18", "Vite", "React Router 7", "MUI", "Tailwind", "React Hook Form", "React-Leaflet"],
         metrics: [
           { value: "107", label: "Components" },
@@ -430,7 +431,6 @@ const en: Content = {
         description:
           "Lightweight, responsive shopping cart built with strict TypeScript, Webpack and Bootstrap 5 — add/remove products, update quantities and dynamic totals with a modular architecture.",
         image: "/images/projects/shopping-cart.jpg",
-        imagePosition: "60% center",
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",

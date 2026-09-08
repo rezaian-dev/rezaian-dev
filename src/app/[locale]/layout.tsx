@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import { Direction } from "radix-ui";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ThemeProvider from "@/components/providers/ThemeProvider";
-import { getContent, isLocale, links, locales } from "@/data/content";
+import JsonLd from "@/components/shared/JsonLd";
+import { isLocale, locales } from "@/data/content";
 import { inter, vazirmatn } from "@/lib/fonts";
+import { SITE_URL, keywords, seo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
@@ -14,24 +16,38 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-// 🔎 Locale-aware SEO metadata
+// 🔎 Concise, locale-aware metadata — OG/Twitter images come from opengraph-image.png
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const c = getContent(isLocale(locale) ? locale : "fa");
+  const l = isLocale(locale) ? locale : "fa";
+  const s = seo[l];
+
   return {
-    title: c.meta.title,
-    description: c.meta.description,
-    keywords: ["Front-End Engineer", "React", "Next.js", "TypeScript", "محمدرضا رضائیان", "Mohammadreza Rezaian"],
-    authors: [{ name: "Mohammadreza Rezaian", url: links.github }],
-    metadataBase: new URL("https://rezaian.dev"),
-    alternates: { languages: { fa: "/fa", en: "/en" } },
-    openGraph: {
-      title: c.meta.title,
-      description: c.meta.description,
-      images: [links.photo],
-      locale: locale === "en" ? "en_US" : "fa_IR",
-      type: "website",
+    metadataBase: new URL(SITE_URL),
+    title: { default: s.title, template: `%s | Mohammadreza Rezaian` },
+    description: s.description,
+    keywords,
+    authors: [{ name: "Mohammadreza Rezaian", url: SITE_URL }],
+    creator: "Mohammadreza Rezaian",
+    alternates: {
+      canonical: `/${l}`,
+      languages: { fa: "/fa", en: "/en", "x-default": "/fa" },
     },
+    openGraph: {
+      type: "profile",
+      siteName: "Mohammadreza Rezaian",
+      title: s.title,
+      description: s.description,
+      url: `/${l}`,
+      locale: l === "fa" ? "fa_IR" : "en_US",
+      alternateLocale: l === "fa" ? "en_US" : "fa_IR",
+      firstName: "Mohammadreza",
+      lastName: "Rezaian",
+    },
+    twitter: { card: "summary_large_image", title: s.title, description: s.description },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+    manifest: "/manifest.webmanifest",
+    category: "technology",
   };
 }
 
@@ -53,6 +69,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     // 🎨 suppressHydrationWarning: next-themes sets the class before paint (no theme flash)
     <html lang={locale} dir={dir} className={cn(vazirmatn.variable, inter.variable)} suppressHydrationWarning>
       <body>
+        <JsonLd locale={locale} />
         <ThemeProvider>
           <Direction.Provider dir={dir}>
             <TooltipProvider>{children}</TooltipProvider>

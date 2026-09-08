@@ -18,7 +18,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const c = getContent(locale);
 
   return (
-    <main className="relative overflow-x-clip">
+    <main id="top" className="relative overflow-x-clip">
       <Background />
       <Navbar locale={locale} c={c} />
       <Hero c={c} />
@@ -28,7 +28,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Skills c={c} />
       <Highlights c={c} />
       <Contact c={c} />
-      <Footer c={c} />
+      <Footer c={c} locale={locale} />
     </main>
   );
 }

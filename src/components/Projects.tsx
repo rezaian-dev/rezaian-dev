@@ -34,24 +34,25 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
     <Reveal as="article">
       <GlowCard className="group overflow-hidden">
         <div className={cn("grid lg:grid-cols-2", reverse && "lg:[&>*:first-child]:order-2")}>
-          {/* 🖼️ Cover */}
-          <div className="relative min-h-[240px] overflow-hidden sm:min-h-[320px] lg:min-h-full">
+          {/* 🖼️ Cover — 3:2 box with object-contain, the artwork is never cropped */}
+          <div className="relative flex items-center overflow-hidden bg-muted/40 p-4 sm:p-6 lg:p-8">
             <div
-              className="absolute inset-0 opacity-40 transition-opacity duration-700 group-hover:opacity-60"
-              style={{ background: `radial-gradient(circle at 30% 30%, ${p.accent}, transparent 60%)` }}
+              className="absolute inset-0 opacity-50 transition-opacity duration-700 group-hover:opacity-80"
+              style={{ background: `radial-gradient(circle at 30% 30%, ${p.accent}, transparent 65%)` }}
             />
-            <Image
-              src={p.image}
-              alt={p.title}
-              fill
-              quality={90}
-              placeholder="blur"
-              blurDataURL={blurData[p.slug as keyof typeof blurData]}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              style={{ objectPosition: p.imagePosition ?? "center" }}
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-card/40 via-transparent to-transparent lg:bg-none" />
+            <div className="dots-bg absolute inset-0 opacity-40" />
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-foreground/10 transition-transform duration-700 ease-out group-hover:scale-[1.02]">
+              <Image
+                src={p.image}
+                alt={p.title}
+                fill
+                quality={90}
+                placeholder="blur"
+                blurDataURL={blurData[p.slug as keyof typeof blurData]}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
 
             <Badge className="ltr absolute top-4 end-4 h-auto rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white backdrop-blur hover:bg-black/55">
               {p.type}
