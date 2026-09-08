@@ -18,7 +18,7 @@ const lighthouse = [
 export default function About({ c }: { c: Content }) {
   const a = c.about;
   return (
-    <section id="about" className="relative py-24 md:py-32">
+    <section id="about" className="cv-auto relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={a.eyebrow} title={a.title} />
 

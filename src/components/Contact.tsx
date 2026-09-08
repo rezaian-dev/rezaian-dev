@@ -17,13 +17,13 @@ export default function Contact({ c }: { c: Content }) {
   ];
 
   return (
-    <section id="contact" className="relative py-24 md:py-32">
+    <section id="contact" className="cv-auto relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] border bg-gradient-to-br from-brand/15 via-card to-brand-2/10 p-8 shadow-2xl shadow-brand/10 md:p-14">
             <div className="grid-bg pointer-events-none absolute inset-0 opacity-60" />
-            <div className="pointer-events-none absolute -end-20 -top-20 size-72 animate-blob rounded-full bg-brand/30 blur-[100px]" />
-            <div className="pointer-events-none absolute -bottom-24 -start-20 size-72 animate-blob-slow rounded-full bg-brand-2/25 blur-[100px]" />
+            <div className="pointer-events-none absolute -end-32 -top-32 size-[28rem] animate-blob rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--brand)_28%,transparent),transparent_65%)] will-change-transform" />
+            <div className="pointer-events-none absolute -bottom-32 -start-32 size-[28rem] animate-blob-slow rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--brand-2)_24%,transparent),transparent_65%)] will-change-transform" />
 
             <div className="relative grid items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
               <div>
@@ -61,7 +61,7 @@ export default function Contact({ c }: { c: Content }) {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-4 rounded-2xl border bg-background/50 px-5 py-4 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-lg hover:shadow-brand/10"
+                      className="group flex items-center gap-4 rounded-2xl border bg-background/70 px-5 py-4 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-lg hover:shadow-brand/10"
                     >
                       <span className="grid size-10 place-items-center rounded-xl bg-accent text-brand transition-all duration-300 group-hover:bg-brand group-hover:text-white group-hover:shadow-lg group-hover:shadow-brand/40">
                         <Icon className="size-5" />

@@ -14,7 +14,7 @@ const marquee = [
 export default function Skills({ c }: { c: Content }) {
   const s = c.skills;
   return (
-    <section id="skills" className="relative py-24 md:py-32">
+    <section id="skills" className="cv-auto relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={s.eyebrow} title={s.title} description={s.description} />
 
@@ -48,7 +48,7 @@ export default function Skills({ c }: { c: Content }) {
           {[...marquee, ...marquee].map((item, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-2.5 rounded-full border bg-card/60 px-5 py-2.5 text-sm font-semibold text-muted-foreground backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:text-foreground hover:shadow-[0_8px_30px_-8px_var(--brand)]"
+              className="inline-flex items-center gap-2.5 rounded-full border bg-card/60 px-5 py-2.5 text-sm font-semibold text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:text-foreground hover:shadow-[0_8px_30px_-8px_var(--brand)]"
             >
               <TechIcon name={item} className="size-[18px]" />
               {item}

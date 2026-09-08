@@ -22,7 +22,7 @@ export default function TehranClock({ label, locale }: { label: string; locale: 
   }, [locale]);
 
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border bg-card/60 px-3 py-1.5 text-muted-foreground backdrop-blur tabular-nums">
+    <span className="inline-flex items-center gap-2 rounded-full border bg-card/60 px-3 py-1.5 text-muted-foreground tabular-nums">
       <Clock className="size-3.5" />
       {label}
       <span className="ltr inline-block min-w-[3ch] font-semibold text-foreground">{time ?? "--:--"}</span>

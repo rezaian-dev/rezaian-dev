@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, useScroll, useSpring } from "motion/react";
+import { motion } from "motion/react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/shared/ThemeToggle";
@@ -16,31 +16,33 @@ type Props = { locale: Locale; c: Content };
 // 🧭 Floating glass navbar with theme / language toggles
 export default function Navbar({ locale, c }: Props) {
   const [scrolled, setScrolled] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
-
+  // 🪶 One state flip at 24px — no per-frame work
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setScrolled(window.scrollY > 24));
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-4 md:pt-4">
-      {/* 📏 Scroll progress bar */}
-      <motion.div
-        style={{ scaleX: progress }}
-        className="fixed inset-x-0 top-0 z-50 h-0.5 origin-left bg-gradient-to-r from-brand to-brand-2 rtl:origin-right"
-      />
+      {/* 📏 Scroll progress — CSS scroll-driven animation, runs off the main thread */}
+      <div aria-hidden className="scroll-progress fixed inset-x-0 top-0 z-50 h-0.5 origin-left bg-gradient-to-r from-brand to-brand-2 rtl:origin-right" />
 
       <motion.nav
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 transition-all duration-500 md:px-5",
-          scrolled ? "glass shadow-xl shadow-black/5 dark:shadow-black/40" : "border-transparent",
+          "mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 transition-[background-color,border-color,box-shadow] duration-500 md:px-5",
+          scrolled ? "glass-nav shadow-xl shadow-black/5 dark:shadow-black/40" : "border-transparent",
         )}
       >
         <Link href={`/${locale}`} className="flex items-center gap-2.5 font-bold text-foreground">

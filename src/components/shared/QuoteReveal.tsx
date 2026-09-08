@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Quote } from "lucide-react";
 
-// 💬 Signature quote — words unblur one by one; `*text*` becomes a gradient highlight
+// 💬 Signature quote — words rise in one by one; `*text*` becomes a gradient highlight
 export default function QuoteReveal({ text }: { text: string }) {
   const reduce = useReducedMotion();
   const words = text.split(" ");
@@ -19,7 +19,7 @@ export default function QuoteReveal({ text }: { text: string }) {
     >
       {/* ✨ Sweeping light beam */}
       <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[1400ms] ease-out group-hover:translate-x-[400%]" />
-      <span className="pointer-events-none absolute -top-10 -end-10 size-32 rounded-full bg-brand/20 blur-3xl" />
+      <span className="pointer-events-none absolute -top-16 -end-16 size-48 rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--brand)_25%,transparent),transparent_70%)]" />
 
       <Quote className="mb-3 size-6 text-brand" />
       <p className="text-xl font-bold leading-10 text-foreground md:text-2xl md:leading-[2.75rem]">
@@ -34,7 +34,7 @@ export default function QuoteReveal({ text }: { text: string }) {
           return (
             <motion.span
               key={i}
-              variants={reduce ? undefined : { hidden: { opacity: 0, y: 10, filter: "blur(8px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)" } }}
+              variants={reduce ? undefined : { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className={active ? "inline-block text-gradient" : "inline-block"}
             >

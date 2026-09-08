@@ -25,7 +25,7 @@ export default function Reveal({ children, delay = 0, className, as = "div" }: P
       variants={reduce ? undefined : variants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

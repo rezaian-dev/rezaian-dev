@@ -124,6 +124,25 @@
   }
 }
 
+/* 📏 Scroll progress bar driven by the scroll timeline (falls back to hidden where unsupported) */
+@utility scroll-progress {
+  transform: scaleX(0);
+  @supports (animation-timeline: scroll()) {
+    animation: grow-x linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes grow-x {
+  from { transform: scaleX(0) }
+  to { transform: scaleX(1) }
+}
+
+/* 🧊 Skip layout/paint for off-screen sections; the intrinsic size keeps the scrollbar stable */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 /* 🧱 Base layer */
 @layer base {
   * {
@@ -171,8 +190,15 @@
   background-image: linear-gradient(120deg, var(--brand), var(--brand-2), var(--brand));
 }
 
+/* 🪟 Card surface — translucent tint without backdrop-filter (blur on many cards = paint storms on mobile) */
 @utility glass {
-  @apply border border-border/80 bg-card/60 backdrop-blur-xl;
+  @apply border border-border/80 bg-card/80;
+}
+
+/* 🧭 Navbar only: real frosted glass, promoted to its own layer */
+@utility glass-nav {
+  @apply border border-border/80 bg-card/70 backdrop-blur-xl;
+  transform: translateZ(0);
 }
 
 @utility grid-bg {
@@ -231,11 +257,11 @@
 }
 
 @utility hover-lift {
-  @apply transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand/15;
+  @apply transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand/15;
 }
 
 @utility btn-glow {
-  @apply transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_var(--glow)];
+  @apply transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_var(--glow)];
 }
 
 @media (prefers-reduced-motion: reduce) {

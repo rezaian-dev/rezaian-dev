@@ -16,7 +16,7 @@ const icons: Record<string, LucideIcon> = {
 export default function Highlights({ c }: { c: Content }) {
   const h = c.highlights;
   return (
-    <section id="highlights" className="relative py-24 md:py-32">
+    <section id="highlights" className="cv-auto relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={h.eyebrow} title={h.title} description={h.description} />
 

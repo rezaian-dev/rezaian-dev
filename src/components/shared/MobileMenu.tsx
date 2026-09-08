@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion, type TargetAndTransition, type Variants } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion, type Variants } from "motion/react";
 import { ArrowUpRight, Download, Mail, MapPin, Send, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
@@ -16,16 +16,16 @@ type Props = { locale: Locale; c: Content };
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-// 🧭 Rows rise & unblur one after another; hairlines draw in from the start edge
+// 🧭 Rows rise in one after another; hairlines draw in from the start edge
 const list: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.07, delayChildren: 0.35 } },
   exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
 };
 const row: Variants = {
-  hidden: { opacity: 0, y: 26, filter: "blur(10px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease } },
-  exit: { opacity: 0, y: 10, filter: "blur(6px)", transition: { duration: 0.18 } },
+  hidden: { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
+  exit: { opacity: 0, y: 10, transition: { duration: 0.18 } },
 };
 const line: Variants = {
   hidden: { scaleX: 0 },
@@ -38,7 +38,7 @@ const pop: Variants = {
   exit: { opacity: 0, scale: 0.8, transition: { duration: 0.15 } },
 };
 
-// 📱 Immersive mobile menu — radial reveal from the burger, aurora backdrop, editorial nav, profile card
+// 📱 Immersive mobile menu — ink-drop reveal from the burger, editorial nav, profile card (compositor-only animations)
 export default function MobileMenu({ locale, c }: Props) {
   const [open, setOpen] = useState(false);
   const [origin, setOrigin] = useState({ x: 0, y: 0 });
@@ -67,27 +67,22 @@ export default function MobileMenu({ locale, c }: Props) {
   // 🚪 Overlay is portaled to <body> — the glass navbar (backdrop-filter) would otherwise trap `fixed` children
   useEffect(() => setMounted(true), []);
 
-  // 🔒 Lock page scroll + Esc closes
+  // 🔒 Lock page scroll (deferred a frame so it doesn't share the click's style-recalc) + Esc closes
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const prev = document.documentElement.style.overflow;
+    const raf = requestAnimationFrame(() => (document.documentElement.style.overflow = "hidden"));
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = prev;
+      cancelAnimationFrame(raf);
+      document.documentElement.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
+  // 🫧 Ink-drop reveal: a circle scales up from the burger — transform only, GPU-friendly
   const radius = typeof window === "undefined" ? 1500 : Math.hypot(window.innerWidth, window.innerHeight);
-  const reveal: { initial: TargetAndTransition; animate: TargetAndTransition; exit: TargetAndTransition } = reduce
-    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
-    : {
-        initial: { clipPath: `circle(0px at ${origin.x}px ${origin.y}px)` },
-        animate: { clipPath: `circle(${radius}px at ${origin.x}px ${origin.y}px)` },
-        exit: { clipPath: `circle(0px at ${origin.x}px ${origin.y}px)`, transition: { duration: 0.45, ease: "easeInOut", delay: 0.1 } },
-      };
 
   const socials = [
     { href: links.github, icon: Github, label: "GitHub" },
@@ -123,17 +118,30 @@ export default function MobileMenu({ locale, c }: Props) {
               key="menu"
               role="dialog"
               aria-modal
-              {...reveal}
-              transition={{ duration: 0.7, ease }}
-              className="fixed inset-0 z-[60] overflow-hidden bg-background md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.2 } }}
+              exit={{ opacity: 0, transition: { duration: 0.3, delay: 0.15 } }}
+              className="fixed inset-0 z-[60] overflow-hidden [contain:strict] md:hidden"
             >
-              {/* 🌌 Aurora backdrop */}
-              <div className="pointer-events-none absolute inset-0">
-                <span className="absolute -top-32 -end-24 size-[26rem] rounded-full bg-brand/30 blur-3xl animate-blob" />
-                <span className="absolute top-1/3 -start-32 size-[22rem] rounded-full bg-brand-2/25 blur-3xl animate-blob-slow" />
-                <span className="absolute -bottom-40 end-0 size-[24rem] rounded-full bg-fuchsia-500/15 blur-3xl animate-blob" />
-                <span className="grid-bg absolute inset-0 opacity-70" />
-              </div>
+              {/* 🫧 Ink drop — a flat circle scales up from the burger (cheap to rasterise, transform-only) */}
+              <motion.div
+                aria-hidden
+                initial={reduce ? { scale: 1 } : { scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={reduce ? { opacity: 0 } : { scale: 0, transition: { duration: 0.4, ease: "easeInOut" } }}
+                transition={{ duration: 0.65, ease }}
+                style={{ left: origin.x, top: origin.y, width: radius * 2, height: radius * 2, x: "-50%", y: "-50%", willChange: "transform" }}
+                className="absolute rounded-full bg-background"
+              />
+              {/* 🌌 Aurora tint fades in on top once the ink has landed */}
+              <motion.div
+                aria-hidden
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.35, duration: 0.6 } }}
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,color-mix(in_oklch,var(--brand)_28%,transparent),transparent_45%),radial-gradient(circle_at_10%_55%,color-mix(in_oklch,var(--brand-2)_22%,transparent),transparent_40%),radial-gradient(circle_at_80%_95%,color-mix(in_oklch,#d946ef_14%,transparent),transparent_35%)]"
+              />
+              <div className="grid-bg pointer-events-none absolute inset-0 opacity-70" />
 
               {/* ✕ Close — sits exactly where the burger was, spins in */}
               <motion.button
@@ -144,7 +152,7 @@ export default function MobileMenu({ locale, c }: Props) {
                 exit={{ x: "-50%", y: "-50%", rotate: 90, scale: 0.6, opacity: 0, transition: { duration: 0.15 } }}
                 whileTap={{ scale: 0.9 }}
                 style={{ left: origin.x, top: origin.y }}
-                className="absolute z-10 grid size-10 place-items-center rounded-full border border-brand/40 bg-brand/10 text-foreground backdrop-blur transition-colors hover:bg-brand/20"
+                className="absolute z-10 grid size-10 place-items-center rounded-full border border-brand/40 bg-card text-foreground transition-colors hover:bg-brand/20"
               >
                 <X className="size-4" />
               </motion.button>
@@ -207,9 +215,9 @@ export default function MobileMenu({ locale, c }: Props) {
                   initial={{ opacity: 0, y: 40, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.7, type: "spring", stiffness: 220, damping: 26 } }}
                   exit={{ opacity: 0, y: 20, transition: { duration: 0.15 } }}
-                  className="relative mt-8 shrink-0 overflow-hidden rounded-3xl border border-foreground/10 bg-card/70 p-4 shadow-2xl shadow-black/10 backdrop-blur-xl dark:shadow-black/40"
+                  className="relative mt-8 shrink-0 overflow-hidden rounded-3xl border border-foreground/10 bg-card p-4 shadow-2xl shadow-black/10 dark:shadow-black/40"
                 >
-                  <span className="pointer-events-none absolute -top-16 -end-16 size-40 rounded-full bg-brand/20 blur-2xl" />
+                  <span className="pointer-events-none absolute -top-16 -end-16 size-40 rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--brand)_25%,transparent),transparent_70%)]" />
                   <div className="relative flex items-center gap-3">
                     <span className="relative shrink-0">
                       <Image

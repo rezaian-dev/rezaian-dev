@@ -34,7 +34,7 @@ export default function Hero({ c }: { c: Content }) {
         {/* 📝 Copy */}
         <div>
           <motion.div {...fade(0)}>
-            <Badge variant="outline" className="h-auto gap-2 rounded-full bg-card/60 px-3.5 py-1.5 text-xs backdrop-blur">
+            <Badge variant="outline" className="h-auto gap-2 rounded-full bg-card/80 px-3.5 py-1.5 text-xs">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
@@ -73,7 +73,7 @@ export default function Hero({ c }: { c: Content }) {
               </Button>
             </Magnetic>
             <Magnetic>
-              <Button asChild size="lg" variant="outline" className="btn-glow h-11 rounded-full bg-card/60 px-6 text-sm backdrop-blur">
+              <Button asChild size="lg" variant="outline" className="btn-glow h-11 rounded-full bg-card/80 px-6 text-sm">
                 <a href={links.resume} download>
                   <Download data-icon="inline-start" />
                   {c.ui.downloadResume}
@@ -111,8 +111,8 @@ export default function Hero({ c }: { c: Content }) {
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto w-full max-w-sm lg:max-w-md"
         >
-          <div className="absolute -inset-1 animate-spin-slow rounded-[2.2rem] bg-[conic-gradient(from_0deg,var(--brand),var(--brand-2),transparent_40%,transparent_60%,var(--brand))] opacity-70 blur-sm" />
-          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand/30 via-transparent to-brand-2/30 blur-3xl" />
+          <div className="absolute -inset-1 animate-spin-slow rounded-[2.2rem] bg-[conic-gradient(from_0deg,var(--brand),var(--brand-2),transparent_40%,transparent_60%,var(--brand))] opacity-70 will-change-transform" />
+          <div className="absolute -inset-16 rounded-full bg-[radial-gradient(circle,color-mix(in_oklch,var(--brand)_22%,transparent),transparent_70%)]" />
 
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-border bg-card shadow-2xl shadow-black/20 dark:shadow-black/60">
             <Image
@@ -144,11 +144,11 @@ export default function Hero({ c }: { c: Content }) {
       {/* 📊 Quick stats */}
       <motion.div {...fade(0.6)} className="relative mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-4 px-4 md:mt-24 md:grid-cols-4 md:px-6">
         {h.stats.map((s) => (
-          <motion.div key={s.label} whileHover={{ y: -4 }} className="glass group relative overflow-hidden rounded-2xl p-5 text-center">
+          <div key={s.label} className="glass group relative overflow-hidden rounded-2xl p-5 text-center transition-transform duration-300 hover:-translate-y-1">
             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <p className="text-3xl font-black text-foreground md:text-4xl">{s.value}</p>
             <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
-          </motion.div>
+          </div>
         ))}
       </motion.div>
 

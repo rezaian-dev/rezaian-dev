@@ -13,7 +13,7 @@ import { blurData } from "@/data/blur";
 export default function Books({ c }: { c: Content }) {
   const b = c.books;
   return (
-    <section id="books" className="relative py-24 md:py-32">
+    <section id="books" className="cv-auto relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={b.eyebrow} title={b.title} description={b.description} />
 
