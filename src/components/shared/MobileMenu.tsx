@@ -1,41 +1,73 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, type Variants } from "motion/react";
-import { BookOpen, ChevronLeft, Download, FolderKanban, Mail, MessageCircle, Send, User, Wrench, type LucideIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion, type TargetAndTransition, type Variants } from "motion/react";
+import { ArrowUpRight, Download, Mail, MapPin, Send, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
+import TehranClock from "@/components/shared/TehranClock";
 import { links, type Content, type Locale } from "@/data/content";
+import { blurData } from "@/data/blur";
 import { cn } from "@/lib/utils";
 
 type Props = { locale: Locale; c: Content };
 
-const spring = { type: "spring", stiffness: 260, damping: 28 } as const;
+const ease = [0.22, 1, 0.36, 1] as const;
 
-// 🗂️ One glyph per section
-const icons: Record<string, LucideIcon> = {
-  "#about": User, "#projects": FolderKanban, "#books": BookOpen, "#skills": Wrench, "#contact": MessageCircle,
-};
-
-// 🧭 Nav links glide in one by one — blur → sharp, with a soft slide
+// 🧭 Rows rise & unblur one after another; hairlines draw in from the start edge
 const list: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0.2 } },
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.35 } },
   exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
 };
-const item: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(10px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-  exit: { opacity: 0, y: 12, filter: "blur(6px)", transition: { duration: 0.2 } },
+const row: Variants = {
+  hidden: { opacity: 0, y: 26, filter: "blur(10px)" },
+  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease } },
+  exit: { opacity: 0, y: 10, filter: "blur(6px)", transition: { duration: 0.18 } },
+};
+const line: Variants = {
+  hidden: { scaleX: 0 },
+  show: { scaleX: 1, transition: { duration: 0.7, ease } },
+  exit: { scaleX: 0, transition: { duration: 0.2 } },
+};
+const pop: Variants = {
+  hidden: { opacity: 0, scale: 0.6 },
+  show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 380, damping: 22 } },
+  exit: { opacity: 0, scale: 0.8, transition: { duration: 0.15 } },
 };
 
-// 📱 Mobile menu — morphing burger, blurred backdrop, spring panel with staggered nav
+// 📱 Immersive mobile menu — radial reveal from the burger, aurora backdrop, editorial nav, profile card
 export default function MobileMenu({ locale, c }: Props) {
   const [open, setOpen] = useState(false);
+  const [origin, setOrigin] = useState({ x: 0, y: 0 });
+  const [active, setActive] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const btn = useRef<HTMLButtonElement>(null);
   const reduce = useReducedMotion();
-  const rtl = locale === "fa";
 
-  // 🔒 Lock scroll + close on Escape while open
+  // 🎯 Remember where the burger sits (reveal origin) and which section is on screen
+  const toggle = () => {
+    if (!open) {
+      const r = btn.current?.getBoundingClientRect();
+      if (r) setOrigin({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+      const mid = window.innerHeight / 2;
+      const hit = c.nav.find((n) => {
+        const el = document.querySelector<HTMLElement>(n.href);
+        if (!el) return false;
+        const b = el.getBoundingClientRect();
+        return b.top <= mid && b.bottom >= mid;
+      });
+      setActive(hit?.href ?? null);
+    }
+    setOpen((v) => !v);
+  };
+
+  // 🚪 Overlay is portaled to <body> — the glass navbar (backdrop-filter) would otherwise trap `fixed` children
+  useEffect(() => setMounted(true), []);
+
+  // 🔒 Lock page scroll + Esc closes
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -48,6 +80,15 @@ export default function MobileMenu({ locale, c }: Props) {
     };
   }, [open]);
 
+  const radius = typeof window === "undefined" ? 1500 : Math.hypot(window.innerWidth, window.innerHeight);
+  const reveal: { initial: TargetAndTransition; animate: TargetAndTransition; exit: TargetAndTransition } = reduce
+    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
+    : {
+        initial: { clipPath: `circle(0px at ${origin.x}px ${origin.y}px)` },
+        animate: { clipPath: `circle(${radius}px at ${origin.x}px ${origin.y}px)` },
+        exit: { clipPath: `circle(0px at ${origin.x}px ${origin.y}px)`, transition: { duration: 0.45, ease: "easeInOut", delay: 0.1 } },
+      };
+
   const socials = [
     { href: links.github, icon: Github, label: "GitHub" },
     { href: links.linkedin, icon: Linkedin, label: "LinkedIn" },
@@ -57,151 +98,190 @@ export default function MobileMenu({ locale, c }: Props) {
 
   return (
     <>
-      {/* 🍔 Burger → ✕ morph */}
+      {/* 🍔 Burger ⇄ ✕ */}
       <Button
+        ref={btn}
         variant="outline"
         size="icon-lg"
         aria-label={c.ui.menu}
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        className="relative z-[70] rounded-full bg-background/60 md:hidden"
+        onClick={toggle}
+        className="rounded-full bg-background/60 md:hidden"
       >
         <span className="relative block size-4">
-          <span className={cn("absolute inset-x-0 top-[3px] h-[1.5px] rounded-full bg-current transition-all duration-300", open && "top-1/2 -translate-y-1/2 rotate-45")} />
-          <span className={cn("absolute inset-x-0 top-1/2 h-[1.5px] -translate-y-1/2 rounded-full bg-current transition-all duration-200", open && "scale-x-0 opacity-0")} />
-          <span className={cn("absolute inset-x-0 bottom-[3px] h-[1.5px] rounded-full bg-current transition-all duration-300", open && "bottom-1/2 translate-y-1/2 -rotate-45")} />
+          <span className="absolute inset-x-0 top-[3px] h-[1.5px] rounded-full bg-current" />
+          <span className="absolute inset-x-0 top-1/2 h-[1.5px] -translate-y-1/2 rounded-full bg-current" />
+          <span className="absolute inset-x-0 bottom-[3px] h-[1.5px] rounded-full bg-current" />
         </span>
       </Button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="menu"
-            role="dialog"
-            aria-modal
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.25, delay: 0.1 } }}
-            className="fixed inset-0 z-[60] md:hidden"
-          >
-            {/* 🌫️ Backdrop */}
-            <motion.button
-              aria-label="close"
-              onClick={() => setOpen(false)}
-              initial={{ backdropFilter: "blur(0px)" }}
-              animate={{ backdropFilter: "blur(16px)" }}
-              exit={{ backdropFilter: "blur(0px)" }}
-              className="absolute inset-0 bg-background/70"
-            />
-
-            {/* 🪟 Panel — header / scrollable nav / pinned footer */}
+      {mounted &&
+        createPortal(
+        <AnimatePresence>
+          {open && (
             <motion.div
-              initial={reduce ? { opacity: 0 } : { x: rtl ? "100%" : "-100%", opacity: 0.6 }}
-              animate={reduce ? { opacity: 1 } : { x: 0, opacity: 1 }}
-              exit={reduce ? { opacity: 0 } : { x: rtl ? "100%" : "-100%", opacity: 0.6, transition: { duration: 0.28, ease: [0.4, 0, 1, 1] } }}
-              transition={spring}
-              className={cn(
-                "absolute inset-y-0 flex w-[min(86vw,21rem)] flex-col overflow-hidden border-border/60 bg-card/90 shadow-2xl backdrop-blur-2xl",
-                rtl ? "right-0 rounded-l-3xl border-l" : "left-0 rounded-r-3xl border-r",
-              )}
+              key="menu"
+              role="dialog"
+              aria-modal
+              {...reveal}
+              transition={{ duration: 0.7, ease }}
+              className="fixed inset-0 z-[60] overflow-hidden bg-background md:hidden"
             >
-              {/* ✨ Ambient glow + dots */}
-              <span className="pointer-events-none absolute -top-24 -end-24 size-72 rounded-full bg-brand/25 blur-3xl" />
-              <span className="pointer-events-none absolute -bottom-24 -start-24 size-64 rounded-full bg-brand-2/20 blur-3xl" />
-              <span className="dots-bg pointer-events-none absolute inset-0 opacity-30" />
+              {/* 🌌 Aurora backdrop */}
+              <div className="pointer-events-none absolute inset-0">
+                <span className="absolute -top-32 -end-24 size-[26rem] rounded-full bg-brand/30 blur-3xl animate-blob" />
+                <span className="absolute top-1/3 -start-32 size-[22rem] rounded-full bg-brand-2/25 blur-3xl animate-blob-slow" />
+                <span className="absolute -bottom-40 end-0 size-[24rem] rounded-full bg-fuchsia-500/15 blur-3xl animate-blob" />
+                <span className="grid-bg absolute inset-0 opacity-70" />
+              </div>
 
-              {/* 👤 Brand header */}
-              <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 0.12, duration: 0.45 } }}
-                exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                className="relative flex shrink-0 items-center gap-3 px-5 pb-4 pt-5"
+              {/* ✕ Close — sits exactly where the burger was, spins in */}
+              <motion.button
+                aria-label={c.ui.menu}
+                onClick={() => setOpen(false)}
+                initial={{ x: "-50%", y: "-50%", rotate: -90, scale: 0.6, opacity: 0 }}
+                animate={{ x: "-50%", y: "-50%", rotate: 0, scale: 1, opacity: 1, transition: { delay: 0.25, type: "spring", stiffness: 300, damping: 20 } }}
+                exit={{ x: "-50%", y: "-50%", rotate: 90, scale: 0.6, opacity: 0, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.9 }}
+                style={{ left: origin.x, top: origin.y }}
+                className="absolute z-10 grid size-10 place-items-center rounded-full border border-brand/40 bg-brand/10 text-foreground backdrop-blur transition-colors hover:bg-brand/20"
               >
-                <span className="ltr grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-brand to-brand-2 text-sm font-black text-white shadow-lg shadow-brand/30">
-                  MR
-                </span>
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-bold text-foreground">{c.hero.name}</p>
-                  <p className="ltr truncate text-xs text-muted-foreground rtl:text-right">
-                    {c.hero.role} · {c.hero.roleSub}
-                  </p>
-                </div>
-              </motion.div>
+                <X className="size-4" />
+              </motion.button>
 
-              {/* 🧭 Nav — scrolls on short screens */}
-              <motion.ul
-                variants={list}
-                initial="hidden"
-                animate="show"
-                exit="exit"
-                className="relative min-h-0 flex-1 space-y-1.5 overflow-y-auto overscroll-contain px-4 py-2 [scrollbar-width:thin] [mask-image:linear-gradient(to_bottom,transparent,#000_12px,#000_calc(100%-12px),transparent)]"
-              >
-                {c.nav.map((n, i) => {
-                  const Icon = icons[n.href] ?? ChevronLeft;
-                  return (
-                    <motion.li key={n.href} variants={item}>
-                      <a
-                        href={n.href}
-                        onClick={() => setOpen(false)}
-                        className="group flex items-center gap-3.5 rounded-2xl border border-transparent px-3.5 py-3 transition-all duration-300 hover:border-brand/30 hover:bg-brand/10 active:scale-[0.98]"
-                      >
-                        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-accent text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
-                          <Icon className="size-[18px]" />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-base font-bold text-foreground">{n.label}</span>
-                          <span className="ltr block text-[11px] tracking-[0.18em] text-muted-foreground rtl:text-right">
+              {/* 📜 Scrollable body (short screens scroll; tall screens pin the card to the bottom) */}
+              <div className="relative flex h-full flex-col overflow-y-auto overscroll-contain px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-24">
+                {/* 🏷️ Eyebrow */}
+                <motion.p
+                  initial={{ opacity: 0, x: locale === "fa" ? 12 : -12 }}
+                  animate={{ opacity: 1, x: 0, transition: { delay: 0.3, duration: 0.5, ease } }}
+                  exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                  className="ltr mb-2 flex shrink-0 items-center gap-3 text-[11px] font-semibold tracking-[0.3em] text-brand rtl:flex-row-reverse rtl:text-right"
+                >
+                  <span className="h-px w-8 bg-brand/60" />
+                  MENU
+                </motion.p>
+
+                {/* 🧭 Editorial nav list */}
+                <motion.ul variants={list} initial="hidden" animate="show" exit="exit" className="shrink-0 flex-1">
+                  {c.nav.map((n, i) => {
+                    const isActive = active === n.href;
+                    return (
+                      <motion.li key={n.href} variants={row} className="relative">
+                        <a
+                          href={n.href}
+                          onClick={() => setOpen(false)}
+                          className="group flex items-center gap-4 py-[1.05rem]"
+                        >
+                          <span className={cn("ltr w-7 text-xs font-bold tabular-nums transition-colors duration-300", isActive ? "text-brand" : "text-muted-foreground group-hover:text-brand")}>
                             0{i + 1}
                           </span>
-                        </span>
-                        <ChevronLeft className="size-4 text-muted-foreground opacity-0 transition-all duration-300 group-hover:opacity-100 ltr:rotate-180 rtl:group-hover:-translate-x-0.5 ltr:group-hover:translate-x-0.5" />
-                      </a>
-                    </motion.li>
-                  );
-                })}
-              </motion.ul>
+                          <span className="relative flex-1">
+                            <span
+                              className={cn(
+                                "block text-[1.45rem] font-extrabold tracking-tight transition-all duration-500",
+                                isActive ? "text-gradient" : "text-foreground group-hover:text-gradient group-hover:translate-x-1 rtl:group-hover:-translate-x-1",
+                              )}
+                            >
+                              {n.label}
+                            </span>
+                            {isActive && (
+                              <motion.span
+                                layoutId="active-dot"
+                                className="absolute -start-3 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-brand shadow-[0_0_12px_var(--brand)]"
+                              />
+                            )}
+                          </span>
+                          <span className="grid size-9 place-items-center rounded-full border border-foreground/10 bg-card/40 text-muted-foreground opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:border-brand/40 group-hover:text-brand rtl:translate-x-2 ltr:-translate-x-2 group-hover:translate-x-0">
+                            <ArrowUpRight className="size-4 rtl:-scale-x-100" />
+                          </span>
+                        </a>
+                        <motion.span variants={line} className="absolute inset-x-0 bottom-0 h-px origin-left bg-gradient-to-r from-foreground/20 via-foreground/10 to-transparent rtl:origin-right rtl:bg-gradient-to-l" />
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
 
-              {/* 📎 Pinned footer — resume + status + socials */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
-                exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                className="relative shrink-0 space-y-3 border-t border-border/60 bg-card/60 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]"
-              >
-                <Button asChild size="lg" className="w-full rounded-2xl btn-glow">
-                  <a href={links.resume} download>
-                    <Download data-icon="inline-start" />
-                    {c.ui.downloadResume}
-                  </a>
-                </Button>
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-                    <span className="relative flex size-2">
-                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                {/* 🪪 Profile card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: 0.7, type: "spring", stiffness: 220, damping: 26 } }}
+                  exit={{ opacity: 0, y: 20, transition: { duration: 0.15 } }}
+                  className="relative mt-8 shrink-0 overflow-hidden rounded-3xl border border-foreground/10 bg-card/70 p-4 shadow-2xl shadow-black/10 backdrop-blur-xl dark:shadow-black/40"
+                >
+                  <span className="pointer-events-none absolute -top-16 -end-16 size-40 rounded-full bg-brand/20 blur-2xl" />
+                  <div className="relative flex items-center gap-3">
+                    <span className="relative shrink-0">
+                      <Image
+                        src={links.photo}
+                        alt={c.hero.name}
+                        width={52}
+                        height={52}
+                        placeholder="blur"
+                        blurDataURL={blurData.profile}
+                        className="size-13 rounded-2xl object-cover ring-2 ring-brand/40"
+                      />
+                      <span className="absolute -bottom-0.5 -end-0.5 flex size-3.5 items-center justify-center rounded-full bg-card">
+                        <span className="absolute size-2.5 animate-ping rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative size-2.5 rounded-full bg-emerald-500" />
+                      </span>
                     </span>
-                    {c.footer.status}
-                  </span>
-                  <div className="flex gap-0.5">
-                    {socials.map((s) => (
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-bold text-foreground">{c.hero.name}</p>
+                      <p className="ltr truncate text-xs text-muted-foreground rtl:text-right">
+                        {c.hero.role} · {c.hero.roleSub}
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+                      {c.footer.status}
+                    </span>
+                  </div>
+
+                  <div className="relative mt-4 flex flex-wrap items-center gap-2 text-xs">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border bg-card/60 px-3 py-1.5 text-muted-foreground">
+                      <MapPin className="size-3.5" />
+                      {c.hero.location}
+                    </span>
+                    <TehranClock label={c.footer.localTime} locale={locale} />
+                  </div>
+
+                  <Button asChild size="lg" className="relative mt-4 w-full rounded-2xl btn-glow">
+                    <a href={links.resume} download>
+                      <Download data-icon="inline-start" />
+                      {c.ui.downloadResume}
+                    </a>
+                  </Button>
+                </motion.div>
+
+                {/* 🔗 Socials */}
+                <motion.ul
+                  variants={{ show: { transition: { staggerChildren: 0.06, delayChildren: 0.95 } }, exit: { transition: { staggerChildren: 0.02 } } }}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  className="mt-4 grid shrink-0 grid-cols-4 gap-2"
+                >
+                  {socials.map((s) => (
+                    <motion.li key={s.label} variants={pop}>
                       <a
-                        key={s.label}
                         href={s.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="grid size-9 place-items-center rounded-xl text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-foreground"
+                        className="group flex flex-col items-center gap-1.5 rounded-2xl border border-foreground/10 bg-card/50 py-3 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-brand/10 hover:text-foreground"
                       >
-                        <s.icon className="size-4" />
+                        <s.icon className="size-[18px] transition-transform duration-300 group-hover:scale-110" />
+                        <span className="ltr text-[10px] font-medium">{s.label}</span>
                       </a>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
             </motion.div>
-          </motion.div>
+          )}
+        </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </>
   );
 }
