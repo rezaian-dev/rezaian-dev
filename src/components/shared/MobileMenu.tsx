@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "motion/react";
-import { ArrowUpRight, Download, Mail, Send } from "lucide-react";
+import { BookOpen, ChevronLeft, Download, FolderKanban, Mail, MessageCircle, Send, User, Wrench, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "@/components/shared/BrandIcons";
 import { links, type Content, type Locale } from "@/data/content";
@@ -12,10 +12,15 @@ type Props = { locale: Locale; c: Content };
 
 const spring = { type: "spring", stiffness: 260, damping: 28 } as const;
 
+// 🗂️ One glyph per section
+const icons: Record<string, LucideIcon> = {
+  "#about": User, "#projects": FolderKanban, "#books": BookOpen, "#skills": Wrench, "#contact": MessageCircle,
+};
+
 // 🧭 Nav links glide in one by one — blur → sharp, with a soft slide
 const list: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.07, delayChildren: 0.18 } },
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.2 } },
   exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
 };
 const item: Variants = {
@@ -24,7 +29,7 @@ const item: Variants = {
   exit: { opacity: 0, y: 12, filter: "blur(6px)", transition: { duration: 0.2 } },
 };
 
-// 📱 Full-screen mobile menu with animated burger, blurred backdrop and staggered links
+// 📱 Mobile menu — morphing burger, blurred backdrop, spring panel with staggered nav
 export default function MobileMenu({ locale, c }: Props) {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -89,14 +94,14 @@ export default function MobileMenu({ locale, c }: Props) {
               className="absolute inset-0 bg-background/70"
             />
 
-            {/* 🪟 Panel */}
+            {/* 🪟 Panel — header / scrollable nav / pinned footer */}
             <motion.div
               initial={reduce ? { opacity: 0 } : { x: rtl ? "100%" : "-100%", opacity: 0.6 }}
               animate={reduce ? { opacity: 1 } : { x: 0, opacity: 1 }}
               exit={reduce ? { opacity: 0 } : { x: rtl ? "100%" : "-100%", opacity: 0.6, transition: { duration: 0.28, ease: [0.4, 0, 1, 1] } }}
               transition={spring}
               className={cn(
-                "absolute inset-y-0 flex w-[min(86vw,22rem)] flex-col overflow-hidden border-border/60 bg-card/90 pt-24 shadow-2xl backdrop-blur-2xl",
+                "absolute inset-y-0 flex w-[min(86vw,21rem)] flex-col overflow-hidden border-border/60 bg-card/90 shadow-2xl backdrop-blur-2xl",
                 rtl ? "right-0 rounded-l-3xl border-l" : "left-0 rounded-r-3xl border-r",
               )}
             >
@@ -105,30 +110,63 @@ export default function MobileMenu({ locale, c }: Props) {
               <span className="pointer-events-none absolute -bottom-24 -start-24 size-64 rounded-full bg-brand-2/20 blur-3xl" />
               <span className="dots-bg pointer-events-none absolute inset-0 opacity-30" />
 
-              <motion.ul variants={list} initial="hidden" animate="show" exit="exit" className="relative flex flex-col gap-1 px-5">
-                {c.nav.map((n, i) => (
-                  <motion.li key={n.href} variants={item}>
-                    <a
-                      href={n.href}
-                      onClick={() => setOpen(false)}
-                      className="group flex items-center gap-4 rounded-2xl px-4 py-3.5 transition-colors hover:bg-accent/70 active:bg-accent"
-                    >
-                      <span className="ltr text-xs font-bold tabular-nums text-brand/70">0{i + 1}</span>
-                      <span className="text-2xl font-black tracking-tight text-foreground transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
-                        {n.label}
-                      </span>
-                      <ArrowUpRight className="ms-auto size-5 text-muted-foreground opacity-0 transition-all duration-300 group-hover:opacity-100 rtl:-scale-x-100" />
-                    </a>
-                  </motion.li>
-                ))}
+              {/* 👤 Brand header */}
+              <motion.div
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.12, duration: 0.45 } }}
+                exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                className="relative flex shrink-0 items-center gap-3 px-5 pb-4 pt-5"
+              >
+                <span className="ltr grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-brand to-brand-2 text-sm font-black text-white shadow-lg shadow-brand/30">
+                  MR
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-bold text-foreground">{c.hero.name}</p>
+                  <p className="ltr truncate text-xs text-muted-foreground rtl:text-right">
+                    {c.hero.role} · {c.hero.roleSub}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* 🧭 Nav — scrolls on short screens */}
+              <motion.ul
+                variants={list}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                className="relative min-h-0 flex-1 space-y-1.5 overflow-y-auto overscroll-contain px-4 py-2 [scrollbar-width:thin] [mask-image:linear-gradient(to_bottom,transparent,#000_12px,#000_calc(100%-12px),transparent)]"
+              >
+                {c.nav.map((n, i) => {
+                  const Icon = icons[n.href] ?? ChevronLeft;
+                  return (
+                    <motion.li key={n.href} variants={item}>
+                      <a
+                        href={n.href}
+                        onClick={() => setOpen(false)}
+                        className="group flex items-center gap-3.5 rounded-2xl border border-transparent px-3.5 py-3 transition-all duration-300 hover:border-brand/30 hover:bg-brand/10 active:scale-[0.98]"
+                      >
+                        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-accent text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
+                          <Icon className="size-[18px]" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-base font-bold text-foreground">{n.label}</span>
+                          <span className="ltr block text-[11px] tracking-[0.18em] text-muted-foreground rtl:text-right">
+                            0{i + 1}
+                          </span>
+                        </span>
+                        <ChevronLeft className="size-4 text-muted-foreground opacity-0 transition-all duration-300 group-hover:opacity-100 ltr:rotate-180 rtl:group-hover:-translate-x-0.5 ltr:group-hover:translate-x-0.5" />
+                      </a>
+                    </motion.li>
+                  );
+                })}
               </motion.ul>
 
-              {/* 📎 Resume + socials */}
+              {/* 📎 Pinned footer — resume + status + socials */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                className="relative mt-auto space-y-4 border-t border-border/60 p-5"
+                className="relative shrink-0 space-y-3 border-t border-border/60 bg-card/60 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]"
               >
                 <Button asChild size="lg" className="w-full rounded-2xl btn-glow">
                   <a href={links.resume} download>
@@ -144,7 +182,7 @@ export default function MobileMenu({ locale, c }: Props) {
                     </span>
                     {c.footer.status}
                   </span>
-                  <div className="flex gap-1">
+                  <div className="flex gap-0.5">
                     {socials.map((s) => (
                       <a
                         key={s.label}
@@ -152,7 +190,7 @@ export default function MobileMenu({ locale, c }: Props) {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="grid size-9 place-items-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                        className="grid size-9 place-items-center rounded-xl text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-foreground"
                       >
                         <s.icon className="size-4" />
                       </a>
