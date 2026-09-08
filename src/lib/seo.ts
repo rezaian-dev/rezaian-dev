@@ -1,7 +1,7 @@
 import type { Locale } from "@/data/content";
 
 // 🔎 Central SEO config — change the domain here once
-export const SITE_URL = "https://rezaian.dev";
+export const SITE_URL = "https://rezaian-dev.vercel.app";
 
 export const seo = {
   fa: {
