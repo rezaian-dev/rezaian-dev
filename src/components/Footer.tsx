@@ -22,9 +22,10 @@ export default function Footer({ c, locale }: { c: Content; locale: Locale }) {
       <div className="pointer-events-none absolute -bottom-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-brand/15 blur-[120px]" />
 
       <div className="mx-auto max-w-6xl px-4 pt-16 pb-8 md:px-6">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        {/* 📐 md: brand on top, links + connect side by side (3 narrow columns squeezed the social tiles); lg: 3 columns */}
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           {/* 🏷️ Brand */}
-          <div>
+          <div className="md:col-span-2 lg:col-span-1">
             <a href="#top" className="inline-flex items-center gap-3">
               <span className="ltr grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-brand to-brand-2 text-base font-black text-white shadow-lg shadow-brand/30">
                 MR
@@ -80,10 +81,10 @@ export default function Footer({ c, locale }: { c: Content; locale: Locale }) {
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-2.5 rounded-xl border bg-card/60 px-3 py-2.5 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-lg hover:shadow-brand/10"
+                    className="group flex h-11 items-center justify-center gap-2.5 rounded-xl border bg-card/60 px-3 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-lg hover:shadow-brand/10"
                   >
-                    <Icon className="size-4 text-muted-foreground transition-colors group-hover:text-brand" />
-                    <span className="ltr text-foreground">{label}</span>
+                    <Icon className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
+                    <span className="ltr font-latin text-foreground">{label}</span>
                   </a>
                 </li>
               ))}
@@ -108,7 +109,7 @@ export default function Footer({ c, locale }: { c: Content; locale: Locale }) {
             {f.crafted}
             <span className="inline-block animate-pulse text-rose-500">♥</span>
           </p>
-          <Button asChild variant="outline" size="sm" className="btn-glow rounded-full bg-card/60">
+          <Button asChild variant="outline" size="sm" className="btn-glow rounded-full bg-card/60 leading-none">
             <a href="#top" aria-label={f.backToTop}>
               <ArrowUp data-icon="inline-start" />
               {f.backToTop}

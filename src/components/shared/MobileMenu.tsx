@@ -265,10 +265,10 @@ export default function MobileMenu({ locale, c }: Props) {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="group flex flex-col items-center gap-1.5 rounded-2xl border border-foreground/10 bg-card/50 py-3 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-brand/10 hover:text-foreground"
+                        className="group flex flex-col items-center gap-1.5 rounded-2xl border border-foreground/10 bg-card/50 py-3.5 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-brand/10 hover:text-foreground"
                       >
                         <s.icon className="size-[18px] transition-transform duration-300 group-hover:scale-110" />
-                        <span className="ltr text-[10px] font-medium">{s.label}</span>
+                        <span className="ltr font-latin text-[10px] font-medium leading-none">{s.label}</span>
                       </a>
                     </li>
                   ))}

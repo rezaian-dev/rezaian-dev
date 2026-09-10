@@ -13,7 +13,8 @@ export default function LangToggle({ locale, label }: { locale: Locale; label: s
       <Link
         href={`/${target}`}
         hrefLang={target}
-        className={target === "en" ? "ltr" : ""}
+        // 🔤 Label is set in the font whose metrics fit its script (Inter for "English", Vazirmatn for «فارسی») so it sits optically centred on both pages
+        className={target === "en" ? "ltr font-latin" : "font-sans"}
         onClick={() => {
           document.cookie = `locale=${target};path=/;max-age=31536000`;
         }}
