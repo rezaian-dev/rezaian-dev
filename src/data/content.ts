@@ -35,7 +35,7 @@ export type Project = {
 
 export type Book = {
   /** 🌫️ Key into blurData placeholders */
-  blur: "js-guide" | "react-guide" | "next-guide";
+  blur: "js-guide" | "react-guide" | "next-guide" | "git-guide";
   title: string;
   subtitle: string;
   chapters: string;
@@ -94,7 +94,7 @@ const fa = {
       { value: "۳+", label: "سال تجربه" },
       { value: "۳", label: "محصول روی هوا" },
       { value: "۱۰۰", label: "امتیاز SEO" },
-      { value: "۳", label: "کتاب فنی فارسی" },
+      { value: "۴", label: "کتاب فنی فارسی" },
     ],
   },
   about: {
@@ -197,7 +197,7 @@ const fa = {
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
     title: "کتاب‌هایی که کاش زودتر داشتم",
-    description: "سه تا راهنمای فارسی که نوشتم چون خودم دلم می‌خواست همچین منابعی وجود داشته باشه: پروژه‌محور، با تمرکز روی مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. رایگان و متن‌باز.",
+    description: "چهار تا راهنمای فارسی که نوشتم چون خودم دلم می‌خواست همچین منابعی وجود داشته باشه: پروژه‌محور، با تمرکز روی مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. رایگان و متن‌باز.",
     items: [
       {
         title: "مرجع فارسی JavaScript ES2025",
@@ -228,6 +228,16 @@ const fa = {
         read: "https://rezaian-dev.github.io/nextjs-16-persian-guide/",
         github: "https://github.com/rezaian-dev/nextjs-16-persian-guide",
         accent: "#e2e8f0",
+      },
+      {
+        title: "مرجع جامع Git و GitHub ۲۰۲۶",
+        subtitle: "از صفر تا سطح حرفه‌ای — یک کتاب، دو مسیر: ترمینال و VS Code",
+        chapters: "۳۶ فصل",
+        blur: "git-guide",
+        image: "/images/projects/git-guide.jpg",
+        read: "https://rezaian-dev.github.io/git-github-persian-guide/",
+        github: "https://github.com/rezaian-dev/git-github-persian-guide",
+        accent: "#f97316",
       },
     ] as Book[],
   },
@@ -342,7 +352,7 @@ const en: Content = {
       { value: "3+", label: "Years Experience" },
       { value: "3", label: "Production Products" },
       { value: "100", label: "SEO Score" },
-      { value: "3", label: "Persian Tech Books" },
+      { value: "4", label: "Persian Tech Books" },
     ],
   },
   about: {
@@ -445,7 +455,7 @@ const en: Content = {
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
     title: "The handbooks I wish I'd had earlier",
-    description: "Three Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Free and open source.",
+    description: "Four Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Free and open source.",
     items: [
       {
         title: "JavaScript ES2025 — Persian Guide",
@@ -476,6 +486,16 @@ const en: Content = {
         read: "https://rezaian-dev.github.io/nextjs-16-persian-guide/",
         github: "https://github.com/rezaian-dev/nextjs-16-persian-guide",
         accent: "#e2e8f0",
+      },
+      {
+        title: "Git & GitHub 2026 — Persian Guide",
+        subtitle: "From zero to pro — one book, two tracks: the terminal and VS Code",
+        chapters: "36 chapters",
+        blur: "git-guide",
+        image: "/images/projects/git-guide.jpg",
+        read: "https://rezaian-dev.github.io/git-github-persian-guide/",
+        github: "https://github.com/rezaian-dev/git-github-persian-guide",
+        accent: "#f97316",
       },
     ],
   },

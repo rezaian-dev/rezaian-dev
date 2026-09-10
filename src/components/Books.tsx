@@ -17,7 +17,7 @@ export default function Books({ c }: { c: Content }) {
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={b.eyebrow} title={b.title} description={b.description} />
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {b.items.map((book, i) => (
             <Reveal key={book.title} delay={i * 0.1} as="article">
               <GlowCard className="group h-full overflow-hidden">
@@ -29,7 +29,7 @@ export default function Books({ c }: { c: Content }) {
                     quality={85}
                     placeholder="blur"
                     blurDataURL={blurData[book.blur]}
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
@@ -40,7 +40,7 @@ export default function Books({ c }: { c: Content }) {
                     {book.chapters}
                   </Badge>
                   <div className="absolute inset-x-0 bottom-0 p-5">
-                    <h3 className="text-xl font-black text-foreground">{book.title}</h3>
+                    <h3 className="text-lg font-black leading-snug text-foreground md:text-xl">{book.title}</h3>
                     <p className="mt-1 text-sm leading-7 text-muted-foreground">{book.subtitle}</p>
                   </div>
                 </div>

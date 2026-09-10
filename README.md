@@ -37,7 +37,7 @@ fast, accessible, and built to be maintained by someone other than me.
 
 ## 🧭 A little about me
 
-Three-ish years ago I wrote my first React component. Since then I've shipped a full-stack medical booking platform, a real-estate app with an interactive map, an e-commerce store for a client, and three Persian handbooks that a lot of developers now learn from.
+Three-ish years ago I wrote my first React component. Since then I've shipped a full-stack medical booking platform, a real-estate app with an interactive map, an e-commerce store for a client, and four Persian handbooks that a lot of developers now learn from.
 
 What gets me out of bed isn't a shiny new framework — it's the moment an interface *just works*: the Jalali calendar that never drifts by a day, the RTL layout that sits right on every screen, the page that's loaded before the user blinks.
 
@@ -72,27 +72,33 @@ The full stories, screenshots and numbers live on the portfolio — here's the s
 
 ## 📚 The handbooks I wish I'd had earlier
 
-Three free, open-source Persian guides — project-based, obsessed with the *why*, not just the *how*.
+Four free, open-source Persian guides — project-based, obsessed with the *why*, not just the *how*.
 
 <table align="center">
   <tr>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <a href="https://rezaian-dev.github.io/javascript-persian-guide/"><img src="public/images/projects/js-guide.jpg" alt="JavaScript ES2025 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
       <b>JavaScript ES2025</b><br /><sub>38 chapters</sub><br /><br />
       <a href="https://rezaian-dev.github.io/javascript-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
       <a href="https://github.com/rezaian-dev/javascript-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
     </td>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <a href="https://rezaian-dev.github.io/react-19-persian-guide/"><img src="public/images/projects/react-guide.jpg" alt="React 19 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
       <b>React 19.2</b><br /><sub>37 chapters</sub><br /><br />
       <a href="https://rezaian-dev.github.io/react-19-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
       <a href="https://github.com/rezaian-dev/react-19-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
     </td>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <a href="https://rezaian-dev.github.io/nextjs-16-persian-guide/"><img src="public/images/projects/next-guide.jpg" alt="Next.js 16 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
       <b>Next.js 16</b><br /><sub>37 chapters</sub><br /><br />
       <a href="https://rezaian-dev.github.io/nextjs-16-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
       <a href="https://github.com/rezaian-dev/nextjs-16-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://rezaian-dev.github.io/git-github-persian-guide/"><img src="public/images/projects/git-guide.jpg" alt="Git & GitHub 2026 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
+      <b>Git & GitHub 2026</b><br /><sub>36 chapters</sub><br /><br />
+      <a href="https://rezaian-dev.github.io/git-github-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
+      <a href="https://github.com/rezaian-dev/git-github-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
     </td>
   </tr>
 </table>
