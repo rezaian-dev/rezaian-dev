@@ -21,8 +21,8 @@ export default function Hero({ c }: { c: Content }) {
       <div className="grid-bg pointer-events-none absolute inset-0" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 md:px-6 lg:grid-cols-[1.15fr_0.85fr]">
-        {/* 📝 Copy */}
-        <div>
+        {/* 📝 Copy — `@container` lets the CTA row respond to the column width, not the viewport */}
+        <div className="@container min-w-0">
           <div className="rise" style={{ "--d": "0s" } as CSSProperties}>
             <Badge variant="outline" className="h-auto gap-2 rounded-full bg-card/80 px-3.5 py-1.5 text-xs">
               <span className="relative flex size-2">
@@ -43,29 +43,30 @@ export default function Hero({ c }: { c: Content }) {
             )}
           </h1>
 
-          <p className="rise mt-5 text-xl font-semibold text-foreground/90 md:text-2xl" style={{ "--d": "0.2s" } as CSSProperties}>
-            <span className="ltr inline-block">{h.role}</span>
-            <span className="mx-3 text-muted-foreground/50">·</span>
-            <span className="ltr inline-block">{h.roleSub}</span>
+          <p className="rise mt-5 flex flex-col items-start gap-y-1 text-xl font-semibold text-foreground/90 sm:flex-row sm:items-center sm:gap-x-3 md:text-2xl" style={{ "--d": "0.2s" } as CSSProperties}>
+            <span className="ltr">{h.role}</span>
+            <span aria-hidden className="hidden text-muted-foreground/50 sm:inline">·</span>
+            <span className="ltr">{h.roleSub}</span>
           </p>
 
           <p className="rise mt-6 max-w-xl text-base leading-8 text-muted-foreground md:text-lg" style={{ "--d": "0.3s" } as CSSProperties}>
             {h.tagline}
           </p>
 
-          <div className="rise mt-8 flex flex-wrap items-center gap-3" style={{ "--d": "0.4s" } as CSSProperties}>
-              <Button asChild size="lg" className="btn-glow shine h-11 rounded-full px-6 text-sm">
-                <a href="#projects">
-                  <Sparkles data-icon="inline-start" />
-                  {c.ui.viewProjects}
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="btn-glow h-11 rounded-full bg-card/80 px-6 text-sm">
-                <a href={links.resume} download>
-                  <Download data-icon="inline-start" />
-                  {c.ui.downloadResume}
-                </a>
-              </Button>
+          {/* 🎯 CTAs — full-width & stacked while the column is narrower than 28rem, inline pills beyond */}
+          <div className="rise mt-8 flex flex-col gap-3 @md:flex-row @md:flex-wrap @md:items-center" style={{ "--d": "0.4s" } as CSSProperties}>
+            <Button asChild size="lg" className="btn-glow shine h-11 w-full gap-2 rounded-full px-6 text-sm @md:w-auto">
+              <a href="#projects">
+                <Sparkles data-icon="inline-start" />
+                {c.ui.viewProjects}
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="btn-glow h-11 w-full gap-2 rounded-full bg-card/80 px-6 text-sm @md:w-auto">
+              <a href={links.resume} download>
+                <Download data-icon="inline-start" />
+                {c.ui.downloadResume}
+              </a>
+            </Button>
           </div>
 
           <div className="rise mt-8 flex flex-wrap items-center gap-5 text-sm text-muted-foreground" style={{ "--d": "0.5s" } as CSSProperties}>
