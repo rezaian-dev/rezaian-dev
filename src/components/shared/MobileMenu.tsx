@@ -103,7 +103,7 @@ export default function MobileMenu({ locale, c }: Props) {
         aria-label={c.ui.menu}
         aria-expanded={open}
         onClick={toggle}
-        className="rounded-full bg-background/60 md:hidden"
+        className="rounded-full bg-background/60 lg:hidden"
       >
         <span className="relative block size-4">
           <span className="absolute inset-x-0 top-[3px] h-[1.5px] rounded-full bg-current" />
@@ -119,7 +119,7 @@ export default function MobileMenu({ locale, c }: Props) {
               role="dialog"
               aria-modal
               data-state={state}
-              className="menu-anim fixed inset-0 z-[60] overflow-hidden [contain:strict] data-[state=closing]:pointer-events-none md:hidden"
+              className="menu-anim fixed inset-0 z-[60] overflow-hidden [contain:strict] data-[state=closing]:pointer-events-none lg:hidden"
               style={anim({ "--in": "menu-fade-in", "--dur": "0.2s", "--out": "menu-fade-out", "--dur-out": "0.3s", "--dx": "0.15s" })}
             >
               {/* 🫧 Ink drop — a flat circle scales up from the burger (cheap to rasterise, transform-only) */}

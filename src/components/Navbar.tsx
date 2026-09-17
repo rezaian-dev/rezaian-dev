@@ -49,7 +49,7 @@ export default function Navbar({ locale, c }: Props) {
           <span className="hidden whitespace-nowrap sm:block md:hidden lg:block">{c.hero.name}</span>
         </Link>
 
-        <ul className="hidden items-center gap-0.5 md:flex">
+        <ul className="hidden items-center gap-0 lg:flex">
           {c.nav.map((item) => (
             <li key={item.href}>
               <Button asChild variant="ghost" className="rounded-full px-2 text-muted-foreground hover:text-foreground lg:px-2.5">

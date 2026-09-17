@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
+import Work from "@/components/Work";
+import Strengths from "@/components/Strengths";
+import Personality from "@/components/Personality";
 import Books from "@/components/Books";
 import Skills from "@/components/Skills";
 import Highlights from "@/components/Highlights";
@@ -28,6 +31,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Hero c={c} />
       <About c={c} />
       <Projects c={c} />
+      <Work c={c} />
+      <Strengths c={c} />
+      <Personality c={c} />
       <Books c={c} />
       <Skills c={c} />
       <Highlights c={c} />

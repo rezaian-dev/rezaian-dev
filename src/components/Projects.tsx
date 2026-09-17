@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Briefcase, Lock } from "lucide-react";
+import { ArrowUpRight, Briefcase, Globe, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github } from "@/components/shared/BrandIcons";
@@ -56,7 +56,7 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
           </div>
 
           {/* 📝 Details */}
-          <div className="flex flex-col p-6 md:p-9">
+          <div className="flex min-w-0 flex-col p-6 md:p-9">
             {/* 🏷️ Type + client tags — one wrapping row, nothing overlaps */}
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <Badge variant="outline" className="ltr h-auto rounded-full px-3 py-1 text-xs font-semibold">
@@ -93,9 +93,28 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
               ))}
             </div>
 
-            <div className="mt-auto flex flex-wrap items-center gap-3 pt-7">
+            <div className="mt-auto flex flex-col gap-3 pt-7 sm:flex-row sm:flex-wrap sm:items-center">
+              {p.demo && (
+                <div className="flex w-full min-w-0 flex-col items-stretch gap-1.5 sm:w-auto sm:items-start">
+                  <Button asChild size="lg" className="btn-glow h-11 w-full rounded-full px-5 sm:w-auto">
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer">
+                      <Globe data-icon="inline-start" className="size-4" />
+                      {ui.liveWebsite}
+                      <ArrowUpRight data-icon="inline-end" className="rtl:-scale-x-100" />
+                    </a>
+                  </Button>
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ltr px-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {p.demo.replace(/^https?:\/\//, "")}
+                  </a>
+                </div>
+              )}
               {p.github && (
-                <Button asChild size="lg" className="rounded-full px-5 btn-glow">
+                <Button asChild size="lg" variant={p.demo ? "outline" : "default"} className="btn-glow h-11 w-full rounded-full px-5 sm:w-auto">
                   <a href={p.github} target="_blank" rel="noopener noreferrer">
                     <Github data-icon="inline-start" className="size-4" />
                     {ui.sourceCode}
@@ -103,18 +122,10 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
                   </a>
                 </Button>
               )}
-              {p.demo && (
-                <Button asChild size="lg" variant="outline" className="rounded-full px-5">
-                  <a href={p.demo} target="_blank" rel="noopener noreferrer">
-                    {ui.liveDemo}
-                    <ArrowUpRight data-icon="inline-end" className="rtl:-scale-x-100" />
-                  </a>
-                </Button>
-              )}
               {p.client && !p.github && (
-                <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                  <Lock className="size-3.5" />
-                  {ui.privateSource}
+                <span className="inline-flex max-w-full items-start gap-1.5 text-sm leading-6 text-muted-foreground">
+                  <Lock className="mt-0.5 size-3.5 shrink-0" />
+                  <span className="min-w-0">{ui.privateSource}</span>
                 </span>
               )}
             </div>

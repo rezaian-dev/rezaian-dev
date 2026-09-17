@@ -4,7 +4,7 @@ import {
   siJsonwebtokens, siFramer, type SimpleIcon,
 } from "simple-icons";
 import {
-  Accessibility, Boxes, Component, FlaskConical, Gauge, PilcrowLeft, RefreshCw, Route, Search, Server, Sparkles,
+  Accessibility, Boxes, Component, FlaskConical, Gauge, PilcrowLeft, RefreshCw, Route, Search, Server, Sparkles, Waypoints,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,7 +25,7 @@ const brands: Record<string, SimpleIcon> = {
 const glyphs: Record<string, LucideIcon> = {
   "Playwright": FlaskConical, "RSC": Server, "ISR": RefreshCw, "SEO": Search, "A11y": Accessibility,
   "Accessibility": Accessibility, "RTL": PilcrowLeft, "Context": Boxes, "API Routes": Route,
-  "Clean Code": Sparkles, "Component-Driven": Component, "Performance": Gauge,
+  "Clean Code": Sparkles, "Component-Driven": Component, "Performance": Gauge, "Zustand": Waypoints,
 };
 
 const mono = new Set(["000000", "FFFFFF"]);

@@ -52,6 +52,7 @@ const fa = {
     viewProjects: "مشاهدهٔ پروژه‌ها",
     sourceCode: "سورس‌کد",
     liveDemo: "دموی زنده",
+    liveWebsite: "وب‌سایت زنده",
     readOnline: "مطالعهٔ آنلاین",
     clientProject: "پروژهٔ کارفرما",
     privateSource: "سورس‌کد این پروژه طبق قرارداد با کارفرما خصوصیه.",
@@ -74,6 +75,7 @@ const fa = {
   nav: [
     { href: "#about", label: "درباره" },
     { href: "#projects", label: "پروژه‌ها" },
+    { href: "#work", label: "نحوه کار" },
     { href: "#books", label: "کتاب‌ها" },
     { href: "#skills", label: "مهارت‌ها" },
     { href: "#contact", label: "تماس" },
@@ -166,15 +168,16 @@ const fa = {
         subtitle: "فروشگاه آنلاین آتلیهٔ پوشاک کودک",
         type: "Full-Stack · Client Work",
         description:
-          "برای یه آتلیهٔ پوشاک کودک، فروشگاهی ساختم که هم ویترین شیکی داره، هم حساب کاربری مشتری و هم کنسول مدیریت. Server Components پیش‌فرضه، کاتالوگ با ISR سرو می‌شه و Better Auth حساب‌ها رو امن نگه می‌داره. جزئیات خوش‌دستش: قفل موجودی موقع تسویه که دو نفر آخرین سایز رو هم‌زمان نخرن، کوپن با انقضای شمسی و پروِ مجازی لباس.",
+          "برای یه آتلیهٔ پوشاک کودک، فروشگاهی ساختم که هم ویترین شیکی داره، هم حساب کاربری مشتری و هم کنسول مدیریت. App Router و Server Components پیش‌فرضه، کاتالوگ با ISR سرو می‌شه و Better Auth حساب‌ها رو امن نگه می‌داره. سبد، موجودی، کوپن و سفارش روی MongoDB می‌شینن و با Zod چک می‌شن؛ موجودی موقع تسویه قفل می‌شه تا دو نفر آخرین سایز رو هم‌زمان نخرن. استیت کلاینت با Zustand و مقدار اولیه‌ٔ SSR-aware بالا می‌آد، OTP و Redis جلوی سوءاستفاده رو می‌گیرن. جزئیات خوش‌دستش: کوپن با انقضای شمسی و پروِ مجازی لباس.",
         image: "/images/projects/malli-kids.jpg",
         size: { w: 1200, h: 670 },
-        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Better Auth", "Zod", "Leaflet"],
+        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Redis", "Better Auth", "Zustand", "Zod", "Motion"],
         metrics: [
           { value: "۳", label: "سطح دسترسی" },
           { value: "RSC", label: "معماری" },
           { value: "ISR", label: "کاتالوگ" },
         ],
+        demo: "https://mallikids.ir",
         client: true,
         accent: "#a855f7",
       },
@@ -299,6 +302,100 @@ const fa = {
     },
     phoneDisplay: "۰۹۰۱ ۸۱۰ ۶۶۴۶",
   },
+  work: {
+    eyebrow: "HOW I WORK",
+    title: "این‌طوری کار می‌کنم.",
+    description: "ابزارها مهم‌اند؛ چیزی که تکرار می‌شه، عادت‌های کاریه — نه شعار.",
+    items: [
+      {
+        title: "اول علت، بعد وصله",
+        text: "وقتی یه چیزی تو UI می‌پره، معمولاً قبل از عوض‌کردن ظاهر یا گذاشتن workaround سعی می‌کنم بفهمم مشکل از رندرِ، از state، از تایمینگ اسکرول یا از معماری. اسکرول منوی موبایل همین سایت خراب شده بود؛ به‌جای یه offset الکی، content-visibility رو برداشتم و بعد از باز شدن قفل اسکرول، با جای واقعی بخش پریدم.",
+      },
+      {
+        title: "منبع حقیقت را پیدا می‌کنم",
+        text: "تاریخ نوبت نباید به timezone سرور بند باشد؛ آخرین سایز موجودی هم نباید روی خوش‌بینی کلاینت باشد. معمولاً می‌گردم ببینم حقیقت کجاست — ساعت تهران، ردیف موجودی، یا یک فایل محتوا — و همان را منبع می‌گذارم.",
+      },
+      {
+        title: "اندازه می‌گیرم، بعد نگه می‌دارم یا حذف می‌کنم",
+        text: "حس خوب کافی نیست. Motion و Radix را آوردم؛ بعد از اندازه‌گیری از باندل برداشتم و انیمیشن را CSS کردم. امتیاز Lighthouse دکتر رزرو را نگه می‌دارم چون بدون عدد، «سریعه» فقط یه ادعاست.",
+      },
+      {
+        title: "محدودیت را می‌خوانم، breakpoint جدید نمی‌سازم",
+        text: "اگر صفحه در ۳۲۰ پیکسل می‌شکند، اول می‌پرسم مشکل از عرض ذاتی است، از wrap، از padding یا از دکمه‌ای که nowrap شده. دکمه‌های CTA و کاشی‌های فوتر همین‌جا پیکسل‌به‌پیکسل وسط شدن — نه با یه media query اضافه.",
+      },
+    ],
+  },
+  strengths: {
+    eyebrow: "STRENGTHS",
+    title: "چیزی که تو کار دیده می‌شه.",
+    items: [
+      {
+        title: "تشخیص لایهٔ مشکل",
+        text: "جزئیات برایم یه پاسِ بصری نیست. وقتی RTL یا ۳۲۰ پیکسل به هم می‌ریزه، اول لایه را جدا می‌کنم: سایز، wrap، constraint یا اسکرول. بعد دست می‌برم.",
+      },
+      {
+        title: "مالکیت کل مسیر",
+        text: "فایلِ دارای error معمولاً کل داستان نیست. منوی موبایل باگِ کلیک نبود؛ قفل اسکرول هنوز برداشته نشده بود. جریان را تا مرز واقعی‌اش دنبال می‌کنم.",
+      },
+      {
+        title: "کیفیتی که بشود اندازه گرفت",
+        text: "SEO صد، Playwright روی مسیرهای حساس، Zod روی مرز داده. اگر نشود اندازه گرفت، برایم هنوز تمام نشده.",
+      },
+      {
+        title: "وب فارسی را جدی می‌گیرم",
+        text: "تقویم جلالی که یک روز جابه‌جا نشه، کوپن با انقضای شمسی، RTL که همه‌جاش درست بشینه. این‌ها لبه‌کاری نیستن؛ خودِ محصول‌اند.",
+      },
+    ],
+  },
+  growth: {
+    eyebrow: "WHERE I'M IMPROVING",
+    title: "جایی که هنوز روی خودم کار می‌کنم.",
+    items: [
+      {
+        title: "مرز خراب و فقط دقیق‌تر",
+        text: "گاهی روی جزئیاتی می‌مونم که می‌دونم می‌شه دقیق‌ترشان کرد — وسط‌چین یک کاشی، یک انیمیشن، یک جمله. دارم تمرین می‌کنم زودتر بپرسم: این واقعاً مشکل داره، یا فقط وسوسهٔ پولیش بیشتره؟",
+      },
+      {
+        title: "وابستگی را قبل از ورود می‌سنجم",
+        text: "Motion و Radix را اول اضافه کردم، بعد از روی باندل برداشتم. درسش این بود که سوال «این لازم است؟» باید قبل از install بیاید، نه بعد از دیدن وزنش.",
+      },
+    ],
+  },
+  personality: {
+    eyebrow: "WORKING PERSONALITY",
+    title: "یک توصیف شخصی، نه یک تشخیص.",
+    lead: "از نظر شخصی خودم را بیشتر نزدیک به INTJ می‌بینم؛ نه به‌عنوان یک برچسب قطعی، بلکه چون بعضی از الگوهای فکری و کاری این تیپ به سبک کار کردنم نزدیک‌اند.",
+    traits: [
+      "قبل از تغییر، ترجیح می‌دم سیستم را بخوانم.",
+      "کار عمیق را دوست دارم — چهار handbook فارسی از همین‌جا آمده.",
+      "معمولاً اول خودم تا ریشه می‌روم.",
+      "به پیامد معماری فکر می‌کنم: قفل موجودی، استیت SSR-aware، timezone.",
+      "کیفیت بلندمدت را به میان‌بر ترجیح می‌دم.",
+    ],
+  },
+  softSkills: {
+    eyebrow: "IN PRACTICE",
+    title: "مهارت‌های نرم، همان‌طور که دیده می‌شوند.",
+    items: [
+      {
+        title: "صورت‌بندی مسئله",
+        text: "ترجیح می‌دم قبل از راه‌حل، مسئله را دقیق بنویسم — حتی در کامیت. «اسکرول بعد از unlock منو با offset اندازه‌گیری‌شده» یعنی همه دربارهٔ یک مشکل مشخص حرف می‌زنیم.",
+      },
+      {
+        title: "مالکیت مسیر",
+        text: "وقتی چیزی می‌شکنه، معمولاً فقط فایل error را باز نمی‌کنم. مسیر کامل را می‌روم تا مرز مشکل معلوم شود — از رندر تا data flow تا قفل اسکرول.",
+      },
+      {
+        title: "یادگیری با مدل ذهنی",
+        text: "برای یک فریم‌ورک بیشتر روی مدل ذهنی و trade-offش وقت می‌گذارم تا APIها. handbookهای فارسی را همین‌طور نوشتم: چرا این تصمیم، نه فقط چطور این هوک.",
+      },
+    ],
+  },
+  beyond: {
+    eyebrow: "BEYOND THE CODE",
+    title: "بیرون از کد",
+    text: "بیشتر وقتم را یا صرف فهمیدن «چرا»ی یک مسئله می‌کنم، یا صرف نوشتنش به فارسی تا نفر بعدی کمتر سردرگم شود. محصول واقعی برای اکوسیستم RTL برایم از دموی زیبا جذاب‌تر است — و کیفیت را معمولاً جایی می‌سنجم که کسی نگاه نمی‌کند.",
+  },
 };
 
 export type Content = typeof fa;
@@ -310,6 +407,7 @@ const en: Content = {
     viewProjects: "View Projects",
     sourceCode: "Source Code",
     liveDemo: "Live Demo",
+    liveWebsite: "Live Website",
     readOnline: "Read Online",
     clientProject: "Client Work",
     privateSource: "Source is private under client agreement.",
@@ -332,6 +430,7 @@ const en: Content = {
   nav: [
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
+    { href: "#work", label: "How I work" },
     { href: "#books", label: "Books" },
     { href: "#skills", label: "Skills" },
     { href: "#contact", label: "Contact" },
@@ -424,15 +523,16 @@ const en: Content = {
         subtitle: "Online store for a children's clothing atelier",
         type: "Full-Stack · Client Work",
         description:
-          "For a children's clothing atelier, I built a store with a polished storefront, customer accounts and an admin console. Server Components by default, an ISR-served catalogue and Better Auth keeping accounts safe. The thoughtful bits: stock locking at checkout so two people can't buy the last size at once, Jalali-expiring coupons and a virtual try-on.",
+          "For a children's clothing atelier, I built a store with a polished storefront, customer accounts and an admin console. App Router and Server Components by default, an ISR-served catalogue, Better Auth on accounts. Cart, inventory, coupons and orders live on MongoDB and get checked with Zod; stock locks at checkout so two people can't buy the last size at once. Client state comes up through Zustand with SSR-aware initial values, and OTP plus Redis keep abuse out. The thoughtful bits: Jalali-expiring coupons and a virtual try-on.",
         image: "/images/projects/malli-kids.jpg",
         size: { w: 1200, h: 670 },
-        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Better Auth", "Zod", "Leaflet"],
+        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Redis", "Better Auth", "Zustand", "Zod", "Motion"],
         metrics: [
           { value: "3", label: "Access Tiers" },
           { value: "RSC", label: "Architecture" },
           { value: "ISR", label: "Catalogue" },
         ],
+        demo: "https://mallikids.ir",
         client: true,
         accent: "#a855f7",
       },
@@ -549,6 +649,100 @@ const en: Content = {
       github: "GitHub",
     },
     phoneDisplay: "+98 901 810 6646",
+  },
+  work: {
+    eyebrow: "HOW I WORK",
+    title: "This is how I actually work.",
+    description: "Tools matter. What repeats is the working habits — not the slogans.",
+    items: [
+      {
+        title: "Cause first, patch later",
+        text: "When something jumps in the UI, I usually try to tell whether it's rendering, state, scroll timing or architecture — before I change how it looks. The mobile-menu scroll on this site was broken; instead of a magic offset, I dropped content-visibility and scrolled after the lock released, using the section's real position.",
+      },
+      {
+        title: "Find the source of truth",
+        text: "Appointment dates shouldn't depend on the server timezone. The last size in stock shouldn't depend on an optimistic client. I look for where the truth lives — Tehran wall-clock, the inventory row, a single content file — and I treat that as the source.",
+      },
+      {
+        title: "Measure, then keep or cut",
+        text: "A good feeling isn't enough. I brought in Motion and Radix, then took them out of the bundle after measuring, and moved the animation to CSS. I keep the Lighthouse numbers for Doctor Booking because \"it's fast\" without a number is just a claim.",
+      },
+      {
+        title: "Read the constraint, don't add a breakpoint",
+        text: "If a page breaks at 320px, I first ask whether it's intrinsic width, wrapping, padding, or a nowrap button. The CTA buttons and footer tiles here were pixel-centred that way — not by sprinkling another media query.",
+      },
+    ],
+  },
+  strengths: {
+    eyebrow: "STRENGTHS",
+    title: "What tends to show up in the work.",
+    items: [
+      {
+        title: "Naming the layer",
+        text: "Detail isn't a visual pass for me. When RTL or 320px falls apart, I separate the layer first: size, wrap, constraint, or scroll. Then I touch the code.",
+      },
+      {
+        title: "Owning the whole path",
+        text: "The file with the error is rarely the whole story. The mobile menu wasn't a click bug; the scroll lock hadn't been released yet. I follow the flow until the real boundary shows up.",
+      },
+      {
+        title: "Quality I can measure",
+        text: "SEO 100, Playwright on the sensitive paths, Zod at the data boundary. If I can't measure it, I don't really consider it done.",
+      },
+      {
+        title: "Treating the Persian web as the product",
+        text: "A Jalali calendar that doesn't drift, coupons that expire on a Shamsi date, RTL that sits right. These aren't extras. They're the work.",
+      },
+    ],
+  },
+  growth: {
+    eyebrow: "WHERE I'M IMPROVING",
+    title: "Things I'm still working on.",
+    items: [
+      {
+        title: "Broken vs. just more polished",
+        text: "I sometimes stay on details I know could be more precise — a tile's alignment, an animation, a sentence. What I'm practising is asking sooner: is this actually wrong, or am I just tempted to polish it further?",
+      },
+      {
+        title: "Weighing a dependency before it lands",
+        text: "I added Motion and Radix first, then took them out of the bundle. The lesson: \"do we need this?\" should come before install, not after I've seen the weight.",
+      },
+    ],
+  },
+  personality: {
+    eyebrow: "WORKING PERSONALITY",
+    title: "A self-description, not a diagnosis.",
+    lead: "Personally I see myself as closer to INTJ — not as a hard label, but because some of that type's thinking and working patterns sit close to how I actually work.",
+    traits: [
+      "I like to understand the system before I change it.",
+      "Deep work is where I'm happiest — the four Persian handbooks came from that.",
+      "I usually try to get to the root on my own first.",
+      "I think about architectural consequences: stock locks, SSR-aware state, timezones.",
+      "I prefer long-term quality over a shortcut I'll pay for later.",
+    ],
+  },
+  softSkills: {
+    eyebrow: "IN PRACTICE",
+    title: "Soft skills, as they show up.",
+    items: [
+      {
+        title: "Framing the problem",
+        text: "I'd rather name the problem precisely before offering a solution — even in commit messages. \"Scroll after the menu unlock, via a measured offset\" means we're all talking about the same bug.",
+      },
+      {
+        title: "Owning the path",
+        text: "When something breaks, I don't usually stop at the file with the error. I walk the whole flow until the real boundary is clear — render, data, or a scroll lock.",
+      },
+      {
+        title: "Learning the model",
+        text: "When I pick up a framework, I spend more time on its mental model and trade-offs than on its APIs. That's how I wrote the Persian handbooks: why this decision, not just how this hook.",
+      },
+    ],
+  },
+  beyond: {
+    eyebrow: "BEYOND THE CODE",
+    title: "Outside the editor",
+    text: "A lot of my time goes into understanding why something works the way it does, or writing that down in Persian so the next person is less lost. Real products for an RTL ecosystem interest me more than a pretty demo — and I tend to measure quality in the places nobody's looking.",
   },
 };
 
