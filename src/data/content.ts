@@ -35,7 +35,7 @@ export type Project = {
 
 export type Book = {
   /** 🌫️ Key into blurData placeholders */
-  blur: "js-guide" | "react-guide" | "next-guide" | "git-guide" | "ts-guide";
+  blur: "n8n-guide" | "js-guide" | "react-guide" | "next-guide" | "git-guide" | "ts-guide";
   title: string;
   subtitle: string;
   chapters: string;
@@ -217,8 +217,18 @@ const fa = {
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
     title: "کتاب‌هایی که کاش زودتر داشتم",
-    description: "پنج راهنمای فارسی که نوشتم چون خودم دلم می‌خواست همچین منابعی وجود داشته باشه: پروژه‌محور، با تمرکز روی مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. با دسترسی آنلاین و مخزن عمومی.",
+    description: "شش راهنمای فارسی که نوشتم چون خودم دلم می‌خواست همچین منابعی وجود داشته باشه: پروژه‌محور، با تمرکز روی مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. با دسترسی آنلاین و مخزن عمومی.",
     items: [
+      {
+        title: "مرجع پروژه‌محور n8n — اتوماسیون قابل‌اعتماد",
+        subtitle: "۷۱ صفحه، ۷۶ پرسش تحلیلی و ۳ پروژه و آزمایشگاه",
+        chapters: "۲۶ فصل",
+        blur: "n8n-guide",
+        image: "/images/projects/n8n-guide.jpg",
+        read: "https://rezaian-dev.github.io/n8n-persian-guide/",
+        github: "https://github.com/rezaian-dev/n8n-persian-guide",
+        accent: "#83e1d3",
+      },
       {
         title: "مرجع جامع TypeScript — از مدل ذهنی تا Production",
         subtitle: "۲۲۰ صفحه، ۸ پروژهٔ عملی و بیش از ۱۳۰ پرسش مصاحبه",
@@ -394,7 +404,7 @@ const fa = {
     lead: "از نظر شخصی خودم را بیشتر نزدیک به INTJ می‌بینم؛ نه به‌عنوان یک برچسب قطعی، بلکه چون بعضی از الگوهای فکری و کاری این تیپ به سبک کار کردنم نزدیک‌اند.",
     traits: [
       "قبل از تغییر، ترجیح می‌دم سیستم را بخوانم.",
-      "کار عمیق را دوست دارم — پنج handbook فارسی از همین‌جا آمده.",
+      "کار عمیق را دوست دارم — شش handbook فارسی از همین‌جا آمده.",
       "معمولاً اول خودم تا ریشه می‌روم.",
       "به پیامد معماری فکر می‌کنم: قفل موجودی، استیت SSR-aware، timezone.",
       "کیفیت بلندمدت را به میان‌بر ترجیح می‌دم.",
@@ -599,8 +609,18 @@ const en: Content = {
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
     title: "The handbooks I wish I'd had earlier",
-    description: "Five Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Available online, with public repositories.",
+    description: "Six Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Available online, with public repositories.",
     items: [
+      {
+        title: "n8n — Reliable Automation, in Persian",
+        subtitle: "71 pages, 76 analytical questions and 3 projects / learning labs",
+        chapters: "26 chapters",
+        blur: "n8n-guide",
+        image: "/images/projects/n8n-guide.jpg",
+        read: "https://rezaian-dev.github.io/n8n-persian-guide/",
+        github: "https://github.com/rezaian-dev/n8n-persian-guide",
+        accent: "#83e1d3",
+      },
       {
         title: "TypeScript — Persian Reference",
         subtitle: "220 pages, 8 hands-on projects and 130+ interview questions",
@@ -769,7 +789,7 @@ const en: Content = {
     lead: "Personally I see myself as closer to INTJ — not as a hard label, but because some of that type's thinking and working patterns sit close to how I actually work.",
     traits: [
       "I like to understand the system before I change it.",
-      "Deep work is where I'm happiest — the five Persian handbooks came from that.",
+      "Deep work is where I'm happiest — the six Persian handbooks came from that.",
       "I usually try to get to the root on my own first.",
       "I think about architectural consequences: stock locks, SSR-aware state, timezones.",
       "I prefer long-term quality over a shortcut I'll pay for later.",

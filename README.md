@@ -36,7 +36,7 @@ fast, accessible, and built to be maintained by someone other than me.
 
 ## 🧭 A little about me
 
-Three-ish years ago I wrote my first React component. Since then I've shipped a full-stack medical booking platform, a real-estate app with an interactive map, an e-commerce store for a client, and five Persian handbooks that a lot of developers now learn from.
+Three-ish years ago I wrote my first React component. Since then I've shipped a full-stack medical booking platform, a real-estate app with an interactive map, an e-commerce store for a client, and six Persian handbooks that a lot of developers now learn from.
 
 What gets me out of bed isn't a shiny new framework — it's the moment an interface *just works*: the Jalali calendar that never drifts by a day, the RTL layout that sits right on every screen, the page that's loaded before the user blinks.
 
@@ -72,7 +72,7 @@ The full stories, screenshots and numbers live on the portfolio — here's the s
 
 ## 📚 The handbooks I wish I'd had earlier
 
-Five Persian guides available to read online — project-based, obsessed with the *why*, not just the *how*.
+Six Persian guides available to read online — project-based, obsessed with the *why*, not just the *how*.
 
 <div align="center">
   <a href="https://rezaian-dev.github.io/typescript-persian-guide/"><img src="public/images/projects/ts-guide.jpg" alt="TypeScript Persian Reference — 40 chapters" width="220" /></a>
@@ -81,8 +81,16 @@ Five Persian guides available to read online — project-based, obsessed with th
   <a href="https://rezaian-dev.github.io/typescript-persian-guide/"><b>Read online ↗</b></a> · <a href="https://github.com/rezaian-dev/typescript-persian-guide">Browse repository</a>
 </div>
 
+<div align="center">
+  <a href="https://rezaian-dev.github.io/n8n-persian-guide/"><img src="public/images/projects/n8n-guide.jpg" alt="n8n Persian Reference — 26 chapters" width="220" /></a>
+  <h3>New · n8n Persian Engineering Reference</h3>
+  <p>71 pages · 26 chapters · 76 analytical questions · 3 projects and independent labs</p>
+  <a href="https://rezaian-dev.github.io/n8n-persian-guide/"><b>Explore the book / download PDF ↗</b></a> · <a href="https://github.com/rezaian-dev/n8n-persian-guide">Browse repository</a>
+</div>
+
 | Handbook | Chapters | Read online | Repository |
 |:--|:--:|:--|:--|
+| **n8n — Reliable Automation** | 26 | [Read / download PDF ↗](https://rezaian-dev.github.io/n8n-persian-guide/) | [Source](https://github.com/rezaian-dev/n8n-persian-guide) |
 | **TypeScript** | 40 | [Read ↗](https://rezaian-dev.github.io/typescript-persian-guide/) | [Source](https://github.com/rezaian-dev/typescript-persian-guide) |
 | **JavaScript ES2025** | 38 | [Read ↗](https://rezaian-dev.github.io/javascript-persian-guide/) | [Source](https://github.com/rezaian-dev/javascript-persian-guide) |
 | **React 19.2** | 37 | [Read ↗](https://rezaian-dev.github.io/react-19-persian-guide/) | [Source](https://github.com/rezaian-dev/react-19-persian-guide) |
