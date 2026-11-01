@@ -103,14 +103,6 @@ function ProjectCard({ project: p, index, ui }: { project: Project; index: numbe
                       <ArrowUpRight data-icon="inline-end" className="rtl:-scale-x-100" />
                     </a>
                   </Button>
-                  <a
-                    href={p.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ltr px-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {p.demo.replace(/^https?:\/\//, "")}
-                  </a>
                 </div>
               )}
               {p.github && (
