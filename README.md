@@ -2,6 +2,10 @@
 
 <div align="center">
 
+<img src="public/images/readme/banner.svg" alt="Mohammadreza Rezaian — Front-End Engineer" width="100%" />
+
+<br />
+
 # Hey, I'm Mohammadreza 👋
 
 ### Front-End Engineer · React & Next.js
@@ -117,6 +121,13 @@ Five Persian guides available to read online — project-based, obsessed with th
 ## 🌐 The portfolio itself
 
 Bilingual, light & dark, zero layout shift — and yes, I measured it.
+
+<table width="100%">
+  <tr>
+    <td width="50%" align="center"><a href="https://rezaian-dev.vercel.app/fa"><img src="public/images/readme/preview-dark.jpg" alt="پیش‌نمایش پورتفولیو — نسخهٔ فارسی و تم تیره" width="100%" /></a></td>
+    <td width="50%" align="center"><a href="https://rezaian-dev.vercel.app/en"><img src="public/images/readme/preview-light.jpg" alt="Portfolio preview — English, light theme" width="100%" /></a></td>
+  </tr>
+</table>
 
 <div align="center">
   <a href="https://rezaian-dev.vercel.app/fa"><b>🇮🇷 مشاهدهٔ سایت فارسی ↗</b></a>
