@@ -17,11 +17,11 @@ export default function Books({ c }: { c: Content }) {
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionHeading eyebrow={b.eyebrow} title={b.title} description={b.description} />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {b.items.map((book, i) => (
             <Reveal key={book.title} delay={i * 0.1} as="article">
-              <GlowCard className="group h-full overflow-hidden">
-                <div className="relative aspect-[3/4] overflow-hidden">
+              <GlowCard className="group flex h-full flex-col overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden bg-muted/40">
                   <Image
                     src={book.image}
                     alt={book.title}
@@ -29,22 +29,21 @@ export default function Books({ c }: { c: Content }) {
                     quality={85}
                     placeholder="blur"
                     blurDataURL={blurData[book.blur]}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
                   <Badge
                     className="absolute top-4 end-4 h-auto rounded-full px-3 py-1 text-xs font-bold text-slate-950"
                     style={{ background: book.accent }}
                   >
                     {book.chapters}
                   </Badge>
-                  <div className="absolute inset-x-0 bottom-0 p-5">
-                    <h3 className="text-lg font-black leading-snug text-foreground md:text-xl">{book.title}</h3>
-                    <p className="mt-1 text-sm leading-7 text-muted-foreground">{book.subtitle}</p>
-                  </div>
                 </div>
-                <div className="flex gap-2 p-4">
+                <div className="px-5 pt-5">
+                  <h3 className="text-lg font-black leading-snug text-foreground md:text-xl">{book.title}</h3>
+                  <p className="mt-1 text-sm leading-7 text-muted-foreground">{book.subtitle}</p>
+                </div>
+                <div className="mt-auto flex gap-2 p-4">
                   <Button asChild size="lg" className="flex-1 rounded-xl btn-glow">
                     <a href={book.read} target="_blank" rel="noopener noreferrer">
                       <BookOpen data-icon="inline-start" />

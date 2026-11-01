@@ -35,7 +35,7 @@ export type Project = {
 
 export type Book = {
   /** 🌫️ Key into blurData placeholders */
-  blur: "js-guide" | "react-guide" | "next-guide" | "git-guide";
+  blur: "js-guide" | "react-guide" | "next-guide" | "git-guide" | "ts-guide";
   title: string;
   subtitle: string;
   chapters: string;
@@ -52,7 +52,7 @@ const fa = {
     viewProjects: "مشاهدهٔ پروژه‌ها",
     sourceCode: "سورس‌کد",
     liveDemo: "دموی زنده",
-    liveWebsite: "وب‌سایت زنده",
+    liveWebsite: "مشاهدهٔ سایت",
     readOnline: "مطالعهٔ آنلاین",
     clientProject: "پروژهٔ کارفرما",
     privateSource: "سورس‌کد این پروژه طبق قرارداد با کارفرما خصوصیه.",
@@ -94,9 +94,9 @@ const fa = {
     floatB: { value: "۳+", label: "سال تجربهٔ واقعی" },
     stats: [
       { value: "۳+", label: "سال تجربه" },
-      { value: "۳", label: "محصول روی هوا" },
+      { value: "۵", label: "پروژه با نسخهٔ زنده" },
       { value: "۱۰۰", label: "امتیاز SEO" },
-      { value: "۴", label: "کتاب فنی فارسی" },
+      { value: "۵", label: "کتاب فنی فارسی" },
     ],
   },
   about: {
@@ -126,6 +126,20 @@ const fa = {
     description: "چند تا کار که از ایده تا دیپلوی خودم جلو بردم — نه دمو، نه قالب آماده.",
     items: [
       {
+        slug: "kiana-khorsand",
+        title: "کیانا خرسند",
+        subtitle: "وب‌سایت روان‌درمانی و رزرو جلسات",
+        type: "Full-Stack · Healthcare",
+        description: "یک تجربهٔ فارسی و راست‌به‌چپ برای معرفی خدمات روان‌درمانی، رزرو نوبت با تقویم شمسی و مدیریت جلسات. پنل‌های جداگانهٔ کاربر و مدیر، احراز هویت Better Auth، یادداشت‌های خصوصی رمزنگاری‌شده و PWA با پشتیبانی آفلاین؛ ساخته‌شده با Server Components و Server Actions و همراه با تست‌های سرتاسری Playwright.",
+        image: "/images/projects/kiana-khorsand.jpg",
+        size: { w: 1400, h: 875 },
+        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Better Auth", "Zod", "Playwright"],
+        metrics: [],
+        github: "https://github.com/rezaian-dev/kiana-khorsand",
+        demo: "https://kiana-khorsand.vercel.app",
+        accent: "#0d9488",
+      },
+      {
         slug: "doctor-booking",
         title: "دکتر رزرو",
         subtitle: "پلتفرم نوبت‌دهی آنلاین پزشک",
@@ -142,6 +156,7 @@ const fa = {
           { value: "۱۰۰", label: "SEO" },
         ],
         github: "https://github.com/rezaian-dev/doctor-booking",
+        demo: "https://doctor-booking-dusky-nine.vercel.app",
         accent: "#3b82f6",
       },
       {
@@ -160,6 +175,7 @@ const fa = {
           { value: "۱۲", label: "صفحه" },
         ],
         github: "https://github.com/rezaian-dev/saghfinoo",
+        demo: "https://saghfinoo.netlify.app",
         accent: "#ef4444",
       },
       {
@@ -193,6 +209,7 @@ const fa = {
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",
+        demo: "https://rezaian-dev.github.io/shopping-cart-ts",
         accent: "#0ea5e9",
       },
     ] as Project[],
@@ -200,8 +217,18 @@ const fa = {
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
     title: "کتاب‌هایی که کاش زودتر داشتم",
-    description: "چهار تا راهنمای فارسی که نوشتم چون خودم دلم می‌خواست همچین منابعی وجود داشته باشه: پروژه‌محور، با تمرکز روی مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. رایگان و متن‌باز.",
+    description: "پنج راهنمای فارسی که نوشتم چون خودم دلم می‌خواست همچین منابعی وجود داشته باشه: پروژه‌محور، با تمرکز روی مدل ذهنی و «چرا»ها، نه فقط «چطور»ها. با دسترسی آنلاین و مخزن عمومی.",
     items: [
+      {
+        title: "مرجع جامع TypeScript — از مدل ذهنی تا Production",
+        subtitle: "۲۲۰ صفحه، ۸ پروژهٔ عملی و بیش از ۱۳۰ پرسش مصاحبه",
+        chapters: "۴۰ فصل",
+        blur: "ts-guide",
+        image: "/images/projects/ts-guide.jpg",
+        read: "https://rezaian-dev.github.io/typescript-persian-guide/",
+        github: "https://github.com/rezaian-dev/typescript-persian-guide",
+        accent: "#3178c6",
+      },
       {
         title: "مرجع فارسی JavaScript ES2025",
         subtitle: "از مدل ذهنی زبان تا معماری و کد آمادهٔ Production",
@@ -367,7 +394,7 @@ const fa = {
     lead: "از نظر شخصی خودم را بیشتر نزدیک به INTJ می‌بینم؛ نه به‌عنوان یک برچسب قطعی، بلکه چون بعضی از الگوهای فکری و کاری این تیپ به سبک کار کردنم نزدیک‌اند.",
     traits: [
       "قبل از تغییر، ترجیح می‌دم سیستم را بخوانم.",
-      "کار عمیق را دوست دارم — چهار handbook فارسی از همین‌جا آمده.",
+      "کار عمیق را دوست دارم — پنج handbook فارسی از همین‌جا آمده.",
       "معمولاً اول خودم تا ریشه می‌روم.",
       "به پیامد معماری فکر می‌کنم: قفل موجودی، استیت SSR-aware، timezone.",
       "کیفیت بلندمدت را به میان‌بر ترجیح می‌دم.",
@@ -449,9 +476,9 @@ const en: Content = {
     floatB: { value: "3+", label: "Years of Experience" },
     stats: [
       { value: "3+", label: "Years Experience" },
-      { value: "3", label: "Production Products" },
+      { value: "5", label: "Projects with Live Sites" },
       { value: "100", label: "SEO Score" },
-      { value: "4", label: "Persian Tech Books" },
+      { value: "5", label: "Persian Tech Books" },
     ],
   },
   about: {
@@ -481,6 +508,20 @@ const en: Content = {
     description: "A few things I've taken from idea to deployment myself — no demos, no templates.",
     items: [
       {
+        slug: "kiana-khorsand",
+        title: "Kiana Khorsand",
+        subtitle: "Psychotherapy website & session booking",
+        type: "Full-Stack · Healthcare",
+        description: "A Persian, RTL-first psychotherapy platform with Jalali-calendar booking, separate client and admin dashboards, Better Auth roles and encrypted private notes. Built with Server Components and Server Actions, with offline PWA support, structured SEO and Playwright end-to-end tests.",
+        image: "/images/projects/kiana-khorsand.jpg",
+        size: { w: 1400, h: 875 },
+        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "MongoDB", "Better Auth", "Zod", "Playwright"],
+        metrics: [],
+        github: "https://github.com/rezaian-dev/kiana-khorsand",
+        demo: "https://kiana-khorsand.vercel.app",
+        accent: "#0d9488",
+      },
+      {
         slug: "doctor-booking",
         title: "Doctor Booking",
         subtitle: "Online medical appointment platform",
@@ -497,6 +538,7 @@ const en: Content = {
           { value: "100", label: "SEO" },
         ],
         github: "https://github.com/rezaian-dev/doctor-booking",
+        demo: "https://doctor-booking-dusky-nine.vercel.app",
         accent: "#3b82f6",
       },
       {
@@ -515,6 +557,7 @@ const en: Content = {
           { value: "12", label: "Pages" },
         ],
         github: "https://github.com/rezaian-dev/saghfinoo",
+        demo: "https://saghfinoo.netlify.app",
         accent: "#ef4444",
       },
       {
@@ -548,6 +591,7 @@ const en: Content = {
         stack: ["TypeScript", "Webpack", "Bootstrap 5", "ESLint + Prettier"],
         metrics: [],
         github: "https://github.com/rezaian-dev/shopping-cart-ts",
+        demo: "https://rezaian-dev.github.io/shopping-cart-ts",
         accent: "#0ea5e9",
       },
     ],
@@ -555,8 +599,18 @@ const en: Content = {
   books: {
     eyebrow: "OPEN SOURCE · PERSIAN HANDBOOKS",
     title: "The handbooks I wish I'd had earlier",
-    description: "Four Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Free and open source.",
+    description: "Five Persian guides I wrote because I wished they existed: project-based, focused on mental models and the \"why\", not just the \"how\". Available online, with public repositories.",
     items: [
+      {
+        title: "TypeScript — Persian Reference",
+        subtitle: "220 pages, 8 hands-on projects and 130+ interview questions",
+        chapters: "40 chapters",
+        blur: "ts-guide",
+        image: "/images/projects/ts-guide.jpg",
+        read: "https://rezaian-dev.github.io/typescript-persian-guide/",
+        github: "https://github.com/rezaian-dev/typescript-persian-guide",
+        accent: "#3178c6",
+      },
       {
         title: "JavaScript ES2025 — Persian Guide",
         subtitle: "From the language's mental model to production-ready architecture",
@@ -715,7 +769,7 @@ const en: Content = {
     lead: "Personally I see myself as closer to INTJ — not as a hard label, but because some of that type's thinking and working patterns sit close to how I actually work.",
     traits: [
       "I like to understand the system before I change it.",
-      "Deep work is where I'm happiest — the four Persian handbooks came from that.",
+      "Deep work is where I'm happiest — the five Persian handbooks came from that.",
       "I usually try to get to the root on my own first.",
       "I think about architectural consequences: stock locks, SSR-aware state, timezones.",
       "I prefer long-term quality over a shortcut I'll pay for later.",

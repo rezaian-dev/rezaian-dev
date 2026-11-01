@@ -37,7 +37,7 @@ fast, accessible, and built to be maintained by someone other than me.
 
 ## 🧭 A little about me
 
-Three-ish years ago I wrote my first React component. Since then I've shipped a full-stack medical booking platform, a real-estate app with an interactive map, an e-commerce store for a client, and four Persian handbooks that a lot of developers now learn from.
+Three-ish years ago I wrote my first React component. Since then I've shipped a full-stack medical booking platform, a real-estate app with an interactive map, an e-commerce store for a client, and five Persian handbooks that a lot of developers now learn from.
 
 What gets me out of bed isn't a shiny new framework — it's the moment an interface *just works*: the Jalali calendar that never drifts by a day, the RTL layout that sits right on every screen, the page that's loaded before the user blinks.
 
@@ -56,12 +56,13 @@ Things I quietly refuse to compromise on:
 
 The full stories, screenshots and numbers live on the portfolio — here's the short version.
 
-| | Project | In one line | |
-|:-:|:--|:--|:--|
-| 🩺 | **Doctor Booking** | Full-stack appointment platform — Next.js 16, MongoDB, Redis, Playwright. Lighthouse SEO **100**. | [Source](https://github.com/rezaian-dev/doctor-booking) |
-| 🏠 | **Saghfinoo** | Real-estate SPA with map-based search, built to scale — React 18, Vite, Leaflet. | [Source](https://github.com/rezaian-dev/saghfinoo) |
-| 👗 | **Malli Kids** | E-commerce for a children's atelier — RSC, ISR, Better Auth. *Client work, private.* | — |
-| 🛒 | **ShoppingCart** | A tidy, strict-TypeScript cart with a modular architecture. | [Source](https://github.com/rezaian-dev/shopping-cart-ts) |
+| Project | Focus | Live website | Source |
+|:--|:--|:--|:--|
+| 🌿 **Kiana Khorsand** | Psychotherapy platform · Jalali booking, client/admin dashboards, Better Auth, offline PWA | [Visit site ↗](https://kiana-khorsand.vercel.app) | [GitHub](https://github.com/rezaian-dev/kiana-khorsand) |
+| 🩺 **Doctor Booking** | Medical appointments · Next.js, MongoDB, Redis, Playwright | [Visit site ↗](https://doctor-booking-dusky-nine.vercel.app) | [GitHub](https://github.com/rezaian-dev/doctor-booking) |
+| 🏠 **Saghfinoo** | RTL real-estate platform · React, Vite, interactive maps | [Visit site ↗](https://saghfinoo.netlify.app) | [GitHub](https://github.com/rezaian-dev/saghfinoo) |
+| 👗 **Malli Kids** | Children's clothing store · RSC, ISR, Better Auth | [Visit site ↗](https://mallikids.ir) | Private client work |
+| 🛒 **ShoppingCart** | Responsive TypeScript shopping cart · Bootstrap 5 | [Visit site ↗](https://rezaian-dev.github.io/shopping-cart-ts) | [GitHub](https://github.com/rezaian-dev/shopping-cart-ts) |
 
 <div align="center">
   <br />
@@ -72,36 +73,23 @@ The full stories, screenshots and numbers live on the portfolio — here's the s
 
 ## 📚 The handbooks I wish I'd had earlier
 
-Four free, open-source Persian guides — project-based, obsessed with the *why*, not just the *how*.
+Five Persian guides available to read online — project-based, obsessed with the *why*, not just the *how*.
 
-<table align="center">
-  <tr>
-    <td align="center" width="25%">
-      <a href="https://rezaian-dev.github.io/javascript-persian-guide/"><img src="public/images/projects/js-guide.jpg" alt="JavaScript ES2025 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
-      <b>JavaScript ES2025</b><br /><sub>38 chapters</sub><br /><br />
-      <a href="https://rezaian-dev.github.io/javascript-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
-      <a href="https://github.com/rezaian-dev/javascript-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
-    </td>
-    <td align="center" width="25%">
-      <a href="https://rezaian-dev.github.io/react-19-persian-guide/"><img src="public/images/projects/react-guide.jpg" alt="React 19 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
-      <b>React 19.2</b><br /><sub>37 chapters</sub><br /><br />
-      <a href="https://rezaian-dev.github.io/react-19-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
-      <a href="https://github.com/rezaian-dev/react-19-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
-    </td>
-    <td align="center" width="25%">
-      <a href="https://rezaian-dev.github.io/nextjs-16-persian-guide/"><img src="public/images/projects/next-guide.jpg" alt="Next.js 16 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
-      <b>Next.js 16</b><br /><sub>37 chapters</sub><br /><br />
-      <a href="https://rezaian-dev.github.io/nextjs-16-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
-      <a href="https://github.com/rezaian-dev/nextjs-16-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
-    </td>
-    <td align="center" width="25%">
-      <a href="https://rezaian-dev.github.io/git-github-persian-guide/"><img src="public/images/projects/git-guide.jpg" alt="Git & GitHub 2026 Persian Guide" width="200" style="border-radius:12px" /></a><br /><br />
-      <b>Git & GitHub 2026</b><br /><sub>36 chapters</sub><br /><br />
-      <a href="https://rezaian-dev.github.io/git-github-persian-guide/"><img src="https://img.shields.io/badge/Read-0EA5E9?style=flat-square&logo=githubpages&logoColor=white" alt="Read" /></a>
-      <a href="https://github.com/rezaian-dev/git-github-persian-guide"><img src="https://img.shields.io/badge/Source-181717?style=flat-square&logo=github&logoColor=white" alt="Source" /></a>
-    </td>
-  </tr>
-</table>
+<div align="center">
+  <a href="https://rezaian-dev.github.io/typescript-persian-guide/"><img src="public/images/projects/ts-guide.jpg" alt="TypeScript Persian Reference — 40 chapters" width="220" /></a>
+  <h3>New · TypeScript Persian Reference</h3>
+  <p>220 pages · 40 chapters · 8 hands-on projects · 130+ interview questions</p>
+  <a href="https://rezaian-dev.github.io/typescript-persian-guide/"><b>Read online ↗</b></a> · <a href="https://github.com/rezaian-dev/typescript-persian-guide">Browse repository</a>
+</div>
+
+| Handbook | Chapters | Read online | Repository |
+|:--|:--:|:--|:--|
+| **TypeScript** | 40 | [Read ↗](https://rezaian-dev.github.io/typescript-persian-guide/) | [Source](https://github.com/rezaian-dev/typescript-persian-guide) |
+| **JavaScript ES2025** | 38 | [Read ↗](https://rezaian-dev.github.io/javascript-persian-guide/) | [Source](https://github.com/rezaian-dev/javascript-persian-guide) |
+| **React 19.2** | 37 | [Read ↗](https://rezaian-dev.github.io/react-19-persian-guide/) | [Source](https://github.com/rezaian-dev/react-19-persian-guide) |
+| **Next.js 16** | 37 | [Read ↗](https://rezaian-dev.github.io/nextjs-16-persian-guide/) | [Source](https://github.com/rezaian-dev/nextjs-16-persian-guide) |
+| **Git & GitHub 2026** | 36 | [Read ↗](https://rezaian-dev.github.io/git-github-persian-guide/) | [Source](https://github.com/rezaian-dev/git-github-persian-guide) |
+
 
 <br />
 
